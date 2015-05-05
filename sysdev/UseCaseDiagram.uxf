@@ -53,7 +53,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Sale</panel_attributes>
+    <panel_attributes>Create Sale</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -97,7 +97,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Invoice </panel_attributes>
+    <panel_attributes>Send Invoice </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -108,7 +108,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Location</panel_attributes>
+    <panel_attributes>Get Location</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -130,7 +130,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Purchase</panel_attributes>
+    <panel_attributes>Make Purchase</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -152,7 +152,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Statistics</panel_attributes>
+    <panel_attributes>Create Statistics</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -163,7 +163,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Pack</panel_attributes>
+    <panel_attributes>Pack Order</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -174,7 +174,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Send</panel_attributes>
+    <panel_attributes>Send Order</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -185,7 +185,7 @@
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Payment</panel_attributes>
+    <panel_attributes>Register Payment</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
