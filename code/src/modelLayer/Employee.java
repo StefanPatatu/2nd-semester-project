@@ -17,13 +17,19 @@ public class Employee {
 	private int rights;
 	
 	//constructor
-	public Employee(String person_id, String city, String street, String phoneNr, String email, int rights) {
-		this.person_id = person_id;
-		this.city = city;
-		this.street = street;
-		this.phoneNr = phoneNr;
-		this.email = email;
-		this.rights = rights;
+	public Employee(
+			String person_id,
+			String city,
+			String street,
+			String phoneNr,
+			String email,
+			int rights) {
+		this.setPerson_id(person_id);;
+		this.setCity(city);;
+		this.setStreet(street);;
+		this.setPhoneNr(phoneNr);;;
+		this.setEmail(email);;
+		this.setRights(rights);;
 	}
 	
 	//person_id
@@ -55,11 +61,11 @@ public class Employee {
 		this.phoneNr = phoneNr;
 	}
 	//email
-	public String geteMail() {
+	public String getEmail() {
 		return email;
 	}
-	public void seteMail(String eMail) {
-		this.email = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	//rights
 	public int getRights() {
