@@ -2,6 +2,12 @@
 
 package modelLayer;
 
+/**
+ * Item
+ * 
+ * @author Kristis133
+ * @version 1.0
+ */
 
 public class Item {
 	
