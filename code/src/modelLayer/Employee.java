@@ -39,6 +39,7 @@ public class Employee {
 	public void setPerson_id(String person_id) {
 		this.person_id = person_id;
 	}
+	
 	//city
 	public String getCity() {
 		return city;
@@ -46,6 +47,7 @@ public class Employee {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
 	//street
 	public String getStreet() {
 		return street;
@@ -53,6 +55,7 @@ public class Employee {
 	public void setStreet(String street) {
 		this.street = street;
 	}
+	
 	//phoneNr
 	public String getPhoneNr() {
 		return phoneNr;
@@ -60,6 +63,7 @@ public class Employee {
 	public void setPhoneNr(String phoneNr) {
 		this.phoneNr = phoneNr;
 	}
+	
 	//email
 	public String getEmail() {
 		return email;
@@ -67,6 +71,7 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	//rights
 	public int getRights() {
 		return rights;

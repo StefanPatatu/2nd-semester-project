@@ -38,6 +38,7 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
     //city
 	public String getCity() {
 		return city;
@@ -45,6 +46,7 @@ public class Customer {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
 	//street
 	public String getStreet() {
 		return street;
@@ -52,6 +54,7 @@ public class Customer {
 	public void setStreet(String street) {
 		this.street = street;
 	}
+	
 	//phoneNr
 	public String getPhoneNr() {
 		return phoneNr;
@@ -59,6 +62,7 @@ public class Customer {
 	public void setPhoneNr(String phoneNr) {
 		this.phoneNr = phoneNr;
 	}
+	
 	//email
 	public String getEmail() {
 		return email;
@@ -66,6 +70,7 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	//discount
 	public int getDiscount() {
 		return discount;

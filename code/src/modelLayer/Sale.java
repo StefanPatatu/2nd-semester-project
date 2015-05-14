@@ -1,6 +1,7 @@
 package modelLayer;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  * Sale
@@ -18,6 +19,9 @@ public class Sale {
 	private Timestamp dateSent;
 	private boolean isPaid;
 	private Timestamp datePaid;
+	private Employee employee;
+	private Customer customer;
+	private ArrayList<SaleLine> saleLines;
 	
 	//constructor
 	public Sale(
@@ -27,7 +31,10 @@ public class Sale {
 			boolean isSent,
 			Timestamp dateSent,
 			boolean isPaid,
-			Timestamp datePaid) {
+			Timestamp datePaid,
+			Employee employee,
+			Customer customer,
+			ArrayList<SaleLine> saleLines) {
 		this.setDateCreated(dateCreated);
 		this.setPacked(isPacked);
 		this.setDatePacked(datePacked);
@@ -35,6 +42,9 @@ public class Sale {
 		this.setDateSent(dateSent);
 		this.setPaid(isPaid);
 		this.setDatePaid(datePaid);
+		this.setEmployee(employee);
+		this.setCustomer(customer);
+		this.setSaleLines(saleLines);
 	}
 
 	//dateCreated
@@ -91,6 +101,30 @@ public class Sale {
 	}
 	public void setDatePaid(Timestamp datePaid) {
 		this.datePaid = datePaid;
+	}
+	
+	//employee
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	//customer
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	//saleLines
+	public ArrayList<SaleLine> getSaleLines() {
+		return saleLines;
+	}
+	public void setSaleLines(ArrayList<SaleLine> saleLines) {
+		this.saleLines = saleLines;
 	}
 
 }

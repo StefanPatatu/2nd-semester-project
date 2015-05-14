@@ -14,8 +14,8 @@ public class SaleLine {
 	private Item item;
 	private Sale sale; 
 	
-	
-  public SaleLine (
+	//constructor
+	public SaleLine (
 		  int quantity,
 		  double price,
 		  int discount,
@@ -26,7 +26,8 @@ public class SaleLine {
 	  this.setDiscount(discount);
 	  this.setItem(item);
 	  this.setSale(sale); 
-  }
+	}
+	
     //quantity
 	public int getQuantity() {
 		return quantity;
@@ -34,6 +35,7 @@ public class SaleLine {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
 	//price
 	public double getPrice() {
 		return price;
@@ -41,6 +43,7 @@ public class SaleLine {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 	//discount
 	public int getDiscount() {
 		return discount;
@@ -48,6 +51,7 @@ public class SaleLine {
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+	
 	//item
 	public Item getItem() {
 		return item;
@@ -55,6 +59,7 @@ public class SaleLine {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+	
 	//sale
 	public Sale getSale() {
 		return sale;

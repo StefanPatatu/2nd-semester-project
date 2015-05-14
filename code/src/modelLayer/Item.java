@@ -13,7 +13,7 @@ public class Item {
 	
 	private String barcode;
 	private String name;
-	private int price;
+	private double price;
 	private int stock;
 	private String type;
 	private String category;
@@ -22,7 +22,7 @@ public class Item {
 	public Item(
 			String barcode,
 			String name,
-			int price,
+			double price,
 			int stock,
 			String type,
 			String category) {
@@ -41,6 +41,7 @@ public class Item {
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
+	
 	//name
 	public String getName() {
 		return name;
@@ -48,13 +49,15 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	//price
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 	//stock
 	public int getStock() {
 		return stock;
@@ -62,6 +65,7 @@ public class Item {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
 	//type
 	public String getType() {
 		return type;
@@ -69,6 +73,7 @@ public class Item {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
 	//category
 	public String getCategory() {
 		return category;

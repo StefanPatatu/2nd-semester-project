@@ -26,6 +26,7 @@ public class Invoice {
 	public void setInvoiceNr(String invoiceNr) {
 		this.invoiceNr = invoiceNr;
 	}
+	
 	//paymentDate
 	public Timestamp getPaymentDate() {
 		return paymentDate;
