@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>670</x>
+      <x>469</x>
       <y>0</y>
-      <w>290</w>
-      <h>120</h>
+      <w>203</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>MainGUI
 --
@@ -24,10 +24,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>220</x>
-      <y>150</y>
-      <w>290</w>
-      <h>70</h>
+      <x>154</x>
+      <y>105</y>
+      <w>203</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>EmployeGUI
 --
@@ -41,10 +41,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>920</x>
-      <y>180</y>
-      <w>290</w>
-      <h>120</h>
+      <x>644</x>
+      <y>126</y>
+      <w>203</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>SaleGUI
 --
@@ -58,10 +58,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>580</x>
-      <y>170</y>
-      <w>290</w>
-      <h>120</h>
+      <x>406</x>
+      <y>119</y>
+      <w>203</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>CustomeGUI
 --
@@ -75,10 +75,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1260</x>
-      <y>180</y>
-      <w>290</w>
-      <h>120</h>
+      <x>882</x>
+      <y>126</y>
+      <w>203</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>ItemGUI
 --
@@ -93,18 +93,18 @@ bg=red</panel_attributes>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
       <x>0</x>
-      <y>310</y>
-      <w>450</w>
-      <h>140</h>
+      <y>217</y>
+      <w>315</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>EmployeeCtr
 --
 dbEmployee:DBEmployee
 --
-createEmployee(personID, name, address, phoneNr, eMail, password)
-updateName(personID)
-updateAddress(personID)
-updatePhoneNr(personID)
+createEmployee(person_id, name, address, phoneNr, eMail, password)
+updateName(person_id)
+updateAddress(person_id)
+updatePhoneNr(person_id)
 
 updateEMail(personID)
 
@@ -114,10 +114,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>490</x>
-      <y>330</y>
-      <w>380</w>
-      <h>140</h>
+      <x>343</x>
+      <y>231</y>
+      <w>266</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>CustomerCtr
 --
@@ -126,7 +126,7 @@ dbCustomer:DBCustomer
 createCustomer(name, address, phoneNr, eMail, discount) 
 updateName(name)
 updateAddress(name)
-updateEMail(name)
+updateEmail(name)
 
 bg=yellow</panel_attributes>
     <additional_attributes/>
@@ -134,10 +134,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1450</x>
-      <y>340</y>
-      <w>360</w>
-      <h>140</h>
+      <x>1015</x>
+      <y>238</y>
+      <w>252</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>ItemCtr
 --
@@ -156,10 +156,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>900</x>
-      <y>370</y>
-      <w>530</w>
-      <h>170</h>
+      <x>567</x>
+      <y>357</y>
+      <w>511</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>SaleCtr
 --
@@ -169,7 +169,7 @@ cust:Customer
 item:Item
 saleLines&lt;ArrayList&gt;:SaleLine
 --
-createSale(personID, isPacked, datePacked, isSent, dateSent, isPaid, datePaid)
+createSale(personID, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines)
 findSale(id)
 findInvoice(id)
 bg=yellow</panel_attributes>
@@ -178,10 +178,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>110</y>
-      <w>50</w>
-      <h>80</h>
+      <x>532</x>
+      <y>77</y>
+      <w>35</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;60.0;30.0;10.0</additional_attributes>
@@ -189,10 +189,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
-      <y>110</y>
-      <w>220</w>
-      <h>80</h>
+      <x>350</x>
+      <y>77</y>
+      <w>154</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;60.0;200.0;10.0</additional_attributes>
@@ -200,10 +200,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>110</y>
-      <w>130</w>
-      <h>90</h>
+      <x>644</x>
+      <y>77</y>
+      <w>91</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>110.0;70.0;10.0;10.0</additional_attributes>
@@ -211,10 +211,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>70</y>
-      <w>360</w>
-      <h>130</h>
+      <x>665</x>
+      <y>49</y>
+      <w>252</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>340.0;110.0;10.0;10.0</additional_attributes>
@@ -222,10 +222,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1460</x>
-      <y>290</y>
-      <w>130</w>
-      <h>70</h>
+      <x>1022</x>
+      <y>203</y>
+      <w>91</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>110.0;50.0;10.0;10.0</additional_attributes>
@@ -233,21 +233,21 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
-      <y>290</y>
+      <x>714</x>
+      <y>203</y>
       <w>70</w>
-      <h>100</h>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;50.0;10.0</additional_attributes>
+    <additional_attributes>80.0;220.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>280</y>
-      <w>50</w>
-      <h>70</h>
+      <x>462</x>
+      <y>196</y>
+      <w>35</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;30.0;10.0</additional_attributes>
@@ -255,10 +255,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>210</y>
-      <w>100</w>
-      <h>120</h>
+      <x>175</x>
+      <y>147</y>
+      <w>70</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;100.0;80.0;10.0</additional_attributes>
@@ -266,16 +266,16 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>80</x>
-      <y>510</y>
-      <w>130</w>
-      <h>130</h>
+      <x>56</x>
+      <y>357</y>
+      <w>91</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>Employee		
 --
-personID:String
-city:String
-street:String
+person_id:String
+name:String
+
 phoneNr:String
 email:String
 rights:int
@@ -287,19 +287,16 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>570</x>
-      <y>540</y>
-      <w>160</w>
-      <h>140</h>
+      <x>378</x>
+      <y>469</y>
+      <w>112</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Customer
 --
 name:String
-city:String
-street:String
 phoneNr:String
 email:String
-discount:int
 --
 
 bg=green
@@ -309,10 +306,10 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>440</y>
-      <w>100</w>
-      <h>90</h>
+      <x>112</x>
+      <y>308</y>
+      <w>70</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;70.0;80.0;10.0</additional_attributes>
@@ -320,26 +317,30 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>460</y>
-      <w>90</w>
-      <h>100</h>
+      <x>413</x>
+      <y>322</y>
+      <w>28</w>
+      <h>161</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;70.0;10.0</additional_attributes>
+    <additional_attributes>20.0;210.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1210</x>
-      <y>590</y>
-      <w>180</w>
-      <h>70</h>
+      <x>917</x>
+      <y>525</y>
+      <w>126</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>Invoice	
 --
 invoiceNr:String
-paymentDate:timeStamp
+dateCreated:Timestamp
+isPaid:boolean
+datePaid:Timestamp
+customer:Customer
+sales:ArrayList&lt;Sale&gt;
 --
 
 
@@ -349,20 +350,25 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1020</x>
-      <y>620</y>
-      <w>170</w>
-      <h>160</h>
+      <x>721</x>
+      <y>532</y>
+      <w>140</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Sale
 --
-dateCreated:timeStamp
-isPacked:booelean
-datePacked:timeStamp
+saleNr:String
+discount:int
+dateCreated:Timestamp
+isPacked:boolean
+datePacked:Timestamp
 isSent:boolean
-dateSent:timeStamp
+dateSent:Timestamp
 isPaid:boolean
-datePaid:timeStamp
+datePaid:Timestamp
+employee:Employee
+customer:Customer
+saleLines:ArrayList&lt;SaleLine&gt;
 --
 
 bg=green</panel_attributes>
@@ -371,16 +377,15 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>810</x>
-      <y>630</y>
-      <w>100</w>
-      <h>80</h>
+      <x>588</x>
+      <y>539</y>
+      <w>70</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>SaleLine
 --
 quantity:int
 price:double
-discount:int
 --
 
 bg=green</panel_attributes>
@@ -389,10 +394,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1580</x>
-      <y>560</y>
-      <w>110</w>
-      <h>140</h>
+      <x>1106</x>
+      <y>525</y>
+      <w>77</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>Item
 --
@@ -400,7 +405,7 @@ barcode:String
 name:String
 price:double
 stock:int
-type:String
+itemType:String
 category:String
 --
 
@@ -410,21 +415,21 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>530</y>
-      <w>140</w>
-      <h>120</h>
+      <x>609</x>
+      <y>469</y>
+      <w>42</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;100.0;120.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;40.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1070</x>
-      <y>530</y>
-      <w>30</w>
-      <h>110</h>
+      <x>791</x>
+      <y>469</y>
+      <w>21</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
@@ -432,43 +437,43 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>520</y>
-      <w>200</w>
+      <x>483</x>
+      <y>462</y>
+      <w>98</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>938</x>
+      <y>469</y>
+      <w>21</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;50.0;180.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1230</x>
-      <y>530</y>
-      <w>40</w>
-      <h>80</h>
+      <x>1134</x>
+      <y>329</y>
+      <w>35</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>20.0;60.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1620</x>
-      <y>470</y>
-      <w>50</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;280.0;30.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>40</x>
-      <y>70</y>
-      <w>210</w>
-      <h>70</h>
+      <x>28</x>
+      <y>49</y>
+      <w>147</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>
 --
@@ -478,13 +483,42 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>880</x>
-      <y>630</y>
-      <w>160</w>
-      <h>50</h>
+      <x>637</x>
+      <y>539</y>
+      <w>97</w>
+      <h>34</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..*</panel_attributes>
-    <additional_attributes>140;30;30;30</additional_attributes>
+    <additional_attributes>84;21;21;21</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>469</y>
+      <w>70</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>224</x>
+      <y>448</y>
+      <w>70</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Address
+--
+country:String
+city:String
+street:String
+--
+
+bg=green</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
