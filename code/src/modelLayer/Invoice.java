@@ -13,6 +13,12 @@ public class Invoice {
 	private String invoiceNr;
 	private Timestamp paymentDate;
 	
+	//constructor
+	public Invoice() {
+		this.setInvoiceNr(invoiceNr);
+		this.setInvoiceNr(invoiceNr);
+	}
+	
 	//invoice number
 	public String getInvoiceNr() {
 		return invoiceNr;
