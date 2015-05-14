@@ -1,12 +1,10 @@
-
-
 package modelLayer;
 
 /**
  * Item
  * 
- * @author Kristis133
- * @version 1.0
+ * @author Kristis133 + futz
+ * @version 1.1
  */
 
 public class Item {
@@ -15,7 +13,7 @@ public class Item {
 	private String name;
 	private double price;
 	private int stock;
-	private String type;
+	private String itemType;
 	private String category;
 	
 	//constructor
@@ -24,14 +22,14 @@ public class Item {
 			String name,
 			double price,
 			int stock,
-			String type,
+			String itemType,
 			String category) {
-		this.setBarcode(barcode);;
-		this.setName(name);;
-		this.setPrice(price);;
-		this.setStock(stock);;;
-		this.setType(type);;
-		this.setCategory(category);;
+		this.setBarcode(barcode);
+		this.setName(name);
+		this.setPrice(price);
+		this.setStock(stock);
+		this.setItemType(itemType);
+		this.setCategory(category);
 	}
 	
 	//barcode
@@ -66,12 +64,12 @@ public class Item {
 		this.stock = stock;
 	}
 	
-	//type
-	public String getType() {
-		return type;
+	//itemType
+	public String getItemType() {
+		return itemType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
 	}
 	
 	//category

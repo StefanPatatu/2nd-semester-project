@@ -4,12 +4,13 @@ package modelLayer;
  * Employee
  * 
  * @author futz
- * @version 1.0
+ * @version 1.1
  */
 
 public class Employee {
 	
 	private String person_id;
+	private String name;
 	private String city;
 	private String street;
 	private String phoneNr;
@@ -19,17 +20,19 @@ public class Employee {
 	//constructor
 	public Employee(
 			String person_id,
+			String name,
 			String city,
 			String street,
 			String phoneNr,
 			String email,
 			int rights) {
-		this.setPerson_id(person_id);;
-		this.setCity(city);;
-		this.setStreet(street);;
-		this.setPhoneNr(phoneNr);;;
-		this.setEmail(email);;
-		this.setRights(rights);;
+		this.setPerson_id(person_id);
+		this.setName(name);
+		this.setCity(city);
+		this.setStreet(street);
+		this.setPhoneNr(phoneNr);
+		this.setEmail(email);
+		this.setRights(rights);
 	}
 	
 	//person_id
@@ -38,6 +41,14 @@ public class Employee {
 	}
 	public void setPerson_id(String person_id) {
 		this.person_id = person_id;
+	}
+	
+	//
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	//city

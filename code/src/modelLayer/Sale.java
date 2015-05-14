@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Sale {
 	
 	private String saleNr;
+	private int discount;
 	private Timestamp dateCreated;
 	private boolean isPacked;
 	private Timestamp datePacked;
@@ -27,6 +28,7 @@ public class Sale {
 	//constructor
 	public Sale(
 			String saleNr,
+			int dicount,
 			Timestamp dateCreated,
 			boolean isPacked,
 			Timestamp datePacked,
@@ -38,6 +40,7 @@ public class Sale {
 			Customer customer,
 			ArrayList<SaleLine> saleLines) {
 		this.setSaleNr(saleNr);
+		this.setDiscount(discount);
 		this.setDateCreated(dateCreated);
 		this.setPacked(isPacked);
 		this.setDatePacked(datePacked);
@@ -56,6 +59,14 @@ public class Sale {
 	}
 	public void setSaleNr(String saleNr) {
 		this.saleNr = saleNr;
+	}
+	
+	//discount
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
 	}
 	
 	//dateCreated

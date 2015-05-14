@@ -3,8 +3,8 @@ package modelLayer;
 /**
  * Customer
  * 
- * @author Monika
- * @version 1.0
+ * @author Monika + futz
+ * @version 1.1
  */
 
 public class Customer {
@@ -13,7 +13,6 @@ public class Customer {
 	private String street;
 	private String phoneNr;
 	private String email;
-	private int discount;
 
 	//constructor	
 	public Customer (
@@ -21,14 +20,12 @@ public class Customer {
 			String city,
 			String street,
 			String phoneNr,
-			String email,
-			int discount)	{
+			String email) {
 		this.setName(name);
 		this.setCity(city);
 		this.setStreet(street);
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
-		this.setDiscount(discount);;
 	}
     
 	//name
@@ -71,12 +68,5 @@ public class Customer {
 		this.email = email;
 	}
 	
-	//discount
-	public int getDiscount() {
-		return discount;
-	}
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}	
 
 }

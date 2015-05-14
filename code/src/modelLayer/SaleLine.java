@@ -3,14 +3,13 @@ package modelLayer;
 /**
  * SaleLine
  * 
- * @author Monika
- * @version 1.0
+ * @author Monika +futz
+ * @version 1.1
  */
 
 public class SaleLine {
 	private int quantity;
 	private double price;
-	private int discount;
 	private Item item;
 	private Sale sale; 
 	
@@ -18,12 +17,10 @@ public class SaleLine {
 	public SaleLine (
 		  int quantity,
 		  double price,
-		  int discount,
 		  Item item,
 		  Sale sale) {
 	  this.setQuantity(quantity);
 	  this.setPrice(price);
-	  this.setDiscount(discount);
 	  this.setItem(item);
 	  this.setSale(sale); 
 	}
@@ -42,14 +39,6 @@ public class SaleLine {
 	}
 	public void setPrice(double price) {
 		this.price = price;
-	}
-	
-	//discount
-	public int getDiscount() {
-		return discount;
-	}
-	public void setDiscount(int discount) {
-		this.discount = discount;
 	}
 	
 	//item
