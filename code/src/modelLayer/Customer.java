@@ -15,20 +15,20 @@ public class Customer {
 	private String email;
 	private int discount;
 
-	
 	//constructor	
 	public Customer (
 			String name,
 			String city,
 			String street,
 			String phoneNr,
-			String email)	{
+			String email,
+			int discount)	{
 		this.setName(name);
 		this.setCity(city);
 		this.setStreet(street);
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
-		discount = 0;
+		this.setDiscount(discount);;
 	}
     
 	//name
