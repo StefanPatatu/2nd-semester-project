@@ -1,7 +1,7 @@
 package modelLayer;
 
 /**
- * Customer
+ * SaleLine
  * 
  * @author Monika
  * @version 1.0

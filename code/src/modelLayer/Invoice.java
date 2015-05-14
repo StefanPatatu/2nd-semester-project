@@ -3,7 +3,7 @@ package modelLayer;
 import java.sql.Timestamp;
 
 /**
- * Customer
+ * Invoice
  * 
  * @author Monika
  * @version 1.0
@@ -26,7 +26,7 @@ public class Invoice {
 	public void setInvoiceNr(String invoiceNr) {
 		this.invoiceNr = invoiceNr;
 	}
-	//payment date
+	//paymentDate
 	public Timestamp getPaymentDate() {
 		return paymentDate;
 	}
