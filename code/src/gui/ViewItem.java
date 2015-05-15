@@ -17,15 +17,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddItem extends JFrame {
+public class ViewItem extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -34,7 +28,7 @@ public class AddItem extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddItem frame = new AddItem();
+					ViewItem frame = new ViewItem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +40,8 @@ public class AddItem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddItem() {
-		setTitle("Add Item");
+	public ViewItem() {
+		setTitle("View Item");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(5, 7, 295, 231);
@@ -86,58 +80,38 @@ public class AddItem extends JFrame {
 		lblCategory.setBounds(10, 136, 108, 14);
 		contentPane.add(lblCategory);
 		
-		textField = new JTextField();
-		textField.setBounds(115, 10, 150, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(115, 36, 150, 20);
-		contentPane.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(115, 60, 150, 20);
-		contentPane.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(115, 85, 150, 20);
-		contentPane.add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(115, 110, 150, 20);
-		contentPane.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(115, 135, 150, 20);
-		contentPane.add(textField_5);
-		
-		JButton btnCancel = new JButton("Cancel");
+		JButton btnCancel = new JButton("Ok");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddItem.this.dispose();
+				ViewItem.this.dispose();
 			}
 		});
-		btnCancel.setBounds(176, 163, 89, 23);
+		btnCancel.setBounds(93, 161, 89, 23);
 		contentPane.add(btnCancel);
 		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must complete all fields. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				}
-			}
-		});
-		btnAdd.setBounds(86, 163, 89, 23);
-		contentPane.add(btnAdd);
+		JLabel lblBarcode_1 = new JLabel("barcode");
+		lblBarcode_1.setBounds(95, 13, 140, 14);
+		contentPane.add(lblBarcode_1);
+		
+		JLabel lblName_1 = new JLabel("name");
+		lblName_1.setBounds(95, 38, 140, 14);
+		contentPane.add(lblName_1);
+		
+		JLabel lblPrice_1 = new JLabel("price");
+		lblPrice_1.setBounds(93, 63, 140, 14);
+		contentPane.add(lblPrice_1);
+		
+		JLabel lblStock_1 = new JLabel("stock");
+		lblStock_1.setBounds(93, 86, 140, 14);
+		contentPane.add(lblStock_1);
+		
+		JLabel lblType_1 = new JLabel("type");
+		lblType_1.setBounds(93, 113, 140, 14);
+		contentPane.add(lblType_1);
+		
+		JLabel lblCategory_1 = new JLabel("category");
+		lblCategory_1.setBounds(93, 138, 140, 14);
+		contentPane.add(lblCategory_1);
 	}
 
 }

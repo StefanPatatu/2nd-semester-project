@@ -16,6 +16,8 @@ import java.awt.List;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Main extends JFrame {
 	private JTextField textField;
@@ -71,6 +73,19 @@ public class Main extends JFrame {
 		itemPanel.setLayout(null);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+			}
+			@Override
+			public void keyPressed(KeyEvent k) {
+				if (k.getKeyCode()==KeyEvent.VK_ENTER){
+					//IMPORTANT 
+				
+		        }
+			}
+		});
 		textField.setBounds(90, 12, 327, 20);
 		itemPanel.add(textField);
 		textField.setColumns(10);
@@ -101,6 +116,11 @@ public class Main extends JFrame {
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
+				} 
+				else
+				{
+				ViewItem vi = new ViewItem();
+				vi.main(null);
 				}
 			}
 		});
@@ -120,14 +140,17 @@ public class Main extends JFrame {
 		JButton btnUpdateStock = new JButton("Update stock");
 		btnUpdateStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	if(list.getSelectedItems().length==0)
+				if(list.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
 				
-				*/
+				else{
+				UpdateStock us = new UpdateStock();
+				us.main(null);
+				}
 				
 				
 				
@@ -137,6 +160,17 @@ public class Main extends JFrame {
 		itemPanel.add(btnUpdateStock);
 		tabbedPane.addTab("Customer", customerPanel);
 		tabbedPane.addTab("Sale", salePanel);
+		salePanel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Create Sale");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sale sale = new Sale();
+				sale.main(null);
+			}
+		});
+		btnNewButton.setBounds(10, 11, 581, 294);
+		salePanel.add(btnNewButton);
 		tabbedPane.addTab("Invoice", invoicePanel);
 		
 	}
