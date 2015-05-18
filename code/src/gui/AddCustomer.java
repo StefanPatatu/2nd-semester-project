@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddItem extends JFrame {
+public class AddCustomer extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -35,7 +35,7 @@ public class AddItem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddItem() {
+	public AddCustomer() {
 		setTitle("Add Item");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -45,32 +45,32 @@ public class AddItem extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBarcode = new JLabel("Barcode:");
+		JLabel lblBarcode = new JLabel("Name:");
 		lblBarcode.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblBarcode.setBounds(10, 11, 108, 14);
 		contentPane.add(lblBarcode);
 		
-		JLabel lblName = new JLabel("Name:");
+		JLabel lblName = new JLabel("Country:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblName.setBounds(10, 36, 108, 14);
 		contentPane.add(lblName);
 		
-		JLabel lblPrice = new JLabel("Price:");
+		JLabel lblPrice = new JLabel("City:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPrice.setBounds(10, 61, 108, 14);
 		contentPane.add(lblPrice);
 		
-		JLabel lblStock = new JLabel("Stock:");
+		JLabel lblStock = new JLabel("Street:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblStock.setBounds(10, 86, 108, 14);
 		contentPane.add(lblStock);
 		
-		JLabel lblType = new JLabel("Type:");
+		JLabel lblType = new JLabel("Ph. Nr:");
 		lblType.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblType.setBounds(10, 111, 108, 14);
 		contentPane.add(lblType);
 		
-		JLabel lblCategory = new JLabel("Category:");
+		JLabel lblCategory = new JLabel("Email:");
 		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblCategory.setBounds(10, 136, 108, 14);
 		contentPane.add(lblCategory);
@@ -108,7 +108,7 @@ public class AddItem extends JFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddItem.this.dispose();
+				AddCustomer.this.dispose();
 			}
 		});
 		btnCancel.setBounds(176, 163, 89, 23);

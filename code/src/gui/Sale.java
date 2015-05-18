@@ -42,18 +42,7 @@ public class Sale extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					 Sale frame = new Sale();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -157,7 +146,7 @@ public class Sale extends JFrame {
 		lblQuantity.setBounds(10, 322, 71, 22);
 		panel.add(lblQuantity);
 		
-		JButton btnAdd = new JButton("Add");
+		JButton btnAdd = new JButton("Add to sale");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(itemList.getSelectedItems().length==0)
@@ -177,7 +166,7 @@ public class Sale extends JFrame {
 				
 			}
 		});
-		btnAdd.setBounds(185, 321, 89, 23);
+		btnAdd.setBounds(185, 321, 105, 23);
 		panel.add(btnAdd);
 		
 		JLabel lblStock = new JLabel("Stock:");
@@ -214,7 +203,7 @@ public class Sale extends JFrame {
 		saleList.setBounds(10, 40, 280, 220);
 		panel_1.add(saleList);
 		
-		JButton btnDelete = new JButton("Delete");
+		JButton btnDelete = new JButton("Remove");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(saleList.getSelectedItems().length==0)

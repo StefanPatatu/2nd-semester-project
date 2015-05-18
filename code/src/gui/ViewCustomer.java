@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ViewItem extends JFrame {
+public class ViewCustomer extends JFrame {
 
 	private JPanel contentPane;
 
@@ -29,78 +29,69 @@ public class ViewItem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ViewItem() {
-		setTitle("View Item");
+	public ViewCustomer() {
+		setTitle("View Customer");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(5, 7, 295, 231);
+		setBounds(5, 7, 295, 198);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBarcode = new JLabel("Barcode:");
+		JLabel lblBarcode = new JLabel("Name:");
 		lblBarcode.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblBarcode.setBounds(10, 11, 108, 14);
 		contentPane.add(lblBarcode);
 		
-		JLabel lblName = new JLabel("Name:");
+		JLabel lblName = new JLabel("Country:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblName.setBounds(10, 36, 108, 14);
 		contentPane.add(lblName);
 		
-		JLabel lblPrice = new JLabel("Price:");
+		JLabel lblPrice = new JLabel("Street:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPrice.setBounds(10, 61, 108, 14);
 		contentPane.add(lblPrice);
 		
-		JLabel lblStock = new JLabel("Stock:");
+		JLabel lblStock = new JLabel("Ph. Nr:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblStock.setBounds(10, 86, 108, 14);
 		contentPane.add(lblStock);
 		
-		JLabel lblType = new JLabel("Type:");
+		JLabel lblType = new JLabel("Email:");
 		lblType.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblType.setBounds(10, 111, 108, 14);
 		contentPane.add(lblType);
 		
-		JLabel lblCategory = new JLabel("Category:");
-		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCategory.setBounds(10, 136, 108, 14);
-		contentPane.add(lblCategory);
-		
 		JButton btnCancel = new JButton("Ok");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewItem.this.dispose();
+				ViewCustomer.this.dispose();
 			}
 		});
-		btnCancel.setBounds(93, 161, 89, 23);
+		btnCancel.setBounds(95, 136, 89, 23);
 		contentPane.add(btnCancel);
 		
-		JLabel lblBarcode_1 = new JLabel("barcode");
+		JLabel lblBarcode_1 = new JLabel("name");
 		lblBarcode_1.setBounds(95, 13, 140, 14);
 		contentPane.add(lblBarcode_1);
 		
-		JLabel lblName_1 = new JLabel("name");
+		JLabel lblName_1 = new JLabel("country");
 		lblName_1.setBounds(95, 38, 140, 14);
 		contentPane.add(lblName_1);
 		
-		JLabel lblPrice_1 = new JLabel("price");
+		JLabel lblPrice_1 = new JLabel("street");
 		lblPrice_1.setBounds(93, 63, 140, 14);
 		contentPane.add(lblPrice_1);
 		
-		JLabel lblStock_1 = new JLabel("stock");
+		JLabel lblStock_1 = new JLabel("phoneNumber");
 		lblStock_1.setBounds(93, 86, 140, 14);
 		contentPane.add(lblStock_1);
 		
-		JLabel lblType_1 = new JLabel("type");
+		JLabel lblType_1 = new JLabel("email");
 		lblType_1.setBounds(93, 113, 140, 14);
 		contentPane.add(lblType_1);
-		
-		JLabel lblCategory_1 = new JLabel("category");
-		lblCategory_1.setBounds(93, 138, 140, 14);
-		contentPane.add(lblCategory_1);
 	}
 
 }
