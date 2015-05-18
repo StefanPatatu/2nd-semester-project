@@ -4,26 +4,24 @@ package modelLayer;
  * Customer
  * 
  * @author Monika + futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class Customer {
+	
 	private String name;
-	private String city;
-	private String street;
+	private Address address;
 	private String phoneNr;
 	private String email;
 
 	//constructor	
 	public Customer (
 			String name,
-			String city,
-			String street,
+			Address address,
 			String phoneNr,
 			String email) {
 		this.setName(name);
-		this.setCity(city);
-		this.setStreet(street);
+		this.setAddress(address);
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
 	}
@@ -36,20 +34,12 @@ public class Customer {
 		this.name = name;
 	}
 	
-    //city
-	public String getCity() {
-		return city;
+    //address
+	public Address getAddress() {
+		return address;
 	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	
-	//street
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	//phoneNr

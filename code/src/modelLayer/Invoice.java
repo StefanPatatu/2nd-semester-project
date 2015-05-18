@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 
 public class Invoice {
+	
 	private String invoiceNr;
 	private Timestamp dateCreated;
 	private boolean isPaid;

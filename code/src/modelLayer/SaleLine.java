@@ -8,6 +8,7 @@ package modelLayer;
  */
 
 public class SaleLine {
+	
 	private int quantity;
 	private double price;
 	private Item item;
