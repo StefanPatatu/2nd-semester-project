@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
+<diagram program="umlet" version="13.1">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>80</x>
+      <x>90</x>
       <y>20</y>
       <w>70</w>
       <h>100</h>
@@ -15,7 +15,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
+      <x>120</x>
       <y>100</y>
       <w>30</w>
       <h>250</h>
@@ -26,7 +26,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
+      <x>340</x>
       <y>70</y>
       <w>100</w>
       <h>30</h>
@@ -37,7 +37,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
+      <x>380</x>
       <y>90</y>
       <w>30</w>
       <h>260</h>
@@ -46,33 +46,15 @@
     <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>460</x>
-      <y>130</y>
-      <w>440</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>Operations contract
---
-*Operation*
-getSale(saleID)
-Use case: get location ;
-Pre-condition: an object of "employee" "sale" and "item" 
-have to exist in the system;
-Post-condition: N/A</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
+      <x>120</x>
       <y>140</y>
       <w>290</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-getSale
+findSale(saleNr)
 
 </panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
@@ -80,15 +62,62 @@ getSale
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>230</y>
+      <x>120</x>
+      <y>260</y>
       <w>290</w>
-      <h>60</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-returns item location
-
+returns location of an item
 </panel_attributes>
     <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>180</y>
+      <w>290</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+findItem(barcode)
+</panel_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>80</x>
+      <y>170</y>
+      <w>330</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>loop</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>230</y>
+      <w>290</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+findLocation(i)
+</panel_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>80</x>
+      <y>230</y>
+      <w>330</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>loop</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

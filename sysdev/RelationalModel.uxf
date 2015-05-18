@@ -43,7 +43,7 @@
       <w>360</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>*id_customer | name | phoneNr | email | **c_address</panel_attributes>
+    <panel_attributes>*id_customer | name | phoneNr | email |street | **c_address</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -76,7 +76,7 @@
       <w>486</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>*id_employee | person_id | name | phoneNr | email | pass | salt | rights | **e_address |</panel_attributes>
+    <panel_attributes>*id_employee | person_id | name | phoneNr | email| street | pass | salt | rights | **e_address |</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -84,11 +84,11 @@
     <coordinates>
       <x>36</x>
       <y>162</y>
-      <w>936</w>
+      <w>927</w>
       <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;40.0;1020.0;30.0;1020.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;40.0;1010.0;40.0;1010.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
@@ -98,7 +98,7 @@
       <w>198</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>*id_address| country | city | street</panel_attributes>
+    <panel_attributes>*id_address| country | city</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -129,21 +129,21 @@
     <coordinates>
       <x>72</x>
       <y>279</y>
-      <w>333</w>
+      <w>405</w>
       <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;40.0;350.0;40.0;350.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;10.0;40.0;430.0;40.0;430.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
       <x>585</x>
       <y>225</y>
-      <w>297</w>
+      <w>333</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>*id_supllier | name | phoneNr | email | **sp_address</panel_attributes>
+    <panel_attributes>*id_supllier | name | phoneNr | email| street | **sp_address</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -166,7 +166,7 @@
       <h>216</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;220.0;940.0;220.0;940.0;30.0;830.0;30.0;830.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;10.0;220.0;940.0;220.0;940.0;30.0;860.0;30.0;860.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Text</type>

@@ -56,7 +56,7 @@
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-startSale(personID)</panel_attributes>
+startSale(name)</panel_attributes>
     <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -68,7 +68,7 @@ startSale(personID)</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addSaleLine(name, quantity)</panel_attributes>
+addSaleLine(barcode, quantity)</panel_attributes>
     <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -93,7 +93,7 @@ returns the current sale lines with total price
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-finish sale(paid)</panel_attributes>
+finish sale(e, isPaid)</panel_attributes>
     <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
