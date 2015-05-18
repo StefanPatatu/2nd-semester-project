@@ -6,6 +6,9 @@ public class Generator {
 	
 	private String query;
 	
+	//change this stuff
+	private final String database = "dmai0914_2Sem_5";
+	
 	public Generator() {
 		this.query = generateFinalQuery();		
 	}
@@ -15,7 +18,7 @@ public class Generator {
 	}
 	
 	private String generateFinalQuery() {
-		String finalQuery = generateCleanUpQuery("dmai0914_2Sem_5") + "\r\n" + generateCreateTablesQuery(generateTablePrefix());
+		String finalQuery = generateCleanUpQuery(database) + "\r\n" + generateCreateTablesQuery(generateTablePrefix());
 		//System.out.println(finalQuery);
 		return finalQuery;
 	}
