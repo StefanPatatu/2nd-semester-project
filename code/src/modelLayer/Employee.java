@@ -4,34 +4,49 @@ package modelLayer;
  * Employee
  * 
  * @author futz
- * @version 1.2
+ * @version 1.4
  */
 
 public class Employee {
 	
+	private int id_employee;
 	private String person_id;
 	private String name;
 	private Address address;
+	private String street;
 	private String phoneNr;
 	private String email;
 	private int rights;
 	
 	//constructor
 	public Employee(
+			
+			int id_employee,
 			String person_id,
+			String name,
 			Address address,
 			String street,
 			String phoneNr,
 			String email,
 			int rights) {
+		this.setId_employee(id_employee);
 		this.setPerson_id(person_id);
 		this.setName(name);
 		this.setAddress(address);
+		this.setStreet(street);
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
 		this.setRights(rights);
 	}
 	
+	//id_employee
+	public int getId_employee() {
+		return id_employee;
+	}
+	public void setId_employee(int id_employee) {
+		this.id_employee = id_employee;
+	}
+
 	//person_id
 	public String getPerson_id() {
 		return person_id;
@@ -56,6 +71,14 @@ public class Employee {
 		this.address = address;
 	}
 	
+	//street
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
 	//phoneNr
 	public String getPhoneNr() {
 		return phoneNr;

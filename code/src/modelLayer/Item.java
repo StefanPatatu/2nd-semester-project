@@ -4,11 +4,12 @@ package modelLayer;
  * Item
  * 
  * @author Kristis133 + futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class Item {
 	
+	private int id_item;
 	private String barcode;
 	private String name;
 	private double price;
@@ -18,12 +19,14 @@ public class Item {
 	
 	//constructor
 	public Item(
+			int id_item,
 			String barcode,
 			String name,
 			double price,
 			int stock,
 			String itemType,
 			String category) {
+		this.setId_item(id_item);
 		this.setBarcode(barcode);
 		this.setName(name);
 		this.setPrice(price);
@@ -32,6 +35,14 @@ public class Item {
 		this.setCategory(category);
 	}
 	
+	//id_item
+	public int getId_item() {
+		return id_item;
+	}
+	public void setId_item(int id_item) {
+		this.id_item = id_item;
+	}
+
 	//barcode
 	public String getBarcode() {
 		return barcode;

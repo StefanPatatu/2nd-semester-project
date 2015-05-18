@@ -24,10 +24,10 @@ public class Generator {
 	}
 	
 	private String generateTablePrefix() {
-		final String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		final String chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		Random rnd = new Random();
 		StringBuilder sb = new StringBuilder(7);
-		for(int i=0; i<7; i++) {
+		for (int i=0; i<7; i++) {
 			sb.append(chars.charAt(rnd.nextInt(chars.length())));
 		}
 		sb.append("_");
@@ -150,7 +150,6 @@ public class Generator {
 				"	id_address		int							identity(1,1),\r\n" + 
 				"	country			nvarchar(128)				NOT NULL,\r\n" + 
 				"	city			nvarchar(128)				NOT NULL,\r\n" + 
-				"	street			nvarchar(128)				NOT NULL,\r\n" + 
 				"	PRIMARY KEY (id_address)\r\n" + 
 				");\r\n" + 
 				"GO\r\n" + 
@@ -161,6 +160,7 @@ public class Generator {
 				"	phoneNr			nvarchar(16)				NOT NULL,\r\n" + 
 				"	email			nvarchar(128)				NOT NULL,\r\n" + 
 				"	c_address		int							NOT NULL,\r\n" + 
+				"	street			nvarchar(128)				NOT NULL,\r\n" + 
 				"	PRIMARY KEY (id_customer),\r\n" + 
 				"	FOREIGN KEY (c_address) REFERENCES " + tablePrefix + "Address(id_address) ON DELETE NO ACTION ON UPDATE CASCADE,\r\n" + 
 				"	CONSTRAINT CUSTOMER_UNIQUE_EMAIL UNIQUE(email)\r\n" + 
@@ -177,6 +177,7 @@ public class Generator {
 				"	salt			char(20)					NOT NULL,\r\n" + 
 				"	rights			int							NOT NULL,\r\n" + 
 				"	e_address		int							NOT NULL,\r\n" + 
+				"	street			nvarchar(128)				NOT NULL,\r\n" + 
 				"	PRIMARY KEY (id_employee),\r\n" + 
 				"	FOREIGN KEY (e_address) REFERENCES " + tablePrefix + "Address(id_address) ON DELETE NO ACTION ON UPDATE CASCADE,\r\n" + 
 				"	CONSTRAINT EMPLOYEE_UNIQUE_PERSON_ID UNIQUE(person_id),\r\n" + 

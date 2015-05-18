@@ -106,7 +106,6 @@ CREATE TABLE Address(
 	id_address		int							identity(1,1),
 	country			nvarchar(128)				NOT NULL,
 	city			nvarchar(128)				NOT NULL,
-	street			nvarchar(128)				NOT NULL,
 	PRIMARY KEY (id_address)
 );
 GO
@@ -117,6 +116,7 @@ CREATE TABLE Customer(
 	phoneNr			nvarchar(16)				NOT NULL,
 	email			nvarchar(128)				NOT NULL,
 	c_address		int							NOT NULL,
+	street			nvarchar(128)				NOT NULL,
 	PRIMARY KEY (id_customer),
 	FOREIGN KEY (c_address) REFERENCES Address(id_address) ON DELETE NO ACTION ON UPDATE CASCADE,
 	CONSTRAINT CUSTOMER_UNIQUE_EMAIL UNIQUE(email)
@@ -133,6 +133,7 @@ CREATE TABLE Employee(
 	salt			char(20)					NOT NULL,
 	rights			int							NOT NULL,
 	e_address		int							NOT NULL,
+	street			nvarchar(128)				NOT NULL,
 	PRIMARY KEY (id_employee),
 	FOREIGN KEY (e_address) REFERENCES Address(id_address) ON DELETE NO ACTION ON UPDATE CASCADE,
 	CONSTRAINT EMPLOYEE_UNIQUE_PERSON_ID UNIQUE(person_id),

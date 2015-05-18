@@ -7,11 +7,12 @@ import java.util.ArrayList;
  * Sale
  * 
  * @author futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class Sale {
 	
+	private int id_sale;
 	private String saleNr;
 	private int discount;
 	private Timestamp dateCreated;
@@ -27,6 +28,7 @@ public class Sale {
 
 	//constructor
 	public Sale(
+			int id_sale,
 			String saleNr,
 			int dicount,
 			Timestamp dateCreated,
@@ -39,6 +41,7 @@ public class Sale {
 			Employee employee,
 			Customer customer,
 			ArrayList<SaleLine> saleLines) {
+		this.setId_sale(id_sale);
 		this.setSaleNr(saleNr);
 		this.setDiscount(discount);
 		this.setDateCreated(dateCreated);
@@ -51,6 +54,14 @@ public class Sale {
 		this.setEmployee(employee);
 		this.setCustomer(customer);
 		this.setSaleLines(saleLines);
+	}
+
+	//id_sale
+	public int getId_sale() {
+		return id_sale;
+	}
+	public void setId_sale(int id_sale) {
+		this.id_sale = id_sale;
 	}
 
 	//saleNr
