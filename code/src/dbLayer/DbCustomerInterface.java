@@ -6,7 +6,7 @@ import modelLayer.Customer;
 /**
  * DbCustomerInterface
  * 
- * @author Koolkat
+ * @author Kool-kat
  * @version 1.0
  *
  */

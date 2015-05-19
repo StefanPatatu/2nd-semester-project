@@ -10,7 +10,7 @@ import modelLayer.Customer;
 /**
  * DbCustomer
  * 
- * @author Koolkat
+ * @author Kool-kat
  * @version 1.0
  */
 
@@ -29,16 +29,12 @@ public class DbCustomer implements DbCustomerInterface {
 		return miscWhere("name LIKE '%" + name + "&'", false);
 	}
 	
-	public ArrayList<Customer> searchCustomerByPhoneNr(String phoneNr) {
-		return miscWhere("phoneNr LIKE '%" + phoneNr + "%'", false)
-	}
 	
 	public int insertCustomer(Customer c) {
 		int result = 0;
-		String string = "INSERT INTO" +authLayer.DbConfig.getTablePrefix() + "Customer (name, phoneNr) VALUES (?,?)";
+		String string = "INSERT INTO" +authLayer.DbConfig.getTablePrefix() + "Customer (name) VALUES (?,?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, c.getName());
-			statement.setString(2, c.getPhoneNr());
 			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
 			int id_customer = new GeneratedKey().getGeneratedKey(statement);
 			c.setId_customer(id_customer);
@@ -52,11 +48,10 @@ public class DbCustomer implements DbCustomerInterface {
 	
 	public int updateCustomer(Customer c) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Customer SET name=?, phoneNr=? WHERE id_customer=?";
+		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Customer SET name=?, WHERE id_customer=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, c.getName());
-			statement.setString(2, c.getPhoneNr());
-			statement.setInt(3, c.getId_customer());
+			statement.setInt(2, c.getId_customer());
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateCustomer.DbCustomer.dbLayer", sqle);
