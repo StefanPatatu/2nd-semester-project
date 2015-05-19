@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
@@ -18,10 +19,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
 
-public class UpdateCustomer extends JFrame {
+public class UpdateCustomer extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -38,7 +41,9 @@ public class UpdateCustomer extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateCustomer() {
+		setModal(true);
 		setResizable(false);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Update Item");
 		getContentPane().setLayout(null);
 		this.setBounds(5, 7, 608, 210);
@@ -96,6 +101,7 @@ public class UpdateCustomer extends JFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Main.getFrames()[0].setEnabled(true);
 				UpdateCustomer.this.dispose();
 			}
 		});
@@ -105,12 +111,13 @@ public class UpdateCustomer extends JFrame {
 		JButton btnAdd = new JButton("Modify");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty())
+			/*	if(textField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
+				*/
 			}
 		});
 		btnAdd.setBounds(109, 89, 89, 23);
@@ -140,12 +147,12 @@ public class UpdateCustomer extends JFrame {
 		JButton btnModify = new JButton("Modify");
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textField.getText().isEmpty())
+				/*if(textField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 			}
 		});
 		btnModify.setBounds(109, 89, 89, 23);
@@ -154,6 +161,7 @@ public class UpdateCustomer extends JFrame {
 		JButton button_1 = new JButton("Cancel");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//	Main.getFrames()[0].setEnabled(true);
 				UpdateCustomer.this.dispose();
 			}
 		});
@@ -187,6 +195,12 @@ public class UpdateCustomer extends JFrame {
 		cityPanel.add(btnModify_1);
 		
 		JButton button_3 = new JButton("Cancel");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			//	Main.getFrames()[0].setEnabled(true);
+				UpdateCustomer.this.dispose();
+			}
+		});
 		button_3.setBounds(200, 89, 89, 23);
 		cityPanel.add(button_3);
 		namePanel.setLayout(null);
@@ -218,6 +232,12 @@ public class UpdateCustomer extends JFrame {
 		streetPanel.add(btnModify_2);
 		
 		JButton button_5 = new JButton("Cancel");
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//		Main.getFrames()[0].setEnabled(true);
+				UpdateCustomer.this.dispose();
+			}
+		});
 		button_5.setBounds(200, 89, 89, 23);
 		streetPanel.add(button_5);
 		
@@ -248,6 +268,12 @@ public class UpdateCustomer extends JFrame {
 		phonePanel.add(btnModify_3);
 		
 		JButton button_7 = new JButton("Cancel");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//		Main.getFrames()[0].setEnabled(true);
+				UpdateCustomer.this.dispose();
+			}
+		});
 		button_7.setBounds(200, 89, 89, 23);
 		phonePanel.add(button_7);
 		
@@ -278,6 +304,12 @@ public class UpdateCustomer extends JFrame {
 		emailPanel.add(btnModify_4);
 		
 		JButton button_9 = new JButton("Cancel");
+		button_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Main.getFrames()[0].setEnabled(true);
+				UpdateCustomer.this.dispose();
+			}
+		});
 		button_9.setBounds(200, 89, 89, 23);
 		emailPanel.add(button_9);
 	}

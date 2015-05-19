@@ -12,6 +12,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 
@@ -33,7 +34,7 @@ import java.awt.Scrollbar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Sale extends JFrame {
+public class Sale extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField searchField;
@@ -48,6 +49,7 @@ public class Sale extends JFrame {
 	 * Create the frame.
 	 */
 	public Sale() {
+		setModal(true);
 		setResizable(false);
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -56,7 +58,7 @@ public class Sale extends JFrame {
 			}
 		});
 		setTitle("Sale");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 642, 405);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,12 +97,12 @@ public class Sale extends JFrame {
 		});
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(searchField.getText().isEmpty())
+				/*if(searchField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 			}
 		});
 		btnSearch.setBounds(206, 38, 84, 24);
@@ -149,19 +151,19 @@ public class Sale extends JFrame {
 		JButton btnAdd = new JButton("Add to sale");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(itemList.getSelectedItems().length==0)
+			/*	if(itemList.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
 				else
-				if(quantityField.getText().isEmpty())
+				/*if(quantityField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input the quantity of the selected item before adding it to the sale. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 				
 				
 			}
@@ -206,12 +208,12 @@ public class Sale extends JFrame {
 		JButton btnDelete = new JButton("Remove");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(saleList.getSelectedItems().length==0)
+				/*if(saleList.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 			}
 		});
 		btnDelete.setBounds(201, 265, 89, 23);
@@ -224,7 +226,9 @@ public class Sale extends JFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				Sale.this.setVisible(false);
+				
 			
 			}
 		});

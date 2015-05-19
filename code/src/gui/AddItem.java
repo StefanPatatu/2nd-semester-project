@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddItem extends JFrame {
+public class AddItem extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -36,9 +37,10 @@ public class AddItem extends JFrame {
 	 * Create the frame.
 	 */
 	public AddItem() {
+		setModal(true);
 		setTitle("Add Item");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(5, 7, 295, 231);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -108,7 +110,9 @@ public class AddItem extends JFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//	Main.getFrames()[0].setEnabled(true);
 				AddItem.this.dispose();
+				
 			}
 		});
 		btnCancel.setBounds(176, 163, 89, 23);
@@ -117,12 +121,12 @@ public class AddItem extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
+			/*	if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must complete all fields. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				} */
 			}
 		});
 		btnAdd.setBounds(86, 163, 89, 23);

@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class UpdateStock extends JFrame {
+public class UpdateStock extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,8 +33,9 @@ public class UpdateStock extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateStock() {
+		setModal(true);
 		setTitle("Update Stock");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 389, 189);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,12 +69,12 @@ public class UpdateStock extends JFrame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty())
+			/*	if(textField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input a positive value. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 			}
 		});
 		btnSubmit.setBounds(135, 110, 89, 23);
@@ -81,6 +83,7 @@ public class UpdateStock extends JFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//	Main.getFrames()[0].setEnabled(true);
 				UpdateStock.this.dispose();
 			}
 		});

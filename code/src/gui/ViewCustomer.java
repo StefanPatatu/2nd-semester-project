@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ViewCustomer extends JFrame {
+public class ViewCustomer extends JDialog {
 
 	private JPanel contentPane;
 
@@ -30,9 +31,10 @@ public class ViewCustomer extends JFrame {
 	 * Create the frame.
 	 */
 	public ViewCustomer() {
+		setModal(true);
 		setTitle("View Customer");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(5, 7, 295, 198);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,6 +69,7 @@ public class ViewCustomer extends JFrame {
 		JButton btnCancel = new JButton("Ok");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				ViewCustomer.this.dispose();
 			}
 		});

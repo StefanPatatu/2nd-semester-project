@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddCustomer extends JDialog {
+public class AddEmployee extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -36,9 +36,9 @@ public class AddCustomer extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public AddCustomer() {
+	public AddEmployee() {
 		setModal(true);
-		setTitle("Add Item");
+		setTitle("Add Employee");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(5, 7, 295, 231);
@@ -110,9 +110,8 @@ public class AddCustomer extends JDialog {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	Main.getFrames()[0].setEnabled(true);
-				AddCustomer.this.dispose();
-				
+				//Main.getFrames()[0].setEnabled(true);
+				AddEmployee.this.dispose();
 			}
 		});
 		btnCancel.setBounds(176, 163, 89, 23);

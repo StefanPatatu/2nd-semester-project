@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
@@ -18,10 +19,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
 
-public class UpdateItem extends JFrame {
+public class UpdateItem extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -34,7 +37,9 @@ public class UpdateItem extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateItem() {
+		setModal(true);
 		setResizable(false);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("Update Item");
 		getContentPane().setLayout(null);
 		this.setBounds(5, 7, 330, 202);
@@ -86,6 +91,7 @@ public class UpdateItem extends JFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Main.getFrames()[0].setEnabled(true);
 				UpdateItem.this.dispose();
 			}
 		});
@@ -95,12 +101,12 @@ public class UpdateItem extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty())
+				/*if(textField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 			}
 		});
 		btnAdd.setBounds(109, 89, 89, 23);
@@ -130,12 +136,12 @@ public class UpdateItem extends JFrame {
 		JButton button = new JButton("Add");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textField.getText().isEmpty())
+			/*	if(textField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}
+				}*/
 			}
 		});
 		button.setBounds(109, 89, 89, 23);
@@ -144,6 +150,7 @@ public class UpdateItem extends JFrame {
 		JButton button_1 = new JButton("Cancel");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//	Main.getFrames()[0].setEnabled(true);
 				UpdateItem.this.dispose();
 			}
 		});
