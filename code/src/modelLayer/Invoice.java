@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Invoice
  * 
- * @author Monika + futz
+ * @author DarkSun + futz
  * @version 1.2
  */
 

@@ -101,7 +101,7 @@ bg=red</panel_attributes>
 --
 dbEmployee:DBEmployee
 --
-createEmployee(person_id, name, address, phoneNr, eMail, password)
+createEmployee(person_id, name, address, phoneNr, eMail, pass, rights) 
 findEmployee(person_id)
 updateName(person_id)
 updateAddress(person_id)
@@ -160,9 +160,9 @@ bg=yellow</panel_attributes>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
       <x>486</x>
-      <y>312</y>
+      <y>300</y>
       <w>438</w>
-      <h>96</h>
+      <h>132</h>
     </coordinates>
     <panel_attributes>SaleCtr
 --
@@ -173,8 +173,12 @@ item:Item
 saleLines&lt;ArrayList&gt;:SaleLine
 --
 createSale(personID, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines)
-findSale(id)
-findInvoice(id)
+findSale(saleNr)
+isPacked(saleNr)
+isSent(saleNr)
+isPaid(saleNr)
+findInvoice(invoiceNr)
+
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
@@ -239,10 +243,10 @@ bg=yellow</panel_attributes>
       <x>612</x>
       <y>180</y>
       <w>60</w>
-      <h>144</h>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>80.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -421,45 +425,45 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>510</x>
-      <y>402</y>
+      <y>426</y>
       <w>48</w>
-      <h>102</h>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;150.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;60.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>666</x>
-      <y>402</y>
+      <y>426</y>
       <w>30</w>
-      <h>96</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;140.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;30.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>408</x>
-      <y>402</y>
+      <y>426</y>
       <w>90</w>
-      <h>42</h>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;50.0;130.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>804</x>
-      <y>402</y>
+      <y>426</y>
       <w>18</w>
-      <h>66</h>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -501,12 +505,12 @@ m2=1..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>900</x>
-      <y>402</y>
+      <y>426</y>
       <w>60</w>
-      <h>72</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>80.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
