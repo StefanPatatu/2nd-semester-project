@@ -6,35 +6,43 @@ import java.util.ArrayList;
 import modelLayer.Address;
 import modelLayer.Customer;
 
-
 /**
  * DbCustomer
  * 
- * @author Kool-kat
- * @version 1.0
+ * @author Kool-kat + futz
+ * @version 1.1
  */
 
 public class DbCustomer implements DbCustomerInterface {
 	
+	private DbAddressInterface dbAddress = new DbAddress();
+	
+	@Override
 	public ArrayList<Customer> getAllCustomers() {
 		return miscWhere("", false);
 	}
 	
+	@Override
 	public Customer findCustomer(int id_customer){
-		Customer c = singleWhere("id_customer=" + id_customer, false);
+		Customer c = singleWhere("id_customer=" + id_customer, true);
 		return c;
 	}
 	
+	@Override
 	public ArrayList<Customer> searchCustomerByName(String name) {
-		return miscWhere("name LIKE '%" + name + "&'", false);
+		return miscWhere("name LIKE '%" + name + "%'", false);
 	}
 	
-	
+	@Override
 	public int insertCustomer(Customer c) {
 		int result = 0;
-		String string = "INSERT INTO" +authLayer.DbConfig.getTablePrefix() + "Customer (name) VALUES (?,?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Customer (name, phoneNr, email, c_address, street) VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, c.getName());
+			statement.setString(2, c.getPhoneNr());
+			statement.setString(3, c.getEmail());
+			statement.setInt(4, c.getAddress().getId_address());
+			statement.setString(5, c.getStreet());
 			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
 			int id_customer = new GeneratedKey().getGeneratedKey(statement);
 			c.setId_customer(id_customer);
@@ -46,12 +54,17 @@ public class DbCustomer implements DbCustomerInterface {
 		return result;
 	}
 	
+	@Override
 	public int updateCustomer(Customer c) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Customer SET name=?, WHERE id_customer=?";
+		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Customer SET name=?, phoneNr=?, email=?, c_address=?, street=? WHERE id_customer=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, c.getName());
-			statement.setInt(2, c.getId_customer());
+			statement.setString(2, c.getPhoneNr());
+			statement.setString(3, c.getEmail());
+			statement.setInt(4, c.getAddress().getId_address());
+			statement.setString(5, c.getStreet());
+			statement.setInt(6, c.getId_customer());
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateCustomer.DbCustomer.dbLayer", sqle);
@@ -61,28 +74,10 @@ public class DbCustomer implements DbCustomerInterface {
 		return result;
 	}
 	
-	public int removeCustomer(Customer c) {
-		if(c == null) {
-			return 0;
-			
-		}
-		int result = 0;
-		String string = "DELETE FROM " + authLayer.DbConfig.getTablePrefix() + "Customer WHERE id_customer=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
-			statement.setInt(1, c.getId_customer());
-			result = statement.executeUpdate();
-		} catch (SQLException sqle) {
-			throw new SQLException("removeCustomer.DbCustomer.dbLayer", sqle);
-		} catch (Exception e) {
-			throw new Exception("removeCustomer.DbCustomer.dbLayer", e);
-		}
-		return result;
-	}
-	
 	private String buildQuery(String where) {
 		String string = "SELECT * FROM " + authLayer.DbConfig.getTablePrefix() + "Customer";
 		if(where != null && where.length() > 0) {
-			string += "WHERE" + where;
+			string += " WHERE" + where;
 		}
 		return string;
 	}
@@ -93,7 +88,7 @@ public class DbCustomer implements DbCustomerInterface {
 			c = new Customer(
 					resultSet.getInt("id_customer"),
 					resultSet.getString("name"),
-					(Address) resultSet.getObject("address"),
+					new Address(resultSet.getInt("c_address")),
 					resultSet.getString("street"),
 					resultSet.getString("phoneNr"),
 					resultSet.getString("email"));
@@ -106,6 +101,9 @@ public class DbCustomer implements DbCustomerInterface {
 	private Customer singleWhere(String where, boolean retrieveAssoc) {
 		ArrayList<Customer> customers = miscWhere(where, retrieveAssoc);
 		if(customers.size() > 0) {
+			if(retrieveAssoc) {
+				customers.get(0).setAddress(dbAddress.findAddress(customers.get(0).getAddress().getId_address()));
+			}
 			return customers.get(0);
 		} else {
 			return null;
@@ -113,16 +111,16 @@ public class DbCustomer implements DbCustomerInterface {
 	}
 	
 	private ArrayList<Customer> miscWhere(String where, boolean retrieveAssoc) {
-		ResultSet rsresultSet;
+		ResultSet resultSet;
 		ArrayList<Customer> customers = new ArrayList<>();
 		String string = buildQuery(where);
 		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
 			statement.setQueryTimeout(5);
-			rsresultSet = statement.executeQuery(string);
-			while(rsresultSet.next()) {
-				Customer c = buildCustomer(rsresultSet);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Customer c = buildCustomer(resultSet);
 				if(retrieveAssoc) {
-					
+					//nothing
 				}
 				customers.add(c);
 			}

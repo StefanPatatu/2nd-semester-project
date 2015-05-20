@@ -9,11 +9,13 @@ import modelLayer.Employee;
 /**
  * DbEmployee
  * 
- * @author DarkSun
- * @version 1.0
+ * @author DarkSun + futz
+ * @version 1.1
  */
 
 public class DbEmployee implements DbEmployeeInterface {
+	
+	private DbAddressInterface dbAddress = new DbAddress();
 
 	@Override
 	public ArrayList<Employee> getAllEmployees() {
@@ -21,8 +23,14 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 
 	@Override
-	public Employee findEmployee(int id_employee) {
-		Employee emp = singleWhere("id_employee=" + id_employee, false);
+	public Employee findEmployeeById_employee(int id_employee) {
+		Employee emp = singleWhere("id_employee=" + id_employee, true);
+		return emp;
+	}
+	
+	@Override
+	public Employee findEmployeeByPerson_id(String person_id) {
+		Employee emp = singleWhere("person_id=" + person_id, true);
 		return emp;
 	}
 
@@ -30,18 +38,46 @@ public class DbEmployee implements DbEmployeeInterface {
 	public ArrayList<Employee> searchEmployeeByName(String name) {
 		return miscWhere("name LIKE '%" + name + "%'", false);
 	}
+	
+	@Override
+	public ArrayList<Employee> searchEmployeeByRights(int rights) {
+		return miscWhere("rights LIKE '%" + rights + "%'", false);
+	}
+	
+	@Override
+	public String getEmployeePass(int person_id) {
+		Employee emp = singleWhere("person_id=" + person_id, false);
+		if(emp == null) {
+			return null;
+		} else {
+			return emp.getPass();
+		}
+	}
+	
+	@Override
+	public String getEmployeeSalt(int person_id) {
+		Employee emp = singleWhere("person_id=" + person_id, false);
+		if(emp == null) {
+			return null;
+		} else {
+			return emp.getSalt();
+		}
+	}
 
 	@Override
 	public int insertEmployee(Employee emp) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Employee (person_id, name, phoneNr, email, street, rights) VALUES (?,?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Employee (person_id, name, phoneNr, email, pass, salt, rights, e_address, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
 			statement.setString(3, emp.getPhoneNr());
 			statement.setString(4, emp.getEmail());
-			statement.setString(5, emp.getStreet());
-			statement.setInt(6, emp.getId_employee());
+			statement.setString(5, emp.getPass());
+			statement.setString(6, emp.getSalt());
+			statement.setInt(7, emp.getRights());
+			statement.setInt(8, emp.getAddress().getId_address());
+			statement.setString(9, emp.getStreet());
 			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
 			int id_employee = new GeneratedKey().getGeneratedKey(statement);
 			emp.setId_employee(id_employee);
@@ -56,48 +92,31 @@ public class DbEmployee implements DbEmployeeInterface {
 	@Override
 	public int updateEmployee(Employee emp) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Employee SET person_id=?, name=?, phoneNr=?, email=?, street=? rights=? WHERE id_employee=? ";
+		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Employee SET person_id=?, name=?, phoneNr=?, email=?, pass=?, salt=?, rights=?, e_address=?, street=? WHERE id_employee=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
-			statement.setObject(3, emp.getAddress());
-			statement.setString(4, emp.getStreet());
-			statement.setString(5, emp.getPhoneNr());
-			statement.setString(6, emp.getEmail());
+			statement.setString(3, emp.getPhoneNr());
+			statement.setString(4, emp.getEmail());
+			statement.setString(5, emp.getPass());
+			statement.setString(6, emp.getSalt());
 			statement.setInt(7, emp.getRights());
-			statement.setInt(8, emp.getId_employee());
+			statement.setInt(8, emp.getAddress().getId_address());
+			statement.setString(9, emp.getStreet());
+			statement.setInt(10,  emp.getId_employee());
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateEmployee.DbEmployee.dbLayer", sqle);
 		} catch (Exception e) {
 			throw new Exception ("updateEmployee.DbEmployee.dbLayer", e);
 		}
-		
-		return result;
-	}
-
-	@Override
-	public int removeEmployee(Employee emp) {
-		if (emp == null) {
-		return 0;
-		}
-		int result = 0;
-		String string = "DELETE FROM " + authLayer.DbConfig.getTablePrefix() + "Employee WHERE id_employee=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbon().prepareStatement()) {
-			statement.setInt(1, emp.getId_employee());
-			result = statement.executeUpdate();
-		} catch (SQLException sqle) {
-			throw new SQLException("removeEmployee.DbEmployee.dbLayer", sqle); 
-		} catch (Exception e) { 
-			throw new Exception("removeEmployee.DbEmployee.dbLayer", e);
-		}
 		return result;
 	}
 	
 	private String buildQuery(String where) {
 		String string = "Select * FROM " + authLayer.DbConfig.getTablePrefix() + "Employee";
-		if (where!= null && where.length() > 0) {
-			string += "WHERE" + where;
+		if (where != null && where.length() > 0) {
+			string += " WHERE" + where;
 		}
 		return string;
 	}
@@ -109,10 +128,12 @@ public class DbEmployee implements DbEmployeeInterface {
 					resultSet.getInt("id_employee"),
 					resultSet.getString("person_id"),
 					resultSet.getString("name"),
-					(Address) resultSet.getObject("address"),
+					new Address(resultSet.getInt("e_address")),
 					resultSet.getString("street"),
 					resultSet.getString("phoneNr"),
 					resultSet.getString("email"),
+					resultSet.getString("pass"),
+					resultSet.getString("salt"),
 					resultSet.getInt("rights"));
 		} catch (Exception e) {
 			throw new Exception("buildEmployee.DbEmployee.dblayer");
@@ -123,6 +144,9 @@ public class DbEmployee implements DbEmployeeInterface {
 	private Employee singleWhere(String where, boolean retrieveAssoc) {
 		ArrayList<Employee> employees = miscWhere(where, retrieveAssoc);
 		if(employees.size() > 0) {
+			if(retrieveAssoc) {
+				employees.get(0).setAddress(dbAddress.findAddress(employees.get(0).getAddress().getId_address()));
+			}
 			return employees.get(0);
 		} else {
 			return null;
@@ -130,14 +154,14 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 	
 	private ArrayList<Employee> miscWhere(String where, boolean retrieveAssoc) {
-		ResultSet rsresultSet;
+		ResultSet resultSet;
 		ArrayList<Employee> employees = new ArrayList<>();
 		String string = buildQuery(where);
-		try (Statement statement = DbConnection.getInstance().getDBcon()createStatement()) {
+		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
 			statement.setQueryTimeout(5);
-			rsresultSet = statement.executeQuery(string);
-			while (rsresultSet.next()) {
-				Employee emp = buildEmployee(rsresultSet);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Employee emp = buildEmployee(resultSet);
 				if(retrieveAssoc) {
 					//nothing
 				}
@@ -148,6 +172,5 @@ public class DbEmployee implements DbEmployeeInterface {
 			}
 			return employees;
 		}
-	
 
 }

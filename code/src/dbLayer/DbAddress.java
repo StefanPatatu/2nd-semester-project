@@ -119,14 +119,14 @@ public class DbAddress implements DbAddressInterface {
 	}
 	
 	private ArrayList<Address> miscWhere(String where, boolean retrieveAssoc) {
-		ResultSet rsresultSet;
+		ResultSet resultSet;
 		ArrayList<Address> addresses = new ArrayList<>();
 		String string = buildQuery(where);
 		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
 			statement.setQueryTimeout(5);
-			rsresultSet = statement.executeQuery(string);
-			while(rsresultSet.next()) {
-				Address a = buildAddress(rsresultSet);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Address a = buildAddress(resultSet);
 				if(retrieveAssoc) {
 					//nothing
 				}

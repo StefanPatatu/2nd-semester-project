@@ -16,11 +16,12 @@ public class Employee {
 	private String street;
 	private String phoneNr;
 	private String email;
+	private String pass;
+	private String salt;
 	private int rights;
 	
 	//constructor
 	public Employee(
-			
 			int id_employee,
 			String person_id,
 			String name,
@@ -28,6 +29,8 @@ public class Employee {
 			String street,
 			String phoneNr,
 			String email,
+			String pass,
+			String salt,
 			int rights) {
 		this.setId_employee(id_employee);
 		this.setPerson_id(person_id);
@@ -95,6 +98,22 @@ public class Employee {
 		this.email = email;
 	}
 	
+	//pass
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	//salt
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	//rights
 	public int getRights() {
 		return rights;

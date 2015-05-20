@@ -1,6 +1,7 @@
 package dbLayer;
 
 import java.util.ArrayList;
+
 import modelLayer.Customer;
 
 /**
@@ -8,7 +9,6 @@ import modelLayer.Customer;
  * 
  * @author Kool-kat
  * @version 1.0
- *
  */
 
 public interface DbCustomerInterface {
@@ -18,6 +18,5 @@ public interface DbCustomerInterface {
 	public ArrayList<Customer> searchCustomerByName(String name);
 	public int insertCustomer(Customer c);
 	public int updateCustomer(Customer c);
-	public int removeCustomer(Customer c);
 	
 }

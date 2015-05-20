@@ -23,6 +23,14 @@ public class Address {
 		this.setCity(city);
 	}
 	
+	//constructor
+	public Address(
+			int id_address) {
+		this.setId_address(id_address);
+		this.setCity(null);
+		this.setCountry(null);
+	}
+	
 	//id_address
 	public int getId_address() {
 		return id_address;
