@@ -30,7 +30,7 @@ public class Sale {
 	public Sale(
 			int id_sale,
 			String saleNr,
-			int dicount,
+			int discount,
 			Timestamp dateCreated,
 			boolean isPacked,
 			Timestamp datePacked,

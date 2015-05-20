@@ -276,16 +276,17 @@ bg=yellow</panel_attributes>
       <x>48</x>
       <y>312</y>
       <w>78</w>
-      <h>78</h>
+      <h>102</h>
     </coordinates>
     <panel_attributes>Employee		
 --
 person_id:String
 name:String
 street:String
-
 phoneNr:String
 email:String
+pass:String
+salt:String
 rights:int
 --
 
@@ -362,7 +363,7 @@ bg=green</panel_attributes>
       <x>606</x>
       <y>486</y>
       <w>120</w>
-      <h>132</h>
+      <h>138</h>
     </coordinates>
     <panel_attributes>Sale
 --
