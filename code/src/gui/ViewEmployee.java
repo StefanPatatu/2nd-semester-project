@@ -17,6 +17,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class ViewEmployee extends JDialog {
 
@@ -32,11 +33,12 @@ public class ViewEmployee extends JDialog {
 	 */
 	public ViewEmployee() {
 		setModal(true);
-		setTitle("View Customer");
+		setTitle("View Employee");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(5, 7, 295, 198);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -67,6 +69,7 @@ public class ViewEmployee extends JDialog {
 		contentPane.add(lblType);
 		
 		JButton btnCancel = new JButton("Ok");
+		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 	//			Main.getFrames()[0].setEnabled(true);

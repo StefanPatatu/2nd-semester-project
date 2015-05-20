@@ -25,7 +25,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 
-public class UpdateCustomer extends JDialog {
+public class UpdateSupplier extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -41,12 +41,12 @@ public class UpdateCustomer extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateCustomer() {
+	public UpdateSupplier() {
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setModal(true);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setTitle("Update Customer");
+		setTitle("Update Supplier");
 		getContentPane().setLayout(null);
 		this.setBounds(5, 7, 608, 210);
 		
@@ -72,10 +72,6 @@ public class UpdateCustomer extends JDialog {
 		JPanel streetPanel = new JPanel();
 		streetPanel.setBackground(Color.GRAY);
 		streetPanel.setBounds(20, 116, 50, 50);
-		
-		JPanel phonePanel = new JPanel();
-		phonePanel.setBackground(Color.GRAY);
-		phonePanel.setBounds(20, 116, 50, 50);
 		
 		JPanel emailPanel = new JPanel();
 		emailPanel.setBackground(Color.GRAY);
@@ -111,7 +107,7 @@ public class UpdateCustomer extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.getFrames()[0].setEnabled(true);
-				UpdateCustomer.this.dispose();
+				UpdateSupplier.this.dispose();
 			}
 		});
 		btnCancel.setBounds(200, 89, 89, 23);
@@ -174,11 +170,53 @@ public class UpdateCustomer extends JDialog {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
-				UpdateCustomer.this.dispose();
+				UpdateSupplier.this.dispose();
 			}
 		});
 		button_1.setBounds(200, 89, 89, 23);
 		countryPanel.add(button_1);
+		
+		JPanel phonePanel = new JPanel();
+		phonePanel.setBackground(Color.GRAY);
+		phonePanel.setBounds(20, 116, 50, 50);
+		
+		tabbedPane.addTab("UpdatePhone", phonePanel);
+		phonePanel.setLayout(null);
+		
+		JLabel lblCurrentPhone = new JLabel("Current phone:");
+		lblCurrentPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCurrentPhone.setBounds(10, 11, 119, 14);
+		phonePanel.add(lblCurrentPhone);
+		
+		JLabel lblPhon = new JLabel("phon");
+		lblPhon.setBounds(177, 13, 46, 14);
+		phonePanel.add(lblPhon);
+		
+		JLabel lblNewPhone = new JLabel("New phone:");
+		lblNewPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewPhone.setBounds(10, 36, 103, 14);
+		phonePanel.add(lblNewPhone);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(137, 35, 152, 20);
+		phonePanel.add(textField_4);
+		
+		JButton btnModify_3 = new JButton("Update");
+		btnModify_3.setBackground(new Color(204, 204, 255));
+		btnModify_3.setBounds(109, 89, 89, 23);
+		phonePanel.add(btnModify_3);
+		
+		JButton button_7 = new JButton("Cancel");
+		button_7.setBackground(new Color(204, 204, 255));
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//		Main.getFrames()[0].setEnabled(true);
+				UpdateSupplier.this.dispose();
+			}
+		});
+		button_7.setBounds(200, 89, 89, 23);
+		phonePanel.add(button_7);
 		//
 		tabbedPane.addTab("UpdateCity", cityPanel);
 		cityPanel.setLayout(null);
@@ -212,7 +250,7 @@ public class UpdateCustomer extends JDialog {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
-				UpdateCustomer.this.dispose();
+				UpdateSupplier.this.dispose();
 			}
 		});
 		button_3.setBounds(200, 89, 89, 23);
@@ -251,49 +289,11 @@ public class UpdateCustomer extends JDialog {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		//		Main.getFrames()[0].setEnabled(true);
-				UpdateCustomer.this.dispose();
+				UpdateSupplier.this.dispose();
 			}
 		});
 		button_5.setBounds(200, 89, 89, 23);
 		streetPanel.add(button_5);
-		
-		tabbedPane.addTab("UpdatePhone", phonePanel);
-		phonePanel.setLayout(null);
-		
-		JLabel lblCurrentPhone = new JLabel("Current phone:");
-		lblCurrentPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCurrentPhone.setBounds(10, 11, 119, 14);
-		phonePanel.add(lblCurrentPhone);
-		
-		JLabel lblPhon = new JLabel("phon");
-		lblPhon.setBounds(177, 13, 46, 14);
-		phonePanel.add(lblPhon);
-		
-		JLabel lblNewPhone = new JLabel("New phone:");
-		lblNewPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewPhone.setBounds(10, 36, 103, 14);
-		phonePanel.add(lblNewPhone);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(137, 35, 152, 20);
-		phonePanel.add(textField_4);
-		
-		JButton btnModify_3 = new JButton("Update");
-		btnModify_3.setBackground(new Color(204, 204, 255));
-		btnModify_3.setBounds(109, 89, 89, 23);
-		phonePanel.add(btnModify_3);
-		
-		JButton button_7 = new JButton("Cancel");
-		button_7.setBackground(new Color(204, 204, 255));
-		button_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		//		Main.getFrames()[0].setEnabled(true);
-				UpdateCustomer.this.dispose();
-			}
-		});
-		button_7.setBounds(200, 89, 89, 23);
-		phonePanel.add(button_7);
 		
 		tabbedPane.addTab("UpdateEmail", emailPanel);
 		emailPanel.setLayout(null);
@@ -327,7 +327,7 @@ public class UpdateCustomer extends JDialog {
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.getFrames()[0].setEnabled(true);
-				UpdateCustomer.this.dispose();
+				UpdateSupplier.this.dispose();
 			}
 		});
 		button_9.setBounds(200, 89, 89, 23);

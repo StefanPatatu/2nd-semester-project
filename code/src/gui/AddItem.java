@@ -17,6 +17,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class AddItem extends JDialog {
 
@@ -43,6 +44,7 @@ public class AddItem extends JDialog {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(5, 7, 295, 231);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -108,6 +110,7 @@ public class AddItem extends JDialog {
 		contentPane.add(textField_5);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
@@ -119,6 +122,7 @@ public class AddItem extends JDialog {
 		contentPane.add(btnCancel);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			/*	if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )

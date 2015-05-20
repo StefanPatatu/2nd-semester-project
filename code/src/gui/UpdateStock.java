@@ -18,6 +18,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class UpdateStock extends JDialog {
 
@@ -38,6 +39,7 @@ public class UpdateStock extends JDialog {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 389, 189);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -66,7 +68,8 @@ public class UpdateStock extends JDialog {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnSubmit = new JButton("Submit");
+		JButton btnSubmit = new JButton("Update");
+		btnSubmit.setBackground(new Color(204, 204, 255));
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			/*	if(textField.getText().isEmpty())
@@ -81,6 +84,7 @@ public class UpdateStock extends JDialog {
 		contentPane.add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);

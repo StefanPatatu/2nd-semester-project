@@ -23,6 +23,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.Color;
 
 public class UpdateItem extends JDialog {
 	private JTextField textField;
@@ -37,6 +38,7 @@ public class UpdateItem extends JDialog {
 	 * Create the frame.
 	 */
 	public UpdateItem() {
+		getContentPane().setBackground(Color.DARK_GRAY);
 		setModal(true);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -45,15 +47,18 @@ public class UpdateItem extends JDialog {
 		this.setBounds(5, 7, 330, 202);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(Color.DARK_GRAY);
 		tabbedPane.setBounds(10, 11, 304, 151);
 	
 		getContentPane().add(tabbedPane);
 		
 		JPanel namePanel = new JPanel();
+		namePanel.setBackground(Color.GRAY);
 		namePanel.setBounds(20, 116, 50, 50);
 		
 		
 		JPanel pricePanel = new JPanel();
+		pricePanel.setBackground(Color.GRAY);
 		pricePanel.setBounds(116, 116, 50, 50);
 		
 		
@@ -89,6 +94,7 @@ public class UpdateItem extends JDialog {
 		textField.setColumns(10);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.getFrames()[0].setEnabled(true);
@@ -98,7 +104,8 @@ public class UpdateItem extends JDialog {
 		btnCancel.setBounds(200, 89, 89, 23);
 		namePanel.add(btnCancel);
 		
-		JButton btnAdd = new JButton("Add");
+		JButton btnAdd = new JButton("Update");
+		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*if(textField.getText().isEmpty())
@@ -133,8 +140,9 @@ public class UpdateItem extends JDialog {
 		textField_1.setBounds(137, 35, 152, 20);
 		pricePanel.add(textField_1);
 		
-		JButton button = new JButton("Add");
-		button.addActionListener(new ActionListener() {
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setBackground(new Color(204, 204, 255));
+		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			/*	if(textField.getText().isEmpty())
 				{
@@ -144,10 +152,11 @@ public class UpdateItem extends JDialog {
 				}*/
 			}
 		});
-		button.setBounds(109, 89, 89, 23);
-		pricePanel.add(button);
+		btnUpdate.setBounds(109, 89, 89, 23);
+		pricePanel.add(btnUpdate);
 		
 		JButton button_1 = new JButton("Cancel");
+		button_1.setBackground(new Color(204, 204, 255));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
