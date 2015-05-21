@@ -38,6 +38,22 @@ public class Invoice {
 		this.setSales(sales);
 	}
 	
+	//constructor
+		public Invoice(
+				int id_invoice,
+				String invoiceNr,
+				Timestamp dateCreated,
+				boolean isPaid,
+				Timestamp datePaid,
+				Customer customer) {
+			this.setId_invoice(id_invoice);
+			this.setInvoiceNr(invoiceNr);
+			this.setDateCreated(dateCreated);
+			this.setPaid(isPaid);
+			this.setCustomer(customer);
+			this.setSales(null);
+		}
+	
 	//id_invocie
 	public int getId_invoice() {
 		return id_invoice;
