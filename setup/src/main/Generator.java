@@ -4,26 +4,46 @@ import java.util.Random;
 
 public class Generator {
 	
-	private String query;
+	private String DBquery;
+	private String DBTablePrefix;
 	
 	//change this stuff
-	private final String database = "dmai0914_2Sem_5";
+	private final String DBDriver = "//kraka.ucn.dk:1433";
+	private final String DBName = "dmai0914_2Sem_5";
+	private final String DBUserName = "dmai0914_2Sem_5";
+	private final String DBPassword = "IsAllowed";
 	
 	public Generator() {
-		this.query = generateFinalQuery();		
+		this.DBquery = generateFinalQuery();
+		this.DBTablePrefix = generateDBTablePrefix();
 	}
 	
-	public String getQuery() {
-		return query;
+	public String getDBQuery() {
+		return DBquery;
+	}
+	public String getDBTablePrefix() {
+		return DBTablePrefix;
+	}
+	public String getDBDriver() {
+		return DBDriver;
+	}
+	public String getDBName() {
+		return DBName;
+	}
+	public String getDBUserName() {
+		return DBUserName;
+	}
+	public String getDBPassword() {
+		return DBPassword;
 	}
 	
 	private String generateFinalQuery() {
-		String finalQuery = generateCleanUpQuery(database) + "\r\n" + generateCreateTablesQuery(generateTablePrefix());
+		String finalQuery = generateCleanUpQuery(DBName) + "\r\n" + generateCreateTablesQuery(DBTablePrefix);
 		//System.out.println(finalQuery);
 		return finalQuery;
 	}
 	
-	private String generateTablePrefix() {
+	private String generateDBTablePrefix() {
 		final String chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		Random rnd = new Random();
 		StringBuilder sb = new StringBuilder(7);
@@ -35,9 +55,9 @@ public class Generator {
 	}
 	
 	//cleanUpQuery
-	private String generateCleanUpQuery(String database) {
+	private String generateCleanUpQuery(String DBName) {
 		String query =
-				"USE " + database +";\r\n" + 
+				"USE " + DBName +";\r\n" + 
 				"\r\n" + 
 				"/* Drop all non-system stored procs */\r\n" + 
 				"DECLARE @name VARCHAR(128)\r\n" + 
