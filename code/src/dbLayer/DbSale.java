@@ -47,11 +47,22 @@ public class DbSale implements DbSaleInterface {
 	@Override
 	public int insertSale(Sale s) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datepaid, id_e, id_c VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datepaid, id_e, id_c) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+	    	statement.setString(1, s.getSaleNr());
+	    	statement.setInt(2, s.getDiscount());
+	    	statement.setTimestamp(3, s.getDateCreated());
+	    	statement.setBoolean(4, s.isPacked());
+	    	statement.setTimestamp(5, s.getDatePacked());
+	    	statement.setBoolean(6, s.isSent());
+	    	statement.setTimestamp(7, s.getDateSent());
+	    	statement.setBoolean(8, s.isPaid());
+	    	statement.setTimestamp(9, s.getDatePaid());
+	    	statement.setInt(10, s.getEmployee().getId_employee());
+	    	statement.setInt(11, s.getCustomer().getId_customer());
 	    	result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
-			int id_employee = new GeneratedKey().getGeneratedKey(statement);
-			s.setId_employee(id_sale);
+			int id_sale = new GeneratedKey().getGeneratedKey(statement);
+			s.setId_sale(id_sale);
 		} catch (SQLException sqle) {
 			throw new SQLException("insertSale.DbSale.dbLayer", sqle);
 		} catch (Exception e) {
@@ -62,8 +73,23 @@ public class DbSale implements DbSaleInterface {
 
 	@Override
 	public int updateSale(Sale s) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "SaleLine SET isPacked=?, datePacked=?, isSent=?, dateSent=?, isPaid=?, datePaid=? WHERE id_saleLine=?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
+			statement.setBoolean(1, s.isPacked());
+			statement.setTimestamp(2, s.getDatePacked());
+			statement.setBoolean(3, s.isSent());
+			statement.setTimestamp(4, s.getDateSent());
+			statement.setBoolean(5, s.isPaid());
+			statement.setTimestamp(6, s.getDatePaid());
+			statement.setInt(7, s.getId_sale());
+			result = statement.executeUpdate();
+		} catch (SQLException sqle) {
+			throw new SQLException("updateSale.DbSale.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("updateSale.DbSale.dbLayer", e);
+		}
+		return result;
 	}
 	
 	private String buildQuery(String where) {
