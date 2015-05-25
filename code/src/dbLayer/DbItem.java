@@ -39,7 +39,7 @@ public class DbItem implements DbItemInterface {
 	@Override
 	public int insertItem(Item i) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Item (barcode, name, price, stock, itemType, category) VALUES (?, ?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Item (barcode, name, price, stock, itemType, category) VALUES (?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, i.getBarcode());
 			statement.setString(2, i.getName());
@@ -61,7 +61,7 @@ public class DbItem implements DbItemInterface {
 	@Override
 	public int updateItem(Item i) {
 		int result = 0;
-		String string  = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Item SET barcode=?, name=?, price=?, stock=?, itemType=?, category=? WHERE id_item=?";
+		String string  = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Item SET barcode=?, name=?, price=?, stock=?, itemType=?, category=? WHERE id_item=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
 			statement.setString(1, i.getBarcode());
 			statement.setString(2, i.getName());
@@ -80,7 +80,7 @@ public class DbItem implements DbItemInterface {
 	}
 	
 	private String buildQuery(String where) {
-		String string = "Select * FROM " + authLayer.DbConfig.getTablePrefix() + "Item";
+		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Item";
 		if (where != null && where.length() > 0) {
 			string += " WHERE" + where;
 		}

@@ -38,7 +38,7 @@ public class DbAddress implements DbAddressInterface {
 	@Override
 	public int insertAddress(Address a) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Address (country, city) VALUES (?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Address (country, city) VALUES (?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, a.getCountry());
 			statement.setString(2, a.getCity());
@@ -56,7 +56,7 @@ public class DbAddress implements DbAddressInterface {
 	@Override
 	public int updateAddress(Address a) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Address SET country=?, city=? WHERE id_address=?";
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Address SET country=?, city=? WHERE id_address=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, a.getCountry());
 			statement.setString(2, a.getCity());
@@ -76,7 +76,7 @@ public class DbAddress implements DbAddressInterface {
 			return 0;
 		}
 		int result = 0;
-		String string = "DELETE FROM " + authLayer.DbConfig.getTablePrefix() + "Address WHERE id_address=?";
+		String string = "DELETE FROM " + authLayer.DbConfig.DBTablePrefix + "Address WHERE id_address=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setInt(1, a.getId_address());
 			result = statement.executeUpdate();
@@ -89,7 +89,7 @@ public class DbAddress implements DbAddressInterface {
 	}
 	
 	private String buildQuery(String where) {
-		String string = "SELECT * FROM " + authLayer.DbConfig.getTablePrefix() + "Address";
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Address";
 		if(where != null && where.length() > 0) {
 			string += " WHERE" + where;
 		}

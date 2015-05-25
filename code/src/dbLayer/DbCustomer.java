@@ -36,7 +36,7 @@ public class DbCustomer implements DbCustomerInterface {
 	@Override
 	public int insertCustomer(Customer c) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Customer (name, phoneNr, email, c_address, street) VALUES (?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Customer (name, phoneNr, email, c_address, street) VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, c.getName());
 			statement.setString(2, c.getPhoneNr());
@@ -57,7 +57,7 @@ public class DbCustomer implements DbCustomerInterface {
 	@Override
 	public int updateCustomer(Customer c) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Customer SET name=?, phoneNr=?, email=?, c_address=?, street=? WHERE id_customer=?";
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Customer SET name=?, phoneNr=?, email=?, c_address=?, street=? WHERE id_customer=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, c.getName());
 			statement.setString(2, c.getPhoneNr());
@@ -75,7 +75,7 @@ public class DbCustomer implements DbCustomerInterface {
 	}
 	
 	private String buildQuery(String where) {
-		String string = "SELECT * FROM " + authLayer.DbConfig.getTablePrefix() + "Customer";
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Customer";
 		if(where != null && where.length() > 0) {
 			string += " WHERE" + where;
 		}

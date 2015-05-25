@@ -67,7 +67,7 @@ public class DbEmployee implements DbEmployeeInterface {
 	@Override
 	public int insertEmployee(Employee emp) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Employee (person_id, name, phoneNr, email, pass, salt, rights, e_address, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Employee (person_id, name, phoneNr, email, pass, salt, rights, e_address, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
@@ -92,7 +92,7 @@ public class DbEmployee implements DbEmployeeInterface {
 	@Override
 	public int updateEmployee(Employee emp) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Employee SET person_id=?, name=?, phoneNr=?, email=?, pass=?, salt=?, rights=?, e_address=?, street=? WHERE id_employee=?";
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Employee SET person_id=?, name=?, phoneNr=?, email=?, pass=?, salt=?, rights=?, e_address=?, street=? WHERE id_employee=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
@@ -114,7 +114,7 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 	
 	private String buildQuery(String where) {
-		String string = "Select * FROM " + authLayer.DbConfig.getTablePrefix() + "Employee";
+		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Employee";
 		if (where != null && where.length() > 0) {
 			string += " WHERE" + where;
 		}

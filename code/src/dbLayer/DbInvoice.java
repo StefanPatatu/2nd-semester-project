@@ -35,7 +35,7 @@ public class DbInvoice implements DbInvoiceInterface {
 	@Override
 	public int insertInvoice(Invoice i) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Invoice (id_invoice, invoiceNr, dateCreated, isPaid, datePaid, id_c) VALUES (?, ?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Invoice (id_invoice, invoiceNr, dateCreated, isPaid, datePaid, id_c) VALUES (?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setInt(1, i.getId_invoice());
 			statement.setString(2, i.getInvoiceNr());
@@ -57,7 +57,7 @@ public class DbInvoice implements DbInvoiceInterface {
 	@Override
 	public int updateInvoice(Invoice i) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "Invoice SET id_invoice=?, invoiceNr=?, dateCreated=?, isPaid=?, date_paid, id_c=? WHERE id_invoice=?";
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Invoice SET id_invoice=?, invoiceNr=?, dateCreated=?, isPaid=?, date_paid, id_c=? WHERE id_invoice=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 			statement.setInt(1, i.getId_invoice());
 			statement.setString(2, i.getInvoiceNr());
@@ -75,7 +75,7 @@ public class DbInvoice implements DbInvoiceInterface {
 	}
 	
 	private String buildQuery(String where) {
-		String string = "SELECT * FROM " + authLayer.DbConfig.getTablePrefix() + "Invoice";
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Invoice";
 		if(where != null && where.length() > 0) {
 			string += " WHERE" + where;
 		}

@@ -47,7 +47,7 @@ public class DbSale implements DbSaleInterface {
 	@Override
 	public int insertSale(Sale s) {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.getTablePrefix() + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datepaid, id_e, id_c) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datepaid, id_e, id_c) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
 	    	statement.setString(1, s.getSaleNr());
 	    	statement.setInt(2, s.getDiscount());
@@ -74,7 +74,7 @@ public class DbSale implements DbSaleInterface {
 	@Override
 	public int updateSale(Sale s) {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.getTablePrefix() + "SaleLine SET isPacked=?, datePacked=?, isSent=?, dateSent=?, isPaid=?, datePaid=? WHERE id_saleLine=?";
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "SaleLine SET isPacked=?, datePacked=?, isSent=?, dateSent=?, isPaid=?, datePaid=? WHERE id_saleLine=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
 			statement.setBoolean(1, s.isPacked());
 			statement.setTimestamp(2, s.getDatePacked());
@@ -93,7 +93,7 @@ public class DbSale implements DbSaleInterface {
 	}
 	
 	private String buildQuery(String where) {
-		String string = "Select * FROM " + authLayer.DbConfig.getTablePrefix() + "Sale";
+		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale";
 		if (where != null && where.length() > 0) {
 			string += " WHERE" + where;
 		}

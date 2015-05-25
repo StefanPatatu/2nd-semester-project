@@ -13,7 +13,7 @@ public class DbConfig {
 	private String DBName;
 	private String DBUserName;
 	private String DBPassword;
-	private String DBTablePrefix;
+	private static String DBTablePrefix;
 	
 	//constructor
 	public DbConfig() throws Exception {
@@ -23,7 +23,7 @@ public class DbConfig {
 		this.setDBName(reader.getDBName());
 		this.setDBUserName(reader.getDBUserName());
 		this.setDBPassword(reader.getDBPassword());
-		this.setDBTablePrefix(reader.getDBTablePrefix());
+		DBTablePrefix = reader.getDBTablePrefix();
 	}
 	
 	//DBDriver
@@ -57,13 +57,10 @@ public class DbConfig {
 	private void setDBPassword(String DBPassword) {
 		this.DBPassword = DBPassword;
 	}
-			
+
 	//TablePrefix
 	public String getDBTablePrefix() {
 		return DBTablePrefix;
-	}
-	private void setDBTablePrefix(String DBTablePrefix) {
-		this.DBTablePrefix = DBTablePrefix;
 	}
 	
 }
