@@ -11,8 +11,7 @@ public class Supplier {
 	
 	private int id_supplier;
 	private String name;
-	private String country;
-	private String city;
+	private Address address;
 	private String street;
 	private String phoneNr;
 	private String email;
@@ -22,16 +21,14 @@ public class Supplier {
 	public Supplier (
 			int id_supplier,
 			String name,
-			String country,
-			String city,
+			Address address,
 			String street,
 			String phoneNr,
 			String email,
 			boolean isActive) {
 		this.setId_supplier(id_supplier);
 		this.setName(name);
-		this.setCountry(country);
-		this.setCity(city);
+		this.setAddress(address);
 		this.setStreet(street);
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
@@ -55,20 +52,12 @@ public class Supplier {
 		this.name = name;
 	}
 	
-	//country
-	public String getCountry() {
-		return country;
+	//address
+	public Address getAddress() {
+		return address;
 	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	
-	//city
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	//street
