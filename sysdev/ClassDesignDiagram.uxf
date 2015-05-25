@@ -167,9 +167,6 @@ bg=yellow</panel_attributes>
     <panel_attributes>SaleCtr
 --
 dbSale:DBSale
-emp:Employee
-cust:Customer
-item:Item
 saleLines&lt;ArrayList&gt;:SaleLine
 --
 createSale(personID, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines)
