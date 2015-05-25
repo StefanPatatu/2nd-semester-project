@@ -111,7 +111,7 @@ shelf</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>930</x>
+      <x>950</x>
       <y>210</y>
       <w>80</w>
       <h>150</h>
@@ -124,7 +124,7 @@ city
 street
 phoneNr
 email
-active</panel_attributes>
+isActive</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -165,10 +165,11 @@ price</panel_attributes>
       <x>780</x>
       <y>250</y>
       <w>110</w>
-      <h>60</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Purchase
 --
+purchaseNr
 dateOrdered
 dateDelivered</panel_attributes>
     <additional_attributes/>
@@ -262,13 +263,13 @@ m2=0..1</panel_attributes>
     <coordinates>
       <x>860</x>
       <y>260</y>
-      <w>90</w>
+      <w>110</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>m1= 1
 m2= 0..*
 </panel_attributes>
-    <additional_attributes>70;30;30;30</additional_attributes>
+    <additional_attributes>90;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>

@@ -18,10 +18,10 @@
       <x>120</x>
       <y>100</y>
       <w>30</w>
-      <h>250</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -40,10 +40,10 @@
       <x>380</x>
       <y>90</y>
       <w>30</w>
-      <h>260</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -54,7 +54,7 @@
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-findSale(saleNr)
+findSaleForLocations(saleNr)
 
 </panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
@@ -63,7 +63,7 @@ findSale(saleNr)
     <id>Relation</id>
     <coordinates>
       <x>120</x>
-      <y>260</y>
+      <y>210</y>
       <w>290</w>
       <h>50</h>
     </coordinates>
@@ -81,7 +81,7 @@ returns location of an item
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-findItem(barcode)
+getLocation(id_item)
 </panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
@@ -89,31 +89,7 @@ findItem(barcode)
     <id>UMLFrame</id>
     <coordinates>
       <x>80</x>
-      <y>170</y>
-      <w>330</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>loop</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>120</x>
-      <y>230</y>
-      <w>290</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-findLocation(i)
-</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>80</x>
-      <y>230</y>
+      <y>180</y>
       <w>330</w>
       <h>70</h>
     </coordinates>

@@ -4,8 +4,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>330</x>
-      <y>80</y>
+      <x>320</x>
+      <y>70</y>
       <w>60</w>
       <h>100</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>620</x>
-      <y>140</y>
+      <x>610</x>
+      <y>130</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>160</y>
+      <x>340</x>
+      <y>150</y>
       <w>30</w>
       <h>260</h>
     </coordinates>
@@ -38,8 +38,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>160</y>
+      <x>650</x>
+      <y>150</y>
       <w>30</w>
       <h>260</h>
     </coordinates>
@@ -50,8 +50,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>200</y>
+      <x>340</x>
+      <y>190</y>
       <w>340</w>
       <h>40</h>
     </coordinates>
@@ -62,20 +62,20 @@ startSale(name)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>250</y>
+      <x>340</x>
+      <y>240</y>
       <w>340</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addSaleLine(barcode, quantity)</panel_attributes>
+addSaleLine(name, quantity)</panel_attributes>
     <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>280</y>
+      <x>340</x>
+      <y>270</y>
       <w>340</w>
       <h>50</h>
     </coordinates>
@@ -87,8 +87,8 @@ returns the current sale lines with total price
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>330</y>
+      <x>340</x>
+      <y>320</y>
       <w>340</w>
       <h>40</h>
     </coordinates>
@@ -99,8 +99,8 @@ finish sale(e, isPaid)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>310</x>
-      <y>250</y>
+      <x>300</x>
+      <y>240</y>
       <w>390</w>
       <h>70</h>
     </coordinates>
