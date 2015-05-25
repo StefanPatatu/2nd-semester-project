@@ -9,37 +9,41 @@ import modelLayer.Address;
  * DbAddress
  * 
  * @author futz
- * @version 1.0
+ * @version 1.2
  */
 
 public class DbAddress implements DbAddressInterface {
+
+	public DbAddress() throws Exception {
+		//empty constructor
+	}
 	
 	@Override
-	public ArrayList<Address> getAllAddresses() {
+	public ArrayList<Address> getAllAddresses() throws Exception {
 		return miscWhere("", false);
 	}
 	
 	@Override
-	public Address findAddress(int id_address) {
+	public Address findAddress(int id_address) throws Exception {
 		Address a = singleWhere("id_address=" + id_address, false);
 		return a;
 	}
 	
 	@Override
-	public ArrayList<Address> searchAddressByCountry(String country) {
+	public ArrayList<Address> searchAddressByCountry(String country) throws Exception {
 		return miscWhere("country LIKE '%" + country + "%'", false);
 	}
 	
 	@Override
-	public ArrayList<Address> searchAddressByCity(String city) {
+	public ArrayList<Address> searchAddressByCity(String city) throws Exception {
 		return miscWhere("city LIKE '%" + city + "%'", false);
 	}
 	
 	@Override
-	public int insertAddress(Address a) {
+	public int insertAddress(Address a) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Address (country, city) VALUES (?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, a.getCountry());
 			statement.setString(2, a.getCity());
 			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
@@ -54,10 +58,10 @@ public class DbAddress implements DbAddressInterface {
 	}
 	
 	@Override
-	public int updateAddress(Address a) {
+	public int updateAddress(Address a) throws Exception {
 		int result = 0;
 		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Address SET country=?, city=? WHERE id_address=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, a.getCountry());
 			statement.setString(2, a.getCity());
 			statement.setInt(3, a.getId_address());
@@ -71,13 +75,13 @@ public class DbAddress implements DbAddressInterface {
 	}
 	
 	@Override
-	public int removeAddress(Address a) {
+	public int removeAddress(Address a) throws Exception {
 		if(a == null) {
 			return 0;
 		}
 		int result = 0;
 		String string = "DELETE FROM " + authLayer.DbConfig.DBTablePrefix + "Address WHERE id_address=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setInt(1, a.getId_address());
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
@@ -109,7 +113,7 @@ public class DbAddress implements DbAddressInterface {
 		return a;
 	}
 	
-	private Address singleWhere(String where, boolean retrieveAssoc) {
+	private Address singleWhere(String where, boolean retrieveAssoc) throws Exception {
 		ArrayList<Address> addresses = miscWhere(where, retrieveAssoc);
 		if(addresses.size() > 0) {
 			return addresses.get(0);
@@ -118,11 +122,11 @@ public class DbAddress implements DbAddressInterface {
 		}
 	}
 	
-	private ArrayList<Address> miscWhere(String where, boolean retrieveAssoc) {
+	private ArrayList<Address> miscWhere(String where, boolean retrieveAssoc) throws Exception {
 		ResultSet resultSet;
 		ArrayList<Address> addresses = new ArrayList<>();
 		String string = buildQuery(where);
-		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
+		try (Statement statement = DbConnection.getInstance().getDbCon().createStatement()) {
 			statement.setQueryTimeout(5);
 			resultSet = statement.executeQuery(string);
 			while(resultSet.next()) {

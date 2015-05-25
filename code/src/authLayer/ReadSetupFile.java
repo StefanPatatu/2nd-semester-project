@@ -30,7 +30,7 @@ public class ReadSetupFile {
 	
 	public ReadSetupFile() throws Exception {
 		if(!getProperties()) {
-			throw new Exception("Error reading setup file.");
+			throw new Exception("Error reading setup file in ReadSetupFile.ReadSetupFile.authLayer.");
 		}
 	}
 	
@@ -99,14 +99,13 @@ public class ReadSetupFile {
 			setDBPassword(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBPassword"), encryptor));
 			setDBTablePrefix(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBTablePrefix"), encryptor));			
 	 	} catch (IOException ex) {
-			ex.printStackTrace();
 			return false;
 		} finally {
 			if (input != null) {
 				try {
 					input.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return false;
 				}
 			}
 		}

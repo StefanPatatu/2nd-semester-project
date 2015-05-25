@@ -13,7 +13,8 @@ public class DbConfig {
 	private String DBName;
 	private String DBUserName;
 	private String DBPassword;
-	private static String DBTablePrefix;
+	public static String DBTablePrefix;
+	public static String DBurl;
 	
 	//constructor
 	public DbConfig() throws Exception {
@@ -24,6 +25,10 @@ public class DbConfig {
 		this.setDBUserName(reader.getDBUserName());
 		this.setDBPassword(reader.getDBPassword());
 		DBTablePrefix = reader.getDBTablePrefix();
+		DBurl = "jdbc:sqlserver:" + DBDriver +
+				";databaseName=" + DBName +
+				";user=" + DBUserName +
+				";password=" + DBPassword;
 	}
 	
 	//DBDriver
@@ -56,11 +61,6 @@ public class DbConfig {
 	}
 	private void setDBPassword(String DBPassword) {
 		this.DBPassword = DBPassword;
-	}
-
-	//TablePrefix
-	public String getDBTablePrefix() {
-		return DBTablePrefix;
 	}
 	
 }
