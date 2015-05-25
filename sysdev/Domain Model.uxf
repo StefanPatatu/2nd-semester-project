@@ -61,7 +61,7 @@ datePaid
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>320</x>
+      <x>330</x>
       <y>250</y>
       <w>80</w>
       <h>80</h>
@@ -111,10 +111,10 @@ shelf</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>940</x>
-      <y>230</y>
+      <x>930</x>
+      <y>210</y>
       <w>80</w>
-      <h>130</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>Supplier
 --
@@ -123,7 +123,8 @@ country
 city
 street
 phoneNr
-email</panel_attributes>
+email
+active</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -201,24 +202,24 @@ m2=0..*</panel_attributes>
     <coordinates>
       <x>230</x>
       <y>260</y>
-      <w>110</w>
+      <w>120</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..*</panel_attributes>
-    <additional_attributes>30;30;90;30</additional_attributes>
+    <additional_attributes>30;30;100;30</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>370</x>
+      <x>380</x>
       <y>260</y>
-      <w>130</w>
+      <w>120</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>m1=0..*
 m2=1</panel_attributes>
-    <additional_attributes>30;30;110;30</additional_attributes>
+    <additional_attributes>30;30;100;30</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
@@ -261,13 +262,13 @@ m2=0..1</panel_attributes>
     <coordinates>
       <x>860</x>
       <y>260</y>
-      <w>100</w>
+      <w>90</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>m1= 1
 m2= 0..*
 </panel_attributes>
-    <additional_attributes>80;30;30;30</additional_attributes>
+    <additional_attributes>70;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
