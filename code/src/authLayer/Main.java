@@ -1,19 +1,8 @@
 package authLayer;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.ShortBufferException;
-
 public class Main {
 
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, InvalidKeyException, ShortBufferException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchProviderException, NoSuchPaddingException {
+	public static void main(String[] args) throws Exception {
 		
 		
 		DbConfig dbconfig = new DbConfig();

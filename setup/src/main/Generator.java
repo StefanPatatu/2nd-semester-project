@@ -14,8 +14,10 @@ public class Generator {
 	private final String DBPassword = "IsAllowed";
 	
 	public Generator() {
+		
 		this.DBquery = generateFinalQuery();
 		this.DBTablePrefix = generateDBTablePrefix();
+		
 	}
 	
 	public String getDBQuery() {

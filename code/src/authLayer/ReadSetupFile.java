@@ -4,27 +4,34 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.Base64;
+
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.encryption.pbe.config.SimplePBEConfig;
+import org.jasypt.properties.PropertyValueEncryptionUtils;
+
+/**
+ * Address
+ * 
+ * @author futz
+ * @version 2.0
+ */
 
 public class ReadSetupFile {
 	
 	private String DBDriver;
-	private String LDBDriver;
-	
 	private String DBName;
-	private String LDBName;
-	
 	private String DBUserName;
-	private String LDBUserName;
-	
 	private String DBPassword;
-	private String LDBPassword;
-	
 	private String DBTablePrefix;
-	private String LDBTablePrefix;
 	
-	public ReadSetupFile() {
-		getProperties();
+	private StandardPBEStringEncryptor encryptor = null;
+	private final String password = "1B7C4DD1C6IGHIUW955953226444GKS";
+	private final String algorithm = "PBEWithMD5AndDES";
+	
+	public ReadSetupFile() throws Exception {
+		if(!getProperties()) {
+			throw new Exception("Error reading setup file.");
+		}
 	}
 	
 	//DBDriver
@@ -34,12 +41,6 @@ public class ReadSetupFile {
 	private void setDBDriver(String DBDriver) {
 		this.DBDriver = DBDriver;
 	}
-	public String getLDBDriver() {
-		return LDBDriver;
-	}
-	private void setLDBDriver(String LDBDriver) {
-		this.LDBDriver = LDBDriver;
-	}
 		
 	//DBName
 	public String getDBName() {
@@ -47,12 +48,6 @@ public class ReadSetupFile {
 	}
 	private void setDBName(String DBName) {
 		this.DBName = DBName;
-	}
-	public String getLDBName() {
-		return LDBName;
-	}
-	private void setLDBName(String LDBName) {
-		this.LDBName = LDBName;
 	}
 		
 	//DBUserName
@@ -62,12 +57,6 @@ public class ReadSetupFile {
 	private void setDBUserName(String DBUserName) {
 		this.DBUserName = DBUserName;
 	}
-	public String getLDBUserName() {
-		return LDBUserName;
-	}
-	private void setLDBUserName(String LDBUserName) {
-		this.LDBUserName = LDBUserName;
-	}
 		
 	//DBPassword
 	public String getDBPassword() {
@@ -75,12 +64,6 @@ public class ReadSetupFile {
 	}
 	private void setDBPassword(String DBPassword) {
 		this.DBPassword = DBPassword;
-	}
-	public String getLDBPassword() {
-		return LDBPassword;
-	}
-	private void setLDBPassword(String LDBPassword) {
-		this.LDBPassword = LDBPassword;
 	}
 			
 	//TablePrefix
@@ -90,51 +73,34 @@ public class ReadSetupFile {
 	private void setDBTablePrefix(String DBTablePrefix) {
 		this.DBTablePrefix = DBTablePrefix;
 	}
-	public String getLDBTablePrefix() {
-		return LDBTablePrefix;
-	}
-	private void setLDBTablePrefix(String LDBTablePrefix) {
-		this.LDBTablePrefix = LDBTablePrefix;
-	}
 	
-	public boolean getProperties() {
+	private boolean getProperties() {
+		
+		SimplePBEConfig config = new SimplePBEConfig(); 
+		config.setAlgorithm(algorithm);
+		config.setKeyObtentionIterations(1000);
+		config.setPassword(password);
+		
+		encryptor = new StandardPBEStringEncryptor();
+		encryptor.setConfig(config);
+		encryptor.initialize();
 		
 		Properties prop = new Properties();
 		InputStream input = null;
+		
 	 	try {
 	 		input = new FileInputStream("setup.properties");
 	 		// load a properties file
 			prop.load(input);
 	 		// get and decode the properties value
-			byte[] decodedDBDriver = Base64.getDecoder().decode(prop.getProperty("DBDriver"));
-			byte[] decodedDBName = Base64.getDecoder().decode(prop.getProperty("DBName"));
-			byte[] decodedDBUserName = Base64.getDecoder().decode(prop.getProperty("DBUserName"));
-			byte[] decodedDBPassword = Base64.getDecoder().decode(prop.getProperty("DBPassword"));
-			byte[] decodedDBTablePrefix = Base64.getDecoder().decode(prop.getProperty("DBTablePrefix"));
-			
-			System.out.println(decodedDBDriver);
-			System.out.println(decodedDBName);
-			System.out.println(decodedDBUserName);
-			System.out.println(decodedDBPassword);
-			System.out.println(decodedDBTablePrefix);
-			
-			//set properties value
-			setDBDriver(new String(decodedDBDriver,"utf-8"));
-			setLDBDriver(prop.getProperty("LDBDriver"));
-			
-			setDBName(new String(decodedDBName,"utf-8"));
-			setLDBName(prop.getProperty("LDBName"));
-			
-			setDBUserName(new String(decodedDBUserName, "utf-8"));
-			setLDBUserName(prop.getProperty("LDBUserName"));
-			
-			setDBPassword(new String(decodedDBPassword, "utf-8"));
-			setLDBPassword(prop.getProperty("LDBPassword"));
-			
-			setDBTablePrefix(new String(decodedDBTablePrefix,"utf-8"));
-			setLDBTablePrefix(prop.getProperty("LDBTablePrefix"));
+			setDBDriver(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBDriver"), encryptor));
+			setDBName(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBName"), encryptor));
+			setDBUserName(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBUserName"), encryptor));
+			setDBPassword(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBPassword"), encryptor));
+			setDBTablePrefix(PropertyValueEncryptionUtils.decrypt(prop.getProperty("DBTablePrefix"), encryptor));			
 	 	} catch (IOException ex) {
 			ex.printStackTrace();
+			return false;
 		} finally {
 			if (input != null) {
 				try {
