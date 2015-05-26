@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import modelLayer.Supplier;
 
 /**
+ * DbSupplierInterface
  * 
  * @author Kool-kat
  * @Version 1.0

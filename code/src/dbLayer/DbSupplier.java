@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import modelLayer.Address;
 import modelLayer.Supplier;
 
+/**
+ * DbSupplier
+ * 
+ * @author Kool-kat
+ * @Version 1.0
+ */
+
 public class DbSupplier implements DbSupplierInterface {
 	
 	private DbSupplierInterface dbAddress = new DbAddress();
@@ -30,7 +37,7 @@ public class DbSupplier implements DbSupplierInterface {
 	public int insertSupplier(Supplier sp) {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Supplier (name, phoneNr, email, isActive, sp_address, street) VALUES(?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, sp.getName());
 			statement.setString(2, sp.getPhoneNr());
 			statement.setString(3, sp.getEmail());
@@ -52,7 +59,7 @@ public class DbSupplier implements DbSupplierInterface {
 	public int updateSupplier(Supplier sp) {
 		int result = 0;
 		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Supplier SET name=?, phoneNr=?, email=?, isActive=?, sp_address=?, street=? WHERE id_supplier=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, sp.getName());
 			statement.setString(2, sp.getPhoneNr());
 			statement.setString(3, sp.getEmail());
