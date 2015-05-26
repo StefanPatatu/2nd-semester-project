@@ -16,7 +16,7 @@ import authLayer.DbConfig;
 /**
  * DBPurchase
  * 
- * @author 
+ * @author frunziss + futz
  * @version 1.0
  */
 

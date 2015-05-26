@@ -9,7 +9,7 @@ import modelLayer.Purchase;
 /**
  * DbSaleInterface
  * 
- * @author 
+ * @author frunziss + futz
  * @version 1.0
  */
 
