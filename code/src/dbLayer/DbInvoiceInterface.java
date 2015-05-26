@@ -8,7 +8,7 @@ import modelLayer.Invoice;
  * DbCustomerInterface
  * 
  * @author Kool-kat
- * @version 1.2
+ * @version 1.1
  */
 
 public interface DbInvoiceInterface {
