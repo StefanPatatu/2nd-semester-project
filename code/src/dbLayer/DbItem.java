@@ -8,39 +8,60 @@ import modelLayer.Item;
 /**
  * DbItem
  * 
- * @author Kool-kat
- * @version 1.0
+ * @author Kool-kat + futz
+ * @version 1.1
  */
 
 public class DbItem implements DbItemInterface {
 	
 	@Override
-	public ArrayList<Item> getAllItems() {
+	public ArrayList<Item> getAllItems() throws Exception {
 		return miscWhere("", false);
 	}
 	
 	@Override
-	public Item findItemById_Item(int id_item) {
+	public Item findItemById_Item(int id_item) throws Exception {
 		Item i = singleWhere("id_item=" + id_item, false);
 		return i;
 	}
 	
 	@Override
-	public Item findItemByBarcode(String barcode) {
+	public Item findItemByBarcode(String barcode) throws Exception {
 		Item i = singleWhere("barcode=" + barcode, false);
 		return i;
 	}
 	
 	@Override
-	public ArrayList<Item> searchItemByName(String name) {
+	public ArrayList<Item> searchItemByName(String name) throws Exception {
 		return miscWhere("name LIKE '%" + name + "%'", false);
 	}
 	
 	@Override
-	public int insertItem(Item i) {
+	public ArrayList<Item> searchItemsByStockRange(int min, int max) throws Exception {
+		ResultSet resultSet;
+		ArrayList<Item> items = new ArrayList<>();
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Item WHERE stock BETWEEN ? AND ?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setInt(1, min);
+			statement.setInt(2, max);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Item i = buildItem(resultSet);
+				items.add(i);
+			}		
+		} catch (SQLException sqle) {
+			throw new SQLException("searchItemByStockRange.DbItem.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("searchItemByStockRange.DbItem.dbLayer", e);
+		}
+		return items;
+	}
+	
+	@Override
+	public int insertItem(Item i) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Item (barcode, name, price, stock, itemType, category) VALUES (?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, i.getBarcode());
 			statement.setString(2, i.getName());
 			statement.setDouble(3, i.getPrice());
@@ -53,16 +74,16 @@ public class DbItem implements DbItemInterface {
 		} catch (SQLException sqle) {
 			throw new SQLException("insertEmployee.DbEmployee.dbLayer", sqle);
 		} catch (Exception e) {
-			throw new Exception("insertEmployee.DbEmployee.dbLayer, e");
+			throw new Exception("insertEmployee.DbEmployee.dbLayer", e);
 		}
 		return result;
 	}
 	
 	@Override
-	public int updateItem(Item i) {
+	public int updateItem(Item i) throws Exception {
 		int result = 0;
 		String string  = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Item SET barcode=?, name=?, price=?, stock=?, itemType=?, category=? WHERE id_item=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, i.getBarcode());
 			statement.setString(2, i.getName());
 			statement.setDouble(3, i.getPrice());
@@ -105,7 +126,7 @@ public class DbItem implements DbItemInterface {
 		return i;
 	}
 	
-	private Item singleWhere(String where, boolean retrieveAssoc) {
+	private Item singleWhere(String where, boolean retrieveAssoc) throws Exception {
 		ArrayList<Item> items = miscWhere(where, retrieveAssoc);
 		if(items.size() > 0) {
 			return items.get(0);
@@ -114,11 +135,11 @@ public class DbItem implements DbItemInterface {
 		}
 	}
 	
-	private ArrayList<Item> miscWhere(String where, boolean retrieveAssoc) {
+	private ArrayList<Item> miscWhere(String where, boolean retrieveAssoc) throws Exception {
 		ResultSet resultSet;
 		ArrayList<Item> items = new ArrayList<>();
 		String string = buildQuery(where);
-		try (Statement statement = DbConnection.getInstance().getDbcon().createStatement()) {
+		try (Statement statement = DbConnection.getInstance().getDbCon().createStatement()) {
 			statement.setQueryTimeout(5);
 			resultSet = statement.executeQuery(string);
 			while(resultSet.next()) {
