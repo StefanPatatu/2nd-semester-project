@@ -140,10 +140,10 @@
     <coordinates>
       <x>639</x>
       <y>234</y>
-      <w>333</w>
+      <w>387</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>*id_supllier | name | phoneNr | email| street | **sp_address</panel_attributes>
+    <panel_attributes>*id_supllier | name | phoneNr | email| street | isActive | **sp_address</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -166,7 +166,7 @@
       <h>216</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;220.0;940.0;220.0;940.0;30.0;860.0;30.0;860.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;10.0;220.0;940.0;220.0;940.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Text</type>
