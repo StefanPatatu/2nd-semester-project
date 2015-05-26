@@ -8,14 +8,14 @@ import modelLayer.Invoice;
  * DbCustomerInterface
  * 
  * @author Kool-kat
- * @version 1.0
+ * @version 1.2
  */
 
 public interface DbInvoiceInterface {
 	
-	public ArrayList<Invoice> getAllInvoices();
-	public Invoice findInvoice(int id_invoice);
-	public int insertInvoice(Invoice i);
-	public int updateInvoice(Invoice i);
+	public ArrayList<Invoice> getAllInvoices() throws Exception;
+	public Invoice findInvoice(int id_invoice) throws Exception;
+	public int insertInvoice(Invoice i) throws Exception;
+	public int updateInvoice(Invoice i) throws Exception;
 	
 }

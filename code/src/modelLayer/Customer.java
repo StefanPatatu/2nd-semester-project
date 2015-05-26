@@ -4,7 +4,7 @@ package modelLayer;
  * Customer
  * 
  * @author DarkSun + futz
- * @version 1.4
+ * @version 1.5
  */
 
 public class Customer {
@@ -32,6 +32,16 @@ public class Customer {
 		this.setEmail(email);
 	}
     
+	public Customer(
+			int id_customer) {
+		this.setId_customer(id_customer);
+		this.setName(null);
+		this.setAddress(null);
+		this.setStreet(null);
+		this.setPhoneNr(null);
+		this.setEmail(null);
+	}
+
 	//id_customer
 	public int getId_customer() {
 		return id_customer;

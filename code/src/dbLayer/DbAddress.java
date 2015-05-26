@@ -9,14 +9,10 @@ import modelLayer.Address;
  * DbAddress
  * 
  * @author futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class DbAddress implements DbAddressInterface {
-
-	public DbAddress() throws Exception {
-		//empty constructor
-	}
 	
 	@Override
 	public ArrayList<Address> getAllAddresses() throws Exception {

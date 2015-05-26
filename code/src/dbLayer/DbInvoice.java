@@ -3,16 +3,14 @@ package dbLayer;
 import java.sql.*;
 import java.util.ArrayList;
 
-import modelLayer.Address;
 import modelLayer.Customer;
 import modelLayer.Invoice;
-import db.DbConnection;;
 
 /**
  * DbCustomer
  * 
  * @author Kool-kat + futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class DbInvoice implements DbInvoiceInterface {
@@ -20,23 +18,21 @@ public class DbInvoice implements DbInvoiceInterface {
 	private DbCustomerInterface dbCustomer = new DbCustomer();
 	
 	@Override
-	public ArrayList<Invoice> getAllInvoices() {
+	public ArrayList<Invoice> getAllInvoices() throws Exception {
 		return miscWhere("", false);
 	}
 	
 	@Override
-	public Invoice findInvoice(int id_invoice){
+	public Invoice findInvoice(int id_invoice) throws Exception {
 		Invoice i = singleWhere("id_invoice=" + id_invoice, true);
 		return i;
 	}
 	
-	
-	
 	@Override
-	public int insertInvoice(Invoice i) {
+	public int insertInvoice(Invoice i) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Invoice (id_invoice, invoiceNr, dateCreated, isPaid, datePaid, id_c) VALUES (?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setInt(1, i.getId_invoice());
 			statement.setString(2, i.getInvoiceNr());
 			statement.setTimestamp(3, i.getDateCreated());
@@ -55,10 +51,10 @@ public class DbInvoice implements DbInvoiceInterface {
 	}
 	
 	@Override
-	public int updateInvoice(Invoice i) {
+	public int updateInvoice(Invoice i) throws Exception {
 		int result = 0;
 		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Invoice SET id_invoice=?, invoiceNr=?, dateCreated=?, isPaid=?, date_paid, id_c=? WHERE id_invoice=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setInt(1, i.getId_invoice());
 			statement.setString(2, i.getInvoiceNr());
 			statement.setTimestamp(3, i.getDateCreated());
@@ -98,7 +94,7 @@ public class DbInvoice implements DbInvoiceInterface {
 		return i;
 	}
 	
-	private Invoice singleWhere(String where, boolean retrieveAssoc) {
+	private Invoice singleWhere(String where, boolean retrieveAssoc) throws Exception {
 		ArrayList<Invoice> invoices = miscWhere(where, retrieveAssoc);
 		if(invoices.size() > 0) {
 			if(retrieveAssoc) {
@@ -110,11 +106,11 @@ public class DbInvoice implements DbInvoiceInterface {
 		}
 	}
 	
-	private ArrayList<Invoice> miscWhere(String where, boolean retrieveAssoc) {
+	private ArrayList<Invoice> miscWhere(String where, boolean retrieveAssoc) throws Exception {
 		ResultSet resultSet;
 		ArrayList<Invoice> invoices = new ArrayList<>();
 		String string = buildQuery(where);
-		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
+		try (Statement statement = DbConnection.getInstance().getDbCon().createStatement()) {
 			statement.setQueryTimeout(5);
 			resultSet = statement.executeQuery(string);
 			while(resultSet.next()) {

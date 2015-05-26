@@ -10,7 +10,7 @@ import modelLayer.Employee;
  * DbEmployee
  * 
  * @author DarkSun + futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class DbEmployee implements DbEmployeeInterface {
@@ -18,34 +18,34 @@ public class DbEmployee implements DbEmployeeInterface {
 	private DbAddressInterface dbAddress = new DbAddress();
 
 	@Override
-	public ArrayList<Employee> getAllEmployees() {
+	public ArrayList<Employee> getAllEmployees() throws Exception {
 		return miscWhere("", false);
 	}
 
 	@Override
-	public Employee findEmployeeById_employee(int id_employee) {
+	public Employee findEmployeeById_employee(int id_employee) throws Exception {
 		Employee emp = singleWhere("id_employee=" + id_employee, true);
 		return emp;
 	}
 	
 	@Override
-	public Employee findEmployeeByPerson_id(String person_id) {
+	public Employee findEmployeeByPerson_id(String person_id) throws Exception {
 		Employee emp = singleWhere("person_id=" + person_id, true);
 		return emp;
 	}
 
 	@Override
-	public ArrayList<Employee> searchEmployeeByName(String name) {
+	public ArrayList<Employee> searchEmployeeByName(String name) throws Exception {
 		return miscWhere("name LIKE '%" + name + "%'", false);
 	}
 	
 	@Override
-	public ArrayList<Employee> searchEmployeeByRights(int rights) {
+	public ArrayList<Employee> searchEmployeeByRights(int rights) throws Exception {
 		return miscWhere("rights LIKE '%" + rights + "%'", false);
 	}
 	
 	@Override
-	public String getEmployeePass(int person_id) {
+	public String getEmployeePass(int person_id) throws Exception {
 		Employee emp = singleWhere("person_id=" + person_id, false);
 		if(emp == null) {
 			return null;
@@ -55,7 +55,7 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 	
 	@Override
-	public String getEmployeeSalt(int person_id) {
+	public String getEmployeeSalt(int person_id) throws Exception {
 		Employee emp = singleWhere("person_id=" + person_id, false);
 		if(emp == null) {
 			return null;
@@ -65,10 +65,10 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 
 	@Override
-	public int insertEmployee(Employee emp) {
+	public int insertEmployee(Employee emp) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Employee (person_id, name, phoneNr, email, pass, salt, rights, e_address, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
 			statement.setString(3, emp.getPhoneNr());
@@ -90,10 +90,10 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 
 	@Override
-	public int updateEmployee(Employee emp) {
+	public int updateEmployee(Employee emp) throws Exception {
 		int result = 0;
 		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Employee SET person_id=?, name=?, phoneNr=?, email=?, pass=?, salt=?, rights=?, e_address=?, street=? WHERE id_employee=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
 			statement.setString(3, emp.getPhoneNr());
@@ -141,7 +141,7 @@ public class DbEmployee implements DbEmployeeInterface {
 		return emp;
 	}
 	
-	private Employee singleWhere(String where, boolean retrieveAssoc) {
+	private Employee singleWhere(String where, boolean retrieveAssoc) throws Exception {
 		ArrayList<Employee> employees = miscWhere(where, retrieveAssoc);
 		if(employees.size() > 0) {
 			if(retrieveAssoc) {
@@ -153,11 +153,11 @@ public class DbEmployee implements DbEmployeeInterface {
 		}
 	}
 	
-	private ArrayList<Employee> miscWhere(String where, boolean retrieveAssoc) {
+	private ArrayList<Employee> miscWhere(String where, boolean retrieveAssoc) throws Exception {
 		ResultSet resultSet;
 		ArrayList<Employee> employees = new ArrayList<>();
 		String string = buildQuery(where);
-		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
+		try (Statement statement = DbConnection.getInstance().getDbCon().createStatement()) {
 			statement.setQueryTimeout(5);
 			resultSet = statement.executeQuery(string);
 			while(resultSet.next()) {
