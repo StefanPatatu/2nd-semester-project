@@ -9,7 +9,7 @@ import modelLayer.Invoice;
 /**
  * DbCustomer
  * 
- * @author Kool-kat + futz
+ * @author frunziss
  * @version 1.2
  */
 

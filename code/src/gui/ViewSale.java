@@ -27,7 +27,9 @@ public class ViewSale extends JDialog {
 	 * Launch the application.
 	 */
 	
-
+	/**
+	@author frunziss
+	*/
 	/**
 	 * Create the frame.
 	 */

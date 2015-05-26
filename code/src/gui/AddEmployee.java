@@ -32,7 +32,9 @@ public class AddEmployee extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	
+	/**
+	@author frunziss
+	*/
 
 	/**
 	 * Create the frame.

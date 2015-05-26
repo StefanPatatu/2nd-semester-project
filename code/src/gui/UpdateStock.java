@@ -19,7 +19,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-
+/**
+@author frunziss
+*/
 public class UpdateStock extends JDialog {
 
 	private JPanel contentPane;

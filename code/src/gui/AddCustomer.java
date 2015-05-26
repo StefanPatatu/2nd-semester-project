@@ -32,7 +32,9 @@ public class AddCustomer extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	
+	/**
+	@author frunziss
+	*/
 
 	/**
 	 * Create the frame.

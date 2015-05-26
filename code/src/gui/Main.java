@@ -27,7 +27,9 @@ import java.net.ServerSocket;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import java.awt.Color;
-
+/**
+@author frunziss
+*/
 public class Main extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;

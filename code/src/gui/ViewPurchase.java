@@ -18,7 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.List;
 import java.awt.Color;
-
+/**
+@author frunziss
+*/
 public class ViewPurchase extends JDialog {
 
 	private JPanel contentPane;

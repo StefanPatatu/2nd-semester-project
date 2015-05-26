@@ -1,5 +1,7 @@
 package modelLayer;
-
+/**
+@author frunziss
+*/
 public class PurchaseLine {
 	int id_purchaseLine;
 	int quantity;

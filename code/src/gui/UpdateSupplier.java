@@ -24,7 +24,9 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Color;
-
+/**
+@author frunziss
+*/
 public class UpdateSupplier extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;

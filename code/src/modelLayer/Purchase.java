@@ -1,5 +1,7 @@
 package modelLayer;
-
+/**
+@author frunziss
+*/
 import java.sql.Timestamp;
 
 public class Purchase {

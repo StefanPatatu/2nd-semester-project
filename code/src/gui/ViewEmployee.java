@@ -20,7 +20,9 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class ViewEmployee extends JDialog {
-
+	/**
+	@author frunziss
+	*/
 	private JPanel contentPane;
 
 	/**

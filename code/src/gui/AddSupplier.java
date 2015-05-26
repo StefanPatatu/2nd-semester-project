@@ -34,7 +34,9 @@ public class AddSupplier extends JDialog {
 	 * Launch the application.
 	 */
 	
-
+	/**
+	@author frunziss
+	*/
 	/**
 	 * Create the frame.
 	 */

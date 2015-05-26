@@ -34,7 +34,9 @@ import java.awt.Scrollbar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
-
+/**
+@author frunziss
+*/
 public class Sale extends JDialog {
 
 	private JPanel contentPane;

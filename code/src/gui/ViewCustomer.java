@@ -18,7 +18,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-
+/**
+@author frunziss
+*/
 public class ViewCustomer extends JDialog {
 
 	private JPanel contentPane;

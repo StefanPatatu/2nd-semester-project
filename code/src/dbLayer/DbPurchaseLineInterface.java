@@ -8,7 +8,7 @@ import modelLayer.*;
 /**
  * DbPurchaseLineInterface
  * 
- * @author 
+ * @author frunziss
  * @version 1.0
  */
 
