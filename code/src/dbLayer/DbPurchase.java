@@ -17,7 +17,7 @@ import authLayer.DbConfig;
  * DBPurchase
  * 
  * @author frunziss + futz
- * @version 1.0
+ * @version 1.0 !
  */
 
 public class DbPurchase implements DbPurchaseInterface {

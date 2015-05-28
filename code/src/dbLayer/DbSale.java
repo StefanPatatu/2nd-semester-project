@@ -6,18 +6,20 @@ import java.util.ArrayList;
 import modelLayer.Sale;
 import modelLayer.Employee;
 import modelLayer.Customer;
+import modelLayer.SaleLine;
 
 /**
  * DbSale
  * 
  * @author DarkSun + futz
- * @version 1.3
+ * @version 1.5
  */
 
 public class DbSale implements DbSaleInterface {
 	
 	private DbEmployeeInterface dbEmployee = new DbEmployee();
 	private DbCustomerInterface dbCustomer = new DbCustomer();
+	private DbSaleLineInterface dbSaleLine = new DbSaleLine();
 
 	@Override
 	public ArrayList<Sale> getAllSales() throws Exception {
@@ -25,14 +27,14 @@ public class DbSale implements DbSaleInterface {
 	}
 
 	@Override
-	public Sale findSaleById_sale(int id_Sale) throws Exception {
-		Sale s = singleWhere("id_sale=" + id_Sale, true);
+	public Sale findSaleById_sale(int id_Sale, boolean retrieveAssoc) throws Exception {
+		Sale s = singleWhere("id_sale=" + id_Sale, retrieveAssoc);
 		return s;
 	}
 
 	@Override
-	public Sale findSaleBySaleNr(String saleNr) throws Exception {
-		Sale s = singleWhere("saleNr=" + saleNr, true);
+	public Sale findSaleBySaleNr(String saleNr, boolean retrieveAssoc) throws Exception {
+		Sale s = singleWhere("saleNr=" + saleNr, retrieveAssoc);
 		return s;
 	}
 	
@@ -67,7 +69,6 @@ public class DbSale implements DbSaleInterface {
 		}
 		return sales;
 	}
-
 
 	@Override
 	public int insertSale(Sale s, int id_inv) throws Exception {
@@ -149,6 +150,44 @@ public class DbSale implements DbSaleInterface {
 		return result;	
 	}
 	
+	@Override
+	public ArrayList<Sale> getAllUnpaidSalesForCustomer(int id_customer) throws Exception {
+		ResultSet resultSet;
+		ArrayList<Sale> sales = new ArrayList<>();
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale WHERE id_c=? AND isPaid=? AND id_inv IS NULL";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setInt(1, id_customer);
+			statement.setBoolean(2, false);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Sale s = buildSale(resultSet);
+				sales.add(s);
+			}
+		} catch (SQLException sqle) {
+			throw new SQLException("getAllUnpaidSalesForCustomer.DbSale.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("getAllUnpaidSalesForCustomer.DbSale.dbLayer", e);
+		}
+		return sales;
+	}
+	
+	@Override
+	public int addSalesToInvoice(int id_invoice, ArrayList<Sale> sales) throws Exception {
+		int result = 0;
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET id_inv=? WHERE id_sale=?";
+		for (Sale sale : sales) {
+			try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+				statement.setInt(1, id_invoice);
+				statement.setInt(2, sale.getId_sale());
+				result += statement.executeUpdate();
+			} catch (SQLException sqle) {
+				throw new SQLException("addSalesToInvoice.DbSale.dbLayer", sqle);
+			} catch (Exception e) {
+				throw new Exception("addSalesToInvoice.DbSale.dbLayer", e); 
+			}
+		}
+		return result;
+	}
 	private String buildQuery(String where) {
 		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale";
 		if (where != null && where.length() > 0) {
@@ -183,8 +222,9 @@ public class DbSale implements DbSaleInterface {
 		ArrayList<Sale> sales = miscWhere(where, retrieveAssoc);
 		if (sales.size() > 0) {
 			if(retrieveAssoc) {
-				sales.get(0).setEmployee(dbEmployee.findEmployeeById_employee(sales.get(0).getEmployee().getId_employee()));
-				sales.get(0).setCustomer(dbCustomer.findCustomer(sales.get(0).getCustomer().getId_customer()));
+				sales.get(0).setEmployee(dbEmployee.findEmployeeById_employee(sales.get(0).getEmployee().getId_employee(), false));
+				sales.get(0).setCustomer(dbCustomer.findCustomer(sales.get(0).getCustomer().getId_customer(), false));
+				sales.get(0).setSaleLines(getAllSaleLinesForASale(sales.get(0).getId_sale()));
 			}
 			return sales.get(0);
 		} else {
@@ -210,6 +250,12 @@ public class DbSale implements DbSaleInterface {
 			throw new Exception("miscWhere.DbEmployee.dbLayer", e);
 		}
 		return sales;		
+	}
+	
+	private ArrayList<SaleLine> getAllSaleLinesForASale(int id_sale) throws Exception {
+		ArrayList<SaleLine> saleLines = new ArrayList<>();
+		saleLines = dbSaleLine.getAllSaleLinesForASale(id_sale);
+		return saleLines;
 	}
 
 }

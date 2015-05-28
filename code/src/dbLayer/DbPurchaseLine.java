@@ -20,7 +20,7 @@ import authLayer.DbConfig;
  * DBPurchase
  * 
  * @author frunziss
- * @version 1.0
+ * @version 1.0 !
  */
 
 public class DbPurchaseLine implements DbPurchaseLineInterface {

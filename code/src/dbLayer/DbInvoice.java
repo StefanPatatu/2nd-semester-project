@@ -10,7 +10,7 @@ import modelLayer.Invoice;
  * DbCustomer
  * 
  * @author frunziss + futz (who is going to kill you!)
- * @version 1.4
+ * @version 1.6
  */
 
 public class DbInvoice implements DbInvoiceInterface {
@@ -23,8 +23,8 @@ public class DbInvoice implements DbInvoiceInterface {
 	}
 	
 	@Override
-	public Invoice findInvoice(int id_invoice) throws Exception {
-		Invoice i = singleWhere("id_invoice=" + id_invoice, true);
+	public Invoice findInvoice(int id_invoice, boolean retrieveAssoc) throws Exception {
+		Invoice i = singleWhere("id_invoice=" + id_invoice, retrieveAssoc);
 		return i;
 	}
 	
@@ -69,6 +69,22 @@ public class DbInvoice implements DbInvoiceInterface {
 		return result;
 	}
 	
+	@Override
+	public int updateInvoiceIsPaid(int id_invoice) throws Exception {
+		int result = 0;
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Invoice SET isPaid=? WHERE id_invoice=?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setBoolean(1, true);
+			statement.setInt(2, id_invoice);
+			result = statement.executeUpdate();
+		} catch (SQLException sqle) {
+			throw new SQLException("updateInvoiceIsPaid.DbInvoice.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception("updateInvoiceIsPaid.DbInvoice.dbLayer", e);
+		}
+		return result;
+	}
+	
 	private String buildQuery(String where) {
 		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Invoice";
 		if(where != null && where.length() > 0) {
@@ -97,7 +113,7 @@ public class DbInvoice implements DbInvoiceInterface {
 		ArrayList<Invoice> invoices = miscWhere(where, retrieveAssoc);
 		if(invoices.size() > 0) {
 			if(retrieveAssoc) {
-				invoices.get(0).setCustomer(dbCustomer.findCustomer(invoices.get(0).getCustomer().getId_customer()));
+				invoices.get(0).setCustomer(dbCustomer.findCustomer(invoices.get(0).getCustomer().getId_customer(), false));
 			}
 			return invoices.get(0);
 		} else {

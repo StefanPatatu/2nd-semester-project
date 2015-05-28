@@ -10,7 +10,7 @@ import modelLayer.Employee;
  * DbEmployee
  * 
  * @author DarkSun + futz
- * @version 1.3
+ * @version 1.4
  */
 
 public class DbEmployee implements DbEmployeeInterface {
@@ -23,14 +23,14 @@ public class DbEmployee implements DbEmployeeInterface {
 	}
 
 	@Override
-	public Employee findEmployeeById_employee(int id_employee) throws Exception {
-		Employee emp = singleWhere("id_employee=" + id_employee, true);
+	public Employee findEmployeeById_employee(int id_employee, boolean retrieveAssoc) throws Exception {
+		Employee emp = singleWhere("id_employee=" + id_employee, retrieveAssoc);
 		return emp;
 	}
 	
 	@Override
-	public Employee findEmployeeByPerson_id(String person_id) throws Exception {
-		Employee emp = singleWhere("person_id=" + person_id, true);
+	public Employee findEmployeeByPerson_id(String person_id, boolean retrieveAssoc) throws Exception {
+		Employee emp = singleWhere("person_id=" + person_id, retrieveAssoc);
 		return emp;
 	}
 

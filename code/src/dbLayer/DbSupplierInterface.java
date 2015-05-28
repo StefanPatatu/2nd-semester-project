@@ -8,7 +8,7 @@ import modelLayer.Supplier;
  * DbSupplierInterface
  * 
  * @author Kool-kat
- * @Version 1.0
+ * @Version 1.0 !
  */
 
 public interface DbSupplierInterface {

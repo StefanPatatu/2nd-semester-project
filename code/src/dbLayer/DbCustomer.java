@@ -10,7 +10,7 @@ import modelLayer.Customer;
  * DbCustomer
  * 
  * @author Kool-kat + futz
- * @version 1.3
+ * @version 1.4
  */
 
 public class DbCustomer implements DbCustomerInterface {
@@ -23,8 +23,8 @@ public class DbCustomer implements DbCustomerInterface {
 	}
 	
 	@Override
-	public Customer findCustomer(int id_customer) throws Exception{
-		Customer c = singleWhere("id_customer=" + id_customer, true);
+	public Customer findCustomer(int id_customer, boolean retrieveAssoc) throws Exception{
+		Customer c = singleWhere("id_customer=" + id_customer, retrieveAssoc);
 		return c;
 	}
 	

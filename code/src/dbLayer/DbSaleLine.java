@@ -10,7 +10,7 @@ import modelLayer.Item;
  * DbSaleLine
  * 
  * @author DarkSun + futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class DbSaleLine implements DbSaleLineInterface {
@@ -23,8 +23,8 @@ public class DbSaleLine implements DbSaleLineInterface {
 	}
 
 	@Override
-	public SaleLine findSaleLine(int id_saleLine) throws Exception {
-		SaleLine sl = singleWhere("id_saleLine=" + id_saleLine, true);
+	public SaleLine findSaleLine(int id_saleLine, boolean retrieveAssoc) throws Exception {
+		SaleLine sl = singleWhere("id_saleLine=" + id_saleLine, retrieveAssoc);
 		return sl;
 	}
 
