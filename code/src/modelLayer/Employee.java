@@ -4,7 +4,7 @@ package modelLayer;
  * Employee
  * 
  * @author futz
- * @version 1.4
+ * @version 1.5
  */
 
 public class Employee {
@@ -40,6 +40,19 @@ public class Employee {
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
 		this.setRights(rights);
+	}
+	
+	//constructor
+	public Employee(
+			int id_employee) {
+		this.setId_employee(id_employee);
+		this.setPerson_id(null);
+		this.setName(null);
+		this.setAddress(null);
+		this.setStreet(null);
+		this.setPhoneNr(null);
+		this.setEmail(null);
+		this.setRights(0);
 	}
 	
 	//id_employee

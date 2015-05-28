@@ -158,7 +158,7 @@ GO
 
 CREATE TABLE Invoice(
 	id_invoice		int							identity(1,1),
-	invoiceNr		int							NOT NULL,
+	invoiceNr		nvarchar(32)				NOT NULL,
 	dateCreated		datetime DEFAULT getdate()	NOT NULL,
 	isPaid			BIT							NOT NULL,
 	datePaid		datetime DEFAULT getdate(),
@@ -182,10 +182,12 @@ CREATE TABLE Sale(
 	datePaid		datetime DEFAULT getdate(),
 	id_e			int							NOT NULL,
 	id_c			int							NOT NULL,
+	id_inv			int,
 	PRIMARY KEY (id_sale),
 	FOREIGN KEY (id_e) REFERENCES Employee(id_employee) ON DELETE NO ACTION ON UPDATE NO ACTION,
 	FOREIGN KEY (id_c) REFERENCES Customer(id_customer) ON DELETE NO ACTION ON UPDATE NO ACTION,
-	CONSTRAINT SALE_UNIQUE_SALENR UNIQUE(saleNr),
+	FOREIGN KEY (id_inv) REFERENCES Invoice(id_invoice) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT SALE_UNIQUE_SALENR UNIQUE(saleNr)
 );
 GO
 

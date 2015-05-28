@@ -9,7 +9,7 @@ import modelLayer.Address;
  * DbAddress
  * 
  * @author futz
- * @version 1.3
+ * @version 1.4
  */
 
 public class DbAddress implements DbAddressInterface {
@@ -91,7 +91,7 @@ public class DbAddress implements DbAddressInterface {
 	private String buildQuery(String where) {
 		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Address";
 		if(where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 	}

@@ -35,6 +35,18 @@ public class Item {
 		this.setCategory(category);
 	}
 	
+	//constructor
+	public Item(
+			int id_item) {
+		this.setId_item(id_item);
+		this.setBarcode(null);
+		this.setName(null);
+		this.setPrice(-1);
+		this.setStock(-1);
+		this.setItemType(null);
+		this.setCategory(null);
+	}
+	
 	//id_item
 	public int getId_item() {
 		return id_item;

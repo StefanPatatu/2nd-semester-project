@@ -224,7 +224,7 @@ public class Generator {
 				"\r\n" + 
 				"CREATE TABLE " + tablePrefix + "Invoice(\r\n" + 
 				"	id_invoice		int							identity(1,1),\r\n" + 
-				"	invoiceNr		int							NOT NULL,\r\n" + 
+				"	invoiceNr		nvarchar(32)				NOT NULL,\r\n" + 
 				"	dateCreated		datetime DEFAULT getdate()	NOT NULL,\r\n" + 
 				"	isPaid			BIT							NOT NULL,\r\n" + 
 				"	datePaid		datetime DEFAULT getdate(),\r\n" + 
@@ -248,10 +248,12 @@ public class Generator {
 				"	datePaid		datetime DEFAULT getdate(),\r\n" + 
 				"	id_e			int							NOT NULL,\r\n" + 
 				"	id_c			int							NOT NULL,\r\n" + 
+				"	id_inv			int,\r\n" + 
 				"	PRIMARY KEY (id_sale),\r\n" + 
 				"	FOREIGN KEY (id_e) REFERENCES " + tablePrefix + "Employee(id_employee) ON DELETE NO ACTION ON UPDATE NO ACTION,\r\n" + 
 				"	FOREIGN KEY (id_c) REFERENCES " + tablePrefix + "Customer(id_customer) ON DELETE NO ACTION ON UPDATE NO ACTION,\r\n" + 
-				"	CONSTRAINT SALE_UNIQUE_SALENR UNIQUE(saleNr),\r\n" + 
+				"	FOREIGN KEY (id_inv) REFERENCES " + tablePrefix + "Invoice(id_invoice) ON DELETE NO ACTION ON UPDATE NO ACTION,\r\n" + 
+				"	CONSTRAINT SALE_UNIQUE_SALENR UNIQUE(saleNr)\r\n" + 
 				");\r\n" + 
 				"GO\r\n" + 
 				"\r\n" + 

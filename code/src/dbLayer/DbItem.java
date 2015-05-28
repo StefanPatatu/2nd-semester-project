@@ -9,7 +9,7 @@ import modelLayer.Item;
  * DbItem
  * 
  * @author Kool-kat + futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class DbItem implements DbItemInterface {
@@ -103,7 +103,7 @@ public class DbItem implements DbItemInterface {
 	private String buildQuery(String where) {
 		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Item";
 		if (where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 		

@@ -4,41 +4,39 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import modelLayer.SaleLine;
-import modelLayer.Sale;
 import modelLayer.Item;
 
 /**
  * DbSaleLine
  * 
- * @author DarkSun
- * @version 1.0
+ * @author DarkSun + futz
+ * @version 1.1
  */
 
 public class DbSaleLine implements DbSaleLineInterface {
 	
 	private DbItemInterface dbItem = new DbItem();
-	private DbSaleInterface dbSale = new DbSale();
 
 	@Override
-	public ArrayList<SaleLine> getAllSaleLines() {
-		return miscWhere("", false);
+	public ArrayList<SaleLine> getAllSaleLinesForASale(int id_sale) throws Exception {
+		return miscWhere("id_s=" + id_sale, false);
 	}
 
 	@Override
-	public SaleLine findSaleLine(int id_saleLine) {
+	public SaleLine findSaleLine(int id_saleLine) throws Exception {
 		SaleLine sl = singleWhere("id_saleLine=" + id_saleLine, true);
 		return sl;
 	}
 
 	@Override
-	public int insertSaleLine(SaleLine sl) throws Exception {
+	public int insertSaleLine(SaleLine sl, int id_sale) throws Exception {
 		int result = 0;
-		String string = "INSERT INTO" + authLayer.DbConfig.DBTablePrefix + "SaleLine (quantity, price, id_item, id_sale) VALUES (?, ?, ?, ?)";
+		String string = "INSERT INTO" + authLayer.DbConfig.DBTablePrefix + "SaleLine (quantity, price, id_i, id_s) VALUES (?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setInt(1, sl.getQuantity());
 			statement.setDouble(2, sl.getPrice());
 			statement.setInt(3, sl.getItem().getId_item());
-			statement.setInt(4, sl.getSale().getId_sale());
+			statement.setInt(4, id_sale);
 			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
 			int id_saleLine = new GeneratedKey().getGeneratedKey(statement);
 			sl.setId_saleLine(id_saleLine);
@@ -53,7 +51,7 @@ public class DbSaleLine implements DbSaleLineInterface {
 	private String buildQuery(String where) {
 		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "SaleLine";
 		if (where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 	}
@@ -65,8 +63,7 @@ public class DbSaleLine implements DbSaleLineInterface {
 					resultSet.getInt("id_saleLine"),
 					resultSet.getInt("quantity"),
 					resultSet.getDouble("price"),
-					new Item(resultSet.getInt("id_item")),
-					new Sale(resultSet.getInt("id_sale")));
+					new Item(resultSet.getInt("id_item")));
 		} catch (Exception e) {
 			throw new Exception("buildSaleLine.DbSaleLine.dbLayer");
 		}
@@ -78,7 +75,6 @@ public class DbSaleLine implements DbSaleLineInterface {
 		if(saleLines.size() > 0) {
 			if (retrieveAssoc) {
 				saleLines.get(0).setItem(dbItem.findItemById_Item(saleLines.get(0).getItem().getId_item()));
-				saleLines.get(0).setSale(dbSale.findSaleById_sale(saleLines.get(0).getSale().getId_sale()));
 			}
 			return saleLines.get(0);
 		} else {

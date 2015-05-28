@@ -7,13 +7,14 @@ import modelLayer.SaleLine;
 /**
  * DbSaleLineInterface
  * 
- * @author DarkSun
- * @version 1.0
+ * @author DarkSun + futz
+ * @version 1.2
  */
 
 public interface DbSaleLineInterface {
-	public ArrayList<SaleLine> getAllSaleLines();
-	public SaleLine findSaleLine(int id_saleLine);
-	public int insertSaleLine(SaleLine sl);
+	
+	public ArrayList<SaleLine> getAllSaleLinesForASale(int id_sale) throws Exception;
+	public SaleLine findSaleLine(int id_saleLine) throws Exception;
+	public int insertSaleLine(SaleLine sl, int id_sale) throws Exception;
 
 }

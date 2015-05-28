@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Invoice
  * 
  * @author DarkSun + futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class Invoice {
@@ -20,7 +20,6 @@ public class Invoice {
 	private Customer customer;
 	private ArrayList<Sale> sales;
 
-	
 	//constructor
 	public Invoice(
 			int id_invoice,
@@ -39,20 +38,20 @@ public class Invoice {
 	}
 	
 	//constructor
-		public Invoice(
-				int id_invoice,
-				String invoiceNr,
-				Timestamp dateCreated,
-				boolean isPaid,
-				Timestamp datePaid,
-				Customer customer) {
-			this.setId_invoice(id_invoice);
-			this.setInvoiceNr(invoiceNr);
-			this.setDateCreated(dateCreated);
-			this.setPaid(isPaid);
-			this.setCustomer(customer);
-			this.setSales(null);
-		}
+	public Invoice(
+			int id_invoice,
+			String invoiceNr,
+			Timestamp dateCreated,
+			boolean isPaid,
+			Timestamp datePaid,
+			Customer customer) {
+		this.setId_invoice(id_invoice);
+		this.setInvoiceNr(invoiceNr);
+		this.setDateCreated(dateCreated);
+		this.setPaid(isPaid);
+		this.setCustomer(customer);
+		this.setSales(null);
+	}
 	
 	//id_invocie
 	public int getId_invoice() {

@@ -10,7 +10,7 @@ import modelLayer.Employee;
  * DbEmployee
  * 
  * @author DarkSun + futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class DbEmployee implements DbEmployeeInterface {
@@ -116,7 +116,7 @@ public class DbEmployee implements DbEmployeeInterface {
 	private String buildQuery(String where) {
 		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Employee";
 		if (where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 	}

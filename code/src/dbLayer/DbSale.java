@@ -6,49 +6,74 @@ import java.util.ArrayList;
 import modelLayer.Sale;
 import modelLayer.Employee;
 import modelLayer.Customer;
-import modelLayer.SaleLine;
 
 /**
- * DBSale
+ * DbSale
  * 
- * @author DarkSun
- * @version 1.0
+ * @author DarkSun + futz
+ * @version 1.3
  */
 
 public class DbSale implements DbSaleInterface {
+	
+	private DbEmployeeInterface dbEmployee = new DbEmployee();
+	private DbCustomerInterface dbCustomer = new DbCustomer();
 
 	@Override
-	public ArrayList<Sale> getAllSales() {
+	public ArrayList<Sale> getAllSales() throws Exception {
 		return miscWhere("", false);
 	}
 
 	@Override
-	public Sale findSaleById_sale(int id_Sale) {
+	public Sale findSaleById_sale(int id_Sale) throws Exception {
 		Sale s = singleWhere("id_sale=" + id_Sale, true);
 		return s;
 	}
 
 	@Override
-	public Sale findSaleBySaleNr(String saleNr) {
+	public Sale findSaleBySaleNr(String saleNr) throws Exception {
 		Sale s = singleWhere("saleNr=" + saleNr, true);
 		return s;
 	}
-
+	
 	@Override
-	public ArrayList<Sale> searchSaleByDateCreated(Timestamp dateCreated) {
-		return miscWhere("dateCreated LIKE '%" + dateCreated, false);
+	public ArrayList<Sale> searchSaleBySaleStatuses(boolean isPacked, boolean isSent, boolean isPaid) throws Exception {
+		int isPackedBIT = 0;
+		int isSentBIT = 0;
+		int isPaidBIT = 0;
+		if (isPacked == true) isPackedBIT = 1;
+		if (isSent == true) isSentBIT = 1;
+		if (isPaid == true) isPaidBIT = 1;
+		return miscWhere("isPacked=" + isPackedBIT + " AND isSent=" + isSentBIT + " AND isPaid=" + isPaidBIT, false);
 	}
 
 	@Override
-	public ArrayList<Sale> searchSalesByPayment(boolean isPaid) {
-		return miscWhere("isPaid LIKE '%" + isPaid, false);
+	public ArrayList<Sale> searchSaleByDateCreatedInterval(Timestamp dateCreatedMin, Timestamp dateCreatedMax) throws Exception {
+		ResultSet resultSet;
+		ArrayList<Sale> sales = new ArrayList<>();
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale WHERE dateCreated BETWEEN ? AND ?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setTimestamp(1, dateCreatedMin);
+			statement.setTimestamp(2, dateCreatedMax);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Sale s = buildSale(resultSet);
+				sales.add(s);
+			}
+		} catch (SQLException sqle) {
+			throw new SQLException("searchSaleByDateCreatedInterval.DbSale.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("searchSaleByDateCreatedInterval.DbSale.dbLayer", e);
+		}
+		return sales;
 	}
 
+
 	@Override
-	public int insertSale(Sale s) {
+	public int insertSale(Sale s, int id_inv) throws Exception {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datepaid, id_e, id_c) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	    try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement()) {
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, id_e, id_c, id_inv) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 	    	statement.setString(1, s.getSaleNr());
 	    	statement.setInt(2, s.getDiscount());
 	    	statement.setTimestamp(3, s.getDateCreated());
@@ -60,6 +85,11 @@ public class DbSale implements DbSaleInterface {
 	    	statement.setTimestamp(9, s.getDatePaid());
 	    	statement.setInt(10, s.getEmployee().getId_employee());
 	    	statement.setInt(11, s.getCustomer().getId_customer());
+	    	if(id_inv == -1) {
+	    		statement.setNull(12, Types.INTEGER);
+	    	} else {
+	    		statement.setInt(12, id_inv);
+	    	}
 	    	result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
 			int id_sale = new GeneratedKey().getGeneratedKey(statement);
 			s.setId_sale(id_sale);
@@ -72,30 +102,57 @@ public class DbSale implements DbSaleInterface {
 	}
 
 	@Override
-	public int updateSale(Sale s) {
+	public int updateSaleIsPacked(boolean isPacked, int id_sale) throws Exception {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "SaleLine SET isPacked=?, datePacked=?, isSent=?, dateSent=?, isPaid=?, datePaid=? WHERE id_saleLine=?";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon.prepareStatement()) {
-			statement.setBoolean(1, s.isPacked());
-			statement.setTimestamp(2, s.getDatePacked());
-			statement.setBoolean(3, s.isSent());
-			statement.setTimestamp(4, s.getDateSent());
-			statement.setBoolean(5, s.isPaid());
-			statement.setTimestamp(6, s.getDatePaid());
-			statement.setInt(7, s.getId_sale());
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isPacked=? WHERE id_sale=?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setBoolean(1, isPacked);
+			statement.setInt(2, id_sale);
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
-			throw new SQLException("updateSale.DbSale.dbLayer", sqle);
+			throw new SQLException("updateSaleIsPacked.DbSale.dbLayer", sqle);
 		} catch (Exception e) {
-			throw new Exception ("updateSale.DbSale.dbLayer", e);
+			throw new Exception ("updateSaleIsPacked.DbSale.dbLayer", e);
 		}
 		return result;
+	}
+	
+	@Override
+	public int updateSaleIsSent(boolean isSent, int id_sale) throws Exception {
+		int result = 0;
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isSent=? WHERE id_sale=?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setBoolean(1, isSent);
+			statement.setInt(2, id_sale);
+			result = statement.executeUpdate();
+		} catch (SQLException sqle) {
+			throw new SQLException("updateSaleIsSent.DbSale.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("updateSaleIsSent.DbSale.dbLayer", e);
+		}
+		return result;		
+	}
+	
+	@Override
+	public int updateSaleIsPaid(boolean isPaid, int id_sale) throws Exception {
+		int result = 0;
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isPaid=? WHERE id_sale=?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setBoolean(1, isPaid);
+			statement.setInt(2, id_sale);
+			result = statement.executeUpdate();
+		} catch (SQLException sqle) {
+			throw new SQLException("updateSaleIsPaid.DbSale.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("updateSaleIsPaid.DbSale.dbLayer", e);
+		}
+		return result;	
 	}
 	
 	private String buildQuery(String where) {
 		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale";
 		if (where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 	}
@@ -106,6 +163,7 @@ public class DbSale implements DbSaleInterface {
 			s = new Sale(
 					resultSet.getInt("id_Sale"),
 					resultSet.getString("saleNr"),
+					resultSet.getInt("discount"),
 					resultSet.getTimestamp("dateCreated"),
 					resultSet.getBoolean("isPacked"),
 					resultSet.getTimestamp("datePacked"),
@@ -114,18 +172,19 @@ public class DbSale implements DbSaleInterface {
 					resultSet.getBoolean("isPaid"),
 					resultSet.getTimestamp("datePaid"),
 					new Employee(resultSet.getInt("id_e")),
-					new Customer(resultSet.getInt("id_c"));									
+					new Customer(resultSet.getInt("id_c")));									
 		} catch (Exception e) {
 			throw new Exception ("buildSale.DbSale.dblayer");
 		}
 		return s;
 	}
 	
-	private Sale singleWhere(String where, boolean retrieveAssoc) {
+	private Sale singleWhere(String where, boolean retrieveAssoc) throws Exception {
 		ArrayList<Sale> sales = miscWhere(where, retrieveAssoc);
 		if (sales.size() > 0) {
 			if(retrieveAssoc) {
-				//soon
+				sales.get(0).setEmployee(dbEmployee.findEmployeeById_employee(sales.get(0).getEmployee().getId_employee()));
+				sales.get(0).setCustomer(dbCustomer.findCustomer(sales.get(0).getCustomer().getId_customer()));
 			}
 			return sales.get(0);
 		} else {
@@ -133,11 +192,11 @@ public class DbSale implements DbSaleInterface {
 		}
 	}
 	
-	private ArrayList<Sale> miscWhere(String where, boolean retrieveAssoc) { 
+	private ArrayList<Sale> miscWhere(String where, boolean retrieveAssoc) throws Exception { 
 		ResultSet resultSet;
 		ArrayList<Sale> sales = new ArrayList<>();
 		String string = buildQuery(where);
-		try (Statement statement = DbConnection.getInstance().getDBcon().createStatement()) {
+		try (Statement statement = DbConnection.getInstance().getDbCon().createStatement()) {
 			statement.setQueryTimeout(5);
 			resultSet = statement.executeQuery(string);
 			while(resultSet.next()) {

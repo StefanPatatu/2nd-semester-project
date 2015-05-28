@@ -4,7 +4,7 @@ package modelLayer;
  * SaleLine
  * 
  * @author DarkSun + futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class SaleLine {
@@ -13,20 +13,17 @@ public class SaleLine {
 	private int quantity;
 	private double price;
 	private Item item;
-	private Sale sale; 
 	
 	//constructor
 	public SaleLine (
 			int id_saleLine,
 			int quantity,
 			double price,
-			Item item,
-			Sale sale) {
+			Item item) {
 		this.setId_saleLine(id_saleLine);
 		this.setQuantity(quantity);
 		this.setPrice(price);
 		this.setItem(item);
-		this.setSale(sale); 
 	}
 	
 	//id_saleLine
@@ -59,14 +56,6 @@ public class SaleLine {
 	}
 	public void setItem(Item item) {
 		this.item = item;
-	}
-	
-	//sale
-	public Sale getSale() {
-		return sale;
-	}
-	public void setSale(Sale sale) {
-		this.sale = sale;
 	}
 
 }

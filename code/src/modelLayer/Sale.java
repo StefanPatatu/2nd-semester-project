@@ -55,6 +55,35 @@ public class Sale {
 		this.setCustomer(customer);
 		this.setSaleLines(saleLines);
 	}
+	
+	//constructor
+	public Sale(
+			int id_sale,
+			String saleNr,
+			int discount,
+			Timestamp dateCreated,
+			boolean isPacked,
+			Timestamp datePacked,
+			boolean isSent,
+			Timestamp dateSent,
+			boolean isPaid,
+			Timestamp datePaid,
+			Employee employee,
+			Customer customer) {
+		this.setId_sale(id_sale);
+		this.setSaleNr(saleNr);
+		this.setDiscount(discount);
+		this.setDateCreated(dateCreated);
+		this.setPacked(isPacked);
+		this.setDatePacked(datePacked);
+		this.setSent(isSent);
+		this.setDateSent(dateSent);
+		this.setPaid(isPaid);
+		this.setDatePaid(datePaid);
+		this.setEmployee(employee);
+		this.setCustomer(customer);
+		this.setSaleLines(null);
+	}
 
 	//id_sale
 	public int getId_sale() {

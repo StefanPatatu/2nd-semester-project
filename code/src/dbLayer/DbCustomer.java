@@ -10,7 +10,7 @@ import modelLayer.Customer;
  * DbCustomer
  * 
  * @author Kool-kat + futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class DbCustomer implements DbCustomerInterface {
@@ -77,7 +77,7 @@ public class DbCustomer implements DbCustomerInterface {
 	private String buildQuery(String where) {
 		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Customer";
 		if(where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 	}

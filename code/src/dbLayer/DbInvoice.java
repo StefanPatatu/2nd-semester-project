@@ -9,8 +9,8 @@ import modelLayer.Invoice;
 /**
  * DbCustomer
  * 
- * @author frunziss
- * @version 1.2
+ * @author frunziss + futz (who is going to kill you!)
+ * @version 1.4
  */
 
 public class DbInvoice implements DbInvoiceInterface {
@@ -31,14 +31,13 @@ public class DbInvoice implements DbInvoiceInterface {
 	@Override
 	public int insertInvoice(Invoice i) throws Exception {
 		int result = 0;
-		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Invoice (id_invoice, invoiceNr, dateCreated, isPaid, datePaid, id_c) VALUES (?, ?, ?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Invoice (invoiceNr, dateCreated, isPaid, datePaid, id_c) VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
-			statement.setInt(1, i.getId_invoice());
-			statement.setString(2, i.getInvoiceNr());
-			statement.setTimestamp(3, i.getDateCreated());
-			statement.setBoolean(4, i.isPaid());
-			statement.setTimestamp(5, i.getDatePaid());
-			statement.setInt(6, i.getCustomer().getId_customer());
+			statement.setString(1, i.getInvoiceNr());
+			statement.setTimestamp(2, i.getDateCreated());
+			statement.setBoolean(3, i.isPaid());
+			statement.setTimestamp(4, i.getDatePaid());
+			statement.setInt(5, i.getCustomer().getId_customer());
 			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
 			int id_invoice = new GeneratedKey().getGeneratedKey(statement);
 			i.setId_invoice(id_invoice);
@@ -53,14 +52,14 @@ public class DbInvoice implements DbInvoiceInterface {
 	@Override
 	public int updateInvoice(Invoice i) throws Exception {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Invoice SET id_invoice=?, invoiceNr=?, dateCreated=?, isPaid=?, date_paid, id_c=? WHERE id_invoice=?";
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Invoice SET invoiceNr=?, dateCreated=?, isPaid=?, datePaid=?, id_c=? WHERE id_invoice=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
-			statement.setInt(1, i.getId_invoice());
-			statement.setString(2, i.getInvoiceNr());
-			statement.setTimestamp(3, i.getDateCreated());
-			statement.setBoolean(4, i.isPaid());
-			statement.setTimestamp(5, i.getDatePaid());
-			statement.setInt(6, i.getCustomer().getId_customer());
+			statement.setString(1, i.getInvoiceNr());
+			statement.setTimestamp(2, i.getDateCreated());
+			statement.setBoolean(3, i.isPaid());
+			statement.setTimestamp(4, i.getDatePaid());
+			statement.setInt(5, i.getCustomer().getId_customer());
+			statement.setInt(6, i.getId_invoice());
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateInvoice.DbInvoice.dbLayer", sqle);
@@ -73,7 +72,7 @@ public class DbInvoice implements DbInvoiceInterface {
 	private String buildQuery(String where) {
 		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Invoice";
 		if(where != null && where.length() > 0) {
-			string += " WHERE" + where;
+			string += " WHERE " + where;
 		}
 		return string;
 	}
@@ -89,7 +88,7 @@ public class DbInvoice implements DbInvoiceInterface {
 					resultSet.getTimestamp("datePaid"),
 					new Customer(resultSet.getInt("id_c")));
 		} catch (Exception e) {
-			throw new Exception("buildCustomer.DbCustomer.dbLayer", e);
+			throw new Exception("buildInvoice.DbInvoice.dbLayer", e);
 		}
 		return i;
 	}
