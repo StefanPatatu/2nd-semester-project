@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>675</x>
-      <y>144</y>
+      <y>153</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -16,7 +16,7 @@
     <id>Relation</id>
     <coordinates>
       <x>414</x>
-      <y>180</y>
+      <y>189</y>
       <w>27</w>
       <h>225</h>
     </coordinates>
@@ -27,7 +27,7 @@
     <id>Relation</id>
     <coordinates>
       <x>711</x>
-      <y>180</y>
+      <y>189</y>
       <w>27</w>
       <h>225</h>
     </coordinates>
@@ -38,12 +38,12 @@
     <id>Relation</id>
     <coordinates>
       <x>414</x>
-      <y>234</y>
+      <y>243</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-findInvoice(invoiceNr)
+findInvoice(invoiceNr, isPaid)
 </panel_attributes>
     <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
   </element>
@@ -51,19 +51,19 @@ findInvoice(invoiceNr)
     <id>Relation</id>
     <coordinates>
       <x>414</x>
-      <y>261</y>
+      <y>270</y>
       <w>324</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-return invoice</panel_attributes>
+return ArrayList&lt;Sale&gt;</panel_attributes>
     <additional_attributes>10.0;20.0;340.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
       <x>387</x>
-      <y>108</y>
+      <y>117</y>
       <w>54</w>
       <h>90</h>
     </coordinates>
@@ -74,7 +74,7 @@ return invoice</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>414</x>
-      <y>306</y>
+      <y>315</y>
       <w>324</w>
       <h>36</h>
     </coordinates>
@@ -86,7 +86,7 @@ registerPayment(saleNr, isPaid)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>414</x>
-      <y>333</y>
+      <y>342</y>
       <w>324</w>
       <h>36</h>
     </coordinates>
@@ -98,7 +98,7 @@ registerPayment(saleNr, isPaid)</panel_attributes>
     <id>UMLFrame</id>
     <coordinates>
       <x>378</x>
-      <y>306</y>
+      <y>315</y>
       <w>369</w>
       <h>63</h>
     </coordinates>
