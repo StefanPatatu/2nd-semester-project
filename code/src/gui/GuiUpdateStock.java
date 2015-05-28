@@ -22,10 +22,11 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class UpdateStock extends JDialog {
+public class GuiUpdateStock extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private static GuiUpdateStock instance=null;
 
 	/**
 	 * Launch the application.
@@ -35,7 +36,14 @@ public class UpdateStock extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateStock() {
+	public static GuiUpdateStock getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiUpdateStock();
+	      }
+	      return instance;
+	}
+	public GuiUpdateStock() {
 		setModal(true);
 		setTitle("Update Stock");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -90,7 +98,7 @@ public class UpdateStock extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
-				UpdateStock.this.dispose();
+				GuiUpdateStock.this.dispose();
 			}
 		});
 		btnCancel.setBounds(234, 109, 89, 23);

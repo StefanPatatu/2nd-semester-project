@@ -27,13 +27,14 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class UpdateSupplier extends JDialog {
+public class GuiUpdateCustomer extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private static GuiUpdateCustomer instance= null;
 
 	/**
 	 * Launch the application.
@@ -43,12 +44,19 @@ public class UpdateSupplier extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateSupplier() {
+	public static GuiUpdateCustomer getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiUpdateCustomer();
+	      }
+	      return instance;
+	}
+	public GuiUpdateCustomer() {
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setModal(true);
 		setResizable(false);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setTitle("Update Supplier");
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setTitle("Update Customer");
 		getContentPane().setLayout(null);
 		this.setBounds(5, 7, 608, 210);
 		
@@ -74,6 +82,10 @@ public class UpdateSupplier extends JDialog {
 		JPanel streetPanel = new JPanel();
 		streetPanel.setBackground(Color.GRAY);
 		streetPanel.setBounds(20, 116, 50, 50);
+		
+		JPanel phonePanel = new JPanel();
+		phonePanel.setBackground(Color.GRAY);
+		phonePanel.setBounds(20, 116, 50, 50);
 		
 		JPanel emailPanel = new JPanel();
 		emailPanel.setBackground(Color.GRAY);
@@ -109,7 +121,7 @@ public class UpdateSupplier extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.getFrames()[0].setEnabled(true);
-				UpdateSupplier.this.dispose();
+				GuiUpdateCustomer.this.dispose();
 			}
 		});
 		btnCancel.setBounds(200, 89, 89, 23);
@@ -172,53 +184,11 @@ public class UpdateSupplier extends JDialog {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
-				UpdateSupplier.this.dispose();
+				GuiUpdateCustomer.this.dispose();
 			}
 		});
 		button_1.setBounds(200, 89, 89, 23);
 		countryPanel.add(button_1);
-		
-		JPanel phonePanel = new JPanel();
-		phonePanel.setBackground(Color.GRAY);
-		phonePanel.setBounds(20, 116, 50, 50);
-		
-		tabbedPane.addTab("UpdatePhone", phonePanel);
-		phonePanel.setLayout(null);
-		
-		JLabel lblCurrentPhone = new JLabel("Current phone:");
-		lblCurrentPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCurrentPhone.setBounds(10, 11, 119, 14);
-		phonePanel.add(lblCurrentPhone);
-		
-		JLabel lblPhon = new JLabel("phon");
-		lblPhon.setBounds(177, 13, 46, 14);
-		phonePanel.add(lblPhon);
-		
-		JLabel lblNewPhone = new JLabel("New phone:");
-		lblNewPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewPhone.setBounds(10, 36, 103, 14);
-		phonePanel.add(lblNewPhone);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(137, 35, 152, 20);
-		phonePanel.add(textField_4);
-		
-		JButton btnModify_3 = new JButton("Update");
-		btnModify_3.setBackground(new Color(204, 204, 255));
-		btnModify_3.setBounds(109, 89, 89, 23);
-		phonePanel.add(btnModify_3);
-		
-		JButton button_7 = new JButton("Cancel");
-		button_7.setBackground(new Color(204, 204, 255));
-		button_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		//		Main.getFrames()[0].setEnabled(true);
-				UpdateSupplier.this.dispose();
-			}
-		});
-		button_7.setBounds(200, 89, 89, 23);
-		phonePanel.add(button_7);
 		//
 		tabbedPane.addTab("UpdateCity", cityPanel);
 		cityPanel.setLayout(null);
@@ -252,7 +222,7 @@ public class UpdateSupplier extends JDialog {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
-				UpdateSupplier.this.dispose();
+				GuiUpdateCustomer.this.dispose();
 			}
 		});
 		button_3.setBounds(200, 89, 89, 23);
@@ -291,11 +261,49 @@ public class UpdateSupplier extends JDialog {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		//		Main.getFrames()[0].setEnabled(true);
-				UpdateSupplier.this.dispose();
+				GuiUpdateCustomer.this.dispose();
 			}
 		});
 		button_5.setBounds(200, 89, 89, 23);
 		streetPanel.add(button_5);
+		
+		tabbedPane.addTab("UpdatePhone", phonePanel);
+		phonePanel.setLayout(null);
+		
+		JLabel lblCurrentPhone = new JLabel("Current phone:");
+		lblCurrentPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCurrentPhone.setBounds(10, 11, 119, 14);
+		phonePanel.add(lblCurrentPhone);
+		
+		JLabel lblPhon = new JLabel("phon");
+		lblPhon.setBounds(177, 13, 46, 14);
+		phonePanel.add(lblPhon);
+		
+		JLabel lblNewPhone = new JLabel("New phone:");
+		lblNewPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewPhone.setBounds(10, 36, 103, 14);
+		phonePanel.add(lblNewPhone);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(137, 35, 152, 20);
+		phonePanel.add(textField_4);
+		
+		JButton btnModify_3 = new JButton("Update");
+		btnModify_3.setBackground(new Color(204, 204, 255));
+		btnModify_3.setBounds(109, 89, 89, 23);
+		phonePanel.add(btnModify_3);
+		
+		JButton button_7 = new JButton("Cancel");
+		button_7.setBackground(new Color(204, 204, 255));
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//		Main.getFrames()[0].setEnabled(true);
+				GuiUpdateCustomer.this.dispose();
+			}
+		});
+		button_7.setBounds(200, 89, 89, 23);
+		phonePanel.add(button_7);
 		
 		tabbedPane.addTab("UpdateEmail", emailPanel);
 		emailPanel.setLayout(null);
@@ -329,7 +337,7 @@ public class UpdateSupplier extends JDialog {
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.getFrames()[0].setEnabled(true);
-				UpdateSupplier.this.dispose();
+				GuiUpdateCustomer.this.dispose();
 			}
 		});
 		button_9.setBounds(200, 89, 89, 23);

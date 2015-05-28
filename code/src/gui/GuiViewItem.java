@@ -19,33 +19,41 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class ViewSupplier extends JDialog {
-
+public class GuiViewItem extends JDialog {
+	/**
+	@author frunziss
+	*/
 	private JPanel contentPane;
+	private static GuiViewItem instance=null;
 
 	/**
 	 * Launch the application.
 	 */
-	/**
-	@author frunziss
-	*/
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public ViewSupplier() {
+	public static GuiViewItem getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiViewItem();
+	      }
+	      return instance;
+	}
+	public GuiViewItem() {
 		setModal(true);
-		setTitle("View Supplier");
+		setTitle("View Item");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(5, 7, 295, 325);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(5, 7, 295, 231);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBarcode = new JLabel("Id:");
+		JLabel lblBarcode = new JLabel("Barcode:");
 		lblBarcode.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblBarcode.setBounds(10, 11, 108, 14);
 		contentPane.add(lblBarcode);
@@ -55,33 +63,38 @@ public class ViewSupplier extends JDialog {
 		lblName.setBounds(10, 36, 108, 14);
 		contentPane.add(lblName);
 		
-		JLabel lblPrice = new JLabel("Phone:");
+		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPrice.setBounds(10, 61, 108, 14);
 		contentPane.add(lblPrice);
 		
-		JLabel lblStock = new JLabel("Ph. Nr:");
+		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblStock.setBounds(10, 86, 108, 14);
 		contentPane.add(lblStock);
 		
-		JLabel lblType = new JLabel("Email:");
+		JLabel lblType = new JLabel("Type:");
 		lblType.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblType.setBounds(10, 111, 108, 14);
 		contentPane.add(lblType);
+		
+		JLabel lblCategory = new JLabel("Category:");
+		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCategory.setBounds(10, 136, 108, 14);
+		contentPane.add(lblCategory);
 		
 		JButton btnCancel = new JButton("Ok");
 		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				ViewSupplier.this.dispose();
+			//	Main.getFrames()[0].setEnabled(true);
+				GuiViewItem.this.dispose();
 			}
 		});
-		btnCancel.setBounds(95, 262, 89, 23);
+		btnCancel.setBounds(93, 161, 89, 23);
 		contentPane.add(btnCancel);
 		
-		JLabel lblBarcode_1 = new JLabel("id");
+		JLabel lblBarcode_1 = new JLabel("barcode");
 		lblBarcode_1.setBounds(95, 13, 140, 14);
 		contentPane.add(lblBarcode_1);
 		
@@ -89,44 +102,21 @@ public class ViewSupplier extends JDialog {
 		lblName_1.setBounds(95, 38, 140, 14);
 		contentPane.add(lblName_1);
 		
-		JLabel lblPrice_1 = new JLabel("phone");
+		JLabel lblPrice_1 = new JLabel("price");
 		lblPrice_1.setBounds(93, 63, 140, 14);
 		contentPane.add(lblPrice_1);
 		
-		JLabel lblStock_1 = new JLabel("phoneNumber");
+		JLabel lblStock_1 = new JLabel("stock");
 		lblStock_1.setBounds(93, 86, 140, 14);
 		contentPane.add(lblStock_1);
 		
-		JLabel lblType_1 = new JLabel("email");
+		JLabel lblType_1 = new JLabel("type");
 		lblType_1.setBounds(93, 113, 140, 14);
 		contentPane.add(lblType_1);
 		
-		JLabel lblStreet_1 = new JLabel("street");
-		lblStreet_1.setBounds(93, 139, 140, 14);
-		contentPane.add(lblStreet_1);
-		
-		JLabel lblStreet = new JLabel("Street:");
-		lblStreet.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblStreet.setBounds(10, 137, 108, 14);
-		contentPane.add(lblStreet);
-		
-		JLabel lblCountry_1 = new JLabel("city");
-		lblCountry_1.setBounds(95, 166, 140, 14);
-		contentPane.add(lblCountry_1);
-		
-		JLabel lblCountry = new JLabel("City:");
-		lblCountry.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCountry.setBounds(12, 164, 108, 14);
-		contentPane.add(lblCountry);
-		
-		JLabel lblCountry_3 = new JLabel("country");
-		lblCountry_3.setBounds(93, 193, 140, 14);
-		contentPane.add(lblCountry_3);
-		
-		JLabel lblCountry_2 = new JLabel("Country:");
-		lblCountry_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCountry_2.setBounds(10, 191, 108, 14);
-		contentPane.add(lblCountry_2);
+		JLabel lblCategory_1 = new JLabel("category");
+		lblCategory_1.setBounds(93, 138, 140, 14);
+		contentPane.add(lblCategory_1);
 	}
 
 }

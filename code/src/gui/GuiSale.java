@@ -37,10 +37,11 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class Sale extends JDialog {
+public class GuiSale extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField searchField;
+	private static GuiSale instance=null;
 	
 
 	/**
@@ -51,7 +52,14 @@ public class Sale extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Sale() {
+	public static GuiSale getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiSale();
+	      }
+	      return instance;
+	}
+	public GuiSale() {
 		setModal(true);
 		setResizable(false);
 		addKeyListener(new KeyAdapter() {
@@ -60,8 +68,8 @@ public class Sale extends JDialog {
 				
 			}
 		});
-		setTitle("Sale");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setTitle("GuiSale");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 642, 405);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
@@ -205,10 +213,10 @@ public class Sale extends JDialog {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblSale = new JLabel("New sale");
-		lblSale.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSale.setBounds(10, 11, 156, 23);
-		panel_1.add(lblSale);
+		JLabel lblGuiSale = new JLabel("New sale");
+		lblGuiSale.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblGuiSale.setBounds(10, 11, 156, 23);
+		panel_1.add(lblGuiSale);
 		
 		List saleList = new List();
 		saleList.setBackground(Color.LIGHT_GRAY);
@@ -240,7 +248,7 @@ public class Sale extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Sale.this.dispose();
+				GuiSale.this.dispose();
 				
 			
 			}

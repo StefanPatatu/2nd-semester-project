@@ -27,9 +27,10 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class UpdateItem extends JDialog {
+public class GuiUpdateItem extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
+	private static GuiUpdateItem instance=null;
 
 	/**
 	 * Launch the application.
@@ -39,7 +40,14 @@ public class UpdateItem extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateItem() {
+	public static GuiUpdateItem getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiUpdateItem();
+	      }
+	      return instance;
+	}
+	public GuiUpdateItem() {
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setModal(true);
 		setResizable(false);
@@ -100,7 +108,7 @@ public class UpdateItem extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Main.getFrames()[0].setEnabled(true);
-				UpdateItem.this.dispose();
+				GuiUpdateItem.this.dispose();
 			}
 		});
 		btnCancel.setBounds(200, 89, 89, 23);
@@ -162,7 +170,7 @@ public class UpdateItem extends JDialog {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//	Main.getFrames()[0].setEnabled(true);
-				UpdateItem.this.dispose();
+				GuiUpdateItem.this.dispose();
 			}
 		});
 		button_1.setBounds(200, 89, 89, 23);

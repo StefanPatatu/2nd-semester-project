@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -30,7 +31,8 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class Main extends JFrame {
+public class GuiMain extends JFrame {
+	private static GuiMain instance=null;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -44,7 +46,13 @@ public class Main extends JFrame {
 	private static ServerSocket socket;    
 	private JTextField textField_5;
 	private JTextField textField_6;
-
+	
+	public static GuiMain getInstance() {
+	      if(instance == null) {
+	         instance = new GuiMain();
+	      }
+	      return instance;
+	   }
 	private static void checkIfRunning() {
 	  try {
 	    //Bind to localhost adapter with a zero connection queue 
@@ -66,7 +74,7 @@ public class Main extends JFrame {
 			public void run() {
 				try {
 					checkIfRunning();
-					Main frame = new Main();
+					GuiMain frame = GuiMain.getInstance();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,13 +86,13 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
+	public GuiMain() {
 		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setBackground(new Color(204, 204, 255));
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Adrian Frunza\\Desktop\\Entafarma.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Main");
+		setTitle("GuiMain");
 		getContentPane().setLayout(null);
 		this.setBounds(5, 7, 650, 400);
 		
@@ -159,7 +167,7 @@ public class Main extends JFrame {
 		button_6.setForeground(new Color(0, 0, 0));
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sale s = new Sale();
+				GuiSale s = GuiSale.getInstance();
 				s.setVisible(true);
 				
 				
@@ -183,7 +191,7 @@ public class Main extends JFrame {
 				{
 				*/
 				
-				ViewSale vs = new ViewSale();
+				GuiViewSale vs = GuiViewSale.getInstance();
 				vs.setVisible(true);
 				
 				//}
@@ -300,7 +308,7 @@ public class Main extends JFrame {
 				} 
 				else
 				{*/
-				ViewItem vi = new ViewItem();
+				GuiViewItem vi = GuiViewItem.getInstance();
 				vi.setVisible(true);
 				
 				//}
@@ -313,7 +321,7 @@ public class Main extends JFrame {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AddItem addItem = new AddItem();
+				GuiAddItem addItem = GuiAddItem.getInstance();
 				addItem.setVisible(true);
 				
 			}
@@ -333,7 +341,7 @@ public class Main extends JFrame {
 				}
 				
 				else{*/
-				UpdateStock us = new UpdateStock();
+				GuiUpdateStock us = GuiUpdateStock.getInstance();
 				us.setVisible(true);
 			
 				//}
@@ -357,7 +365,7 @@ public class Main extends JFrame {
 				}
 				else
 				{*/
-				UpdateItem ui=new UpdateItem();
+				GuiUpdateItem ui=GuiUpdateItem.getInstance();
 				ui.setVisible(true);
 				
 				//}
@@ -411,7 +419,7 @@ public class Main extends JFrame {
 		btnAdd_1.setBackground(new Color(204, 204, 255));
 		btnAdd_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddCustomer ad = new AddCustomer();
+				GuiAddCustomer ad = GuiAddCustomer.getInstance();
 				ad.setVisible(true);
 				
 			}
@@ -431,7 +439,7 @@ public class Main extends JFrame {
 				} 
 				else
 				{*/
-				UpdateCustomer uc = new UpdateCustomer();
+				GuiUpdateCustomer uc = GuiUpdateCustomer.getInstance();
 				uc.setVisible(true);
 				
 			//	}
@@ -452,7 +460,7 @@ public class Main extends JFrame {
 				} 
 				else
 				{*/
-				ViewCustomer vc = new ViewCustomer();
+				GuiViewCustomer vc =GuiViewCustomer.getInstance();
 				vc.setVisible(true);
 				
 				//}
@@ -498,7 +506,7 @@ public class Main extends JFrame {
 		btnAdd_2.setBackground(new Color(204, 204, 255));
 		btnAdd_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Purchase p = new Purchase();
+				GuiPurchase p = GuiPurchase.getInstance();
 				p.setVisible(true);
 			}
 		});
@@ -517,7 +525,7 @@ public class Main extends JFrame {
 				} 
 				else
 				{*/
-				ViewPurchase vs = new ViewPurchase();
+				GuiViewPurchase vs = GuiViewPurchase.getInstance();
 				vs.setVisible(true);
 				//*/
 			}
@@ -607,7 +615,7 @@ public class Main extends JFrame {
 		button_10.setBackground(new Color(204, 204, 255));
 		button_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AddSupplier ad = new AddSupplier();
+				GuiAddSupplier ad = GuiAddSupplier.getInstance();
 				ad.setVisible(true);
 			}
 		});
@@ -626,7 +634,7 @@ public class Main extends JFrame {
 				} 
 				else
 				{*/
-				ViewSupplier vs = new ViewSupplier();
+				GuiViewSupplier vs = GuiViewSupplier.getInstance();
 				vs.setVisible(true);
 				//*/
 			}
@@ -646,7 +654,7 @@ public class Main extends JFrame {
 				} 
 				else
 				{*/
-					UpdateSupplier us = new UpdateSupplier();
+					GuiUpdateSupplier us =GuiUpdateSupplier.getInstance();
 					us.setVisible(true);
 				//*/
 			}

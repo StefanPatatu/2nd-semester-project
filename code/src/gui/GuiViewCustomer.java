@@ -21,9 +21,10 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class ViewCustomer extends JDialog {
+public class GuiViewCustomer extends JDialog {
 
 	private JPanel contentPane;
+	private static GuiViewCustomer instance=null;
 
 	/**
 	 * Launch the application.
@@ -33,11 +34,18 @@ public class ViewCustomer extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public ViewCustomer() {
+	public static GuiViewCustomer getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiViewCustomer();
+	      }
+	      return instance;
+	}
+	public GuiViewCustomer() {
 		setModal(true);
 		setTitle("View Customer");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(5, 7, 295, 198);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
@@ -75,7 +83,7 @@ public class ViewCustomer extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ViewCustomer.this.dispose();
+				GuiViewCustomer.this.dispose();
 			}
 		});
 		btnCancel.setBounds(95, 136, 89, 23);

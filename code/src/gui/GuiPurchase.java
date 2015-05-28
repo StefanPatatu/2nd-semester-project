@@ -37,10 +37,11 @@ import java.awt.Color;
 /**
 @author frunziss
 */
-public class Purchase extends JDialog {
+public class GuiPurchase extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField searchField;
+	private static GuiPurchase instance=null;
 	
 
 	/**
@@ -51,7 +52,14 @@ public class Purchase extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Purchase() {
+	public static GuiPurchase getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiPurchase();
+	      }
+	      return instance;
+	}
+	public GuiPurchase() {
 		setModal(true);
 		setResizable(false);
 		addKeyListener(new KeyAdapter() {
@@ -60,8 +68,8 @@ public class Purchase extends JDialog {
 				
 			}
 		});
-		setTitle("Purchase");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setTitle("GuiPurchase");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 642, 405);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
@@ -196,7 +204,7 @@ public class Purchase extends JDialog {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblSale = new JLabel("New Purchase");
+		JLabel lblSale = new JLabel("New GuiPurchase");
 		lblSale.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSale.setBounds(10, 11, 156, 23);
 		panel_1.add(lblSale);
@@ -231,7 +239,7 @@ public class Purchase extends JDialog {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Purchase.this.dispose();
+				GuiPurchase.this.dispose();
 				
 			
 			}

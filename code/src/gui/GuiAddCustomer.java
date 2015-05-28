@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class AddEmployee extends JDialog {
+public class GuiAddCustomer extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -28,6 +28,7 @@ public class AddEmployee extends JDialog {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private static GuiAddCustomer instance=null;
 
 	/**
 	 * Launch the application.
@@ -39,11 +40,18 @@ public class AddEmployee extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public AddEmployee() {
+	public static GuiAddCustomer getInstance()
+	{
+		if(instance == null) {
+	         instance = new GuiAddCustomer();
+	      }
+	      return instance;
+	}
+	public GuiAddCustomer() {
 		setModal(true);
-		setTitle("Add Employee");
+		setTitle("Add Customer");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(5, 7, 295, 231);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
@@ -115,8 +123,9 @@ public class AddEmployee extends JDialog {
 		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main.getFrames()[0].setEnabled(true);
-				AddEmployee.this.dispose();
+			//	Main.getFrames()[0].setEnabled(true);
+				GuiAddCustomer.this.dispose();
+				
 			}
 		});
 		btnCancel.setBounds(176, 163, 89, 23);
