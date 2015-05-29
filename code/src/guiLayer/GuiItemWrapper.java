@@ -1,4 +1,4 @@
-package gui;
+package guiLayer;
 
 public class GuiItemWrapper {
 

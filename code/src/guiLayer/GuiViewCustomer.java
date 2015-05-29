@@ -1,4 +1,4 @@
-package gui;
+package guiLayer;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -18,13 +18,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+/**
+@author frunziss
+*/
+public class GuiViewCustomer extends JDialog {
 
-public class GuiViewEmployee extends JDialog {
-	/**
-	@author frunziss
-	*/
 	private JPanel contentPane;
-	private static GuiViewEmployee instance=null;
+	private static GuiViewCustomer instance=null;
 
 	/**
 	 * Launch the application.
@@ -34,18 +34,18 @@ public class GuiViewEmployee extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public static GuiViewEmployee getInstance()
+	public static GuiViewCustomer getInstance()
 	{
 		if(instance == null) {
-	         instance = new GuiViewEmployee();
+	         instance = new GuiViewCustomer();
 	      }
 	      return instance;
 	}
-	public GuiViewEmployee() {
+	public GuiViewCustomer() {
 		setModal(true);
-		setTitle("View Employee");
+		setTitle("View Customer");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(5, 7, 295, 198);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
@@ -82,9 +82,8 @@ public class GuiViewEmployee extends JDialog {
 		btnCancel.setBackground(new Color(204, 204, 255));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	//			Main.getFrames()[0].setEnabled(true);
-				GuiViewEmployee.this.dispose();
 				
+				GuiViewCustomer.this.dispose();
 			}
 		});
 		btnCancel.setBounds(95, 136, 89, 23);
