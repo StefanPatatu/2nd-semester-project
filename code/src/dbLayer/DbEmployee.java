@@ -14,7 +14,7 @@ import modelLayer.Employee;
  */
 
 public class DbEmployee implements DbEmployeeInterface {
-	
+
 	private DbAddressInterface dbAddress = new DbAddress();
 
 	@Override
@@ -27,7 +27,7 @@ public class DbEmployee implements DbEmployeeInterface {
 		Employee emp = singleWhere("id_employee=" + id_employee, retrieveAssoc);
 		return emp;
 	}
-	
+
 	@Override
 	public Employee findEmployeeByPerson_id(String person_id, boolean retrieveAssoc) throws Exception {
 		Employee emp = singleWhere("person_id=" + person_id, retrieveAssoc);
@@ -38,12 +38,12 @@ public class DbEmployee implements DbEmployeeInterface {
 	public ArrayList<Employee> searchEmployeeByName(String name) throws Exception {
 		return miscWhere("name LIKE '%" + name + "%'", false);
 	}
-	
+
 	@Override
 	public ArrayList<Employee> searchEmployeeByRights(int rights) throws Exception {
 		return miscWhere("rights LIKE '%" + rights + "%'", false);
 	}
-	
+
 	@Override
 	public String getEmployeePass(int person_id) throws Exception {
 		Employee emp = singleWhere("person_id=" + person_id, false);
@@ -53,7 +53,7 @@ public class DbEmployee implements DbEmployeeInterface {
 			return emp.getPass();
 		}
 	}
-	
+
 	@Override
 	public String getEmployeeSalt(int person_id) throws Exception {
 		Employee emp = singleWhere("person_id=" + person_id, false);
@@ -112,7 +112,7 @@ public class DbEmployee implements DbEmployeeInterface {
 		}
 		return result;
 	}
-	
+
 	private String buildQuery(String where) {
 		String string = "Select * FROM " + authLayer.DbConfig.DBTablePrefix + "Employee";
 		if (where != null && where.length() > 0) {
@@ -120,7 +120,7 @@ public class DbEmployee implements DbEmployeeInterface {
 		}
 		return string;
 	}
-	
+
 	private Employee buildEmployee(ResultSet resultSet) throws Exception {
 		Employee emp = null;
 		try {
@@ -140,7 +140,7 @@ public class DbEmployee implements DbEmployeeInterface {
 		}
 		return emp;
 	}
-	
+
 	private Employee singleWhere(String where, boolean retrieveAssoc) throws Exception {
 		ArrayList<Employee> employees = miscWhere(where, retrieveAssoc);
 		if(employees.size() > 0) {
@@ -152,7 +152,7 @@ public class DbEmployee implements DbEmployeeInterface {
 			return null;
 		}
 	}
-	
+
 	private ArrayList<Employee> miscWhere(String where, boolean retrieveAssoc) throws Exception {
 		ResultSet resultSet;
 		ArrayList<Employee> employees = new ArrayList<>();

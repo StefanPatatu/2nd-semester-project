@@ -44,7 +44,7 @@ public class CtrAddress {
 	//returns 1 if successful
 	//returns -1 if unsuccessful
 	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
-	public int insertAddress(String country, String city) throws Exception{
+	public int insertAddress(String country, String city) throws Exception {
 		int success = 1;
 		Address address = new Address(country, city);
 		try {

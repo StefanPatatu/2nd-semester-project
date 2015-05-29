@@ -13,6 +13,7 @@ import authLayer.DbConfig;
 
 public class DbConnection {
 	
+	@SuppressWarnings("unused")
 	private DatabaseMetaData dma;
 	private static Connection con;
 	//an instance of the class is generated
@@ -33,9 +34,9 @@ public class DbConnection {
 			con.setAutoCommit(true);
 			//get meta data
             dma = con.getMetaData();
-            System.out.println("Connection to " + dma.getURL());
-            System.out.println("Driver " + dma.getDriverName());
-            System.out.println("Database product name " + dma.getDatabaseProductName());
+            //System.out.println("Connection to " + dma.getURL());
+            //System.out.println("Driver " + dma.getDriverName());
+            //System.out.println("Database product name " + dma.getDatabaseProductName());
         } catch(Exception e) {
         	throw new Exception("DbConnection.DbConnection.dbLayer", e);
         }
