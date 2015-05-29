@@ -4,8 +4,8 @@
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>888</x>
-      <y>296</y>
+      <x>800</x>
+      <y>304</y>
       <w>112</w>
       <h>56</h>
     </coordinates>
@@ -18,8 +18,8 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>888</x>
-      <y>200</y>
+      <x>800</x>
+      <y>208</y>
       <w>112</w>
       <h>56</h>
     </coordinates>
@@ -32,19 +32,19 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>512</x>
-      <y>0</y>
+      <x>424</x>
+      <y>8</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>mainGUI:MainGUI</panel_attributes>
+    <panel_attributes>guiMain:GuiMain</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>368</x>
-      <y>136</y>
+      <x>280</x>
+      <y>144</y>
       <w>416</w>
       <h>40</h>
     </coordinates>
@@ -54,8 +54,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>304</x>
-      <y>248</y>
+      <x>216</x>
+      <y>256</y>
       <w>504</w>
       <h>40</h>
     </coordinates>
@@ -65,8 +65,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>512</x>
-      <y>0</y>
+      <x>424</x>
+      <y>8</y>
       <w>116</w>
       <h>96</h>
     </coordinates>
@@ -77,19 +77,19 @@ handleSale(e)</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>488</x>
-      <y>80</y>
+      <x>400</x>
+      <y>88</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>saleGUI:SaleGUI</panel_attributes>
+    <panel_attributes>guiSale:GuiSale</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>888</x>
-      <y>64</y>
+      <x>800</x>
+      <y>72</y>
       <w>112</w>
       <h>56</h>
     </coordinates>
@@ -102,8 +102,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>456</x>
-      <y>80</y>
+      <x>368</x>
+      <y>88</y>
       <w>234</w>
       <h>128</h>
     </coordinates>
@@ -116,19 +116,19 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>488</x>
-      <y>192</y>
+      <x>400</x>
+      <y>200</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>saleCtr:SaleCtr</panel_attributes>
+    <panel_attributes>ctrSale:CtrSale</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>216</x>
-      <y>192</y>
+      <x>128</x>
+      <y>200</y>
       <w>288</w>
       <h>184</h>
     </coordinates>
@@ -139,8 +139,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>128</x>
-      <y>360</y>
+      <x>40</x>
+      <y>368</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
@@ -150,8 +150,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>120</x>
-      <y>256</y>
+      <x>32</x>
+      <y>264</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
@@ -161,8 +161,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>88</x>
-      <y>256</y>
+      <x>0</x>
+      <y>264</y>
       <w>190</w>
       <h>120</h>
     </coordinates>
@@ -174,8 +174,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>624</x>
-      <y>392</y>
+      <x>440</x>
+      <y>400</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -185,8 +185,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>848</x>
-      <y>432</y>
+      <x>560</x>
+      <y>480</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -196,31 +196,31 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>528</x>
-      <y>192</y>
+      <x>392</x>
+      <y>200</y>
       <w>278</w>
       <h>216</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 3.1 s = new Sale(e, c,1*:sls = saleLines,isPaid)</panel_attributes>
-    <additional_attributes>192;200;88;24</additional_attributes>
+    <additional_attributes>144;200;136;24</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>648</x>
-      <y>192</y>
-      <w>320</w>
-      <h>256</h>
+      <x>536</x>
+      <y>200</y>
+      <w>144</w>
+      <h>296</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 3.2 addSale()</panel_attributes>
-    <additional_attributes>304;240;24;24</additional_attributes>
+    <additional_attributes>128;280;24;24</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>424</x>
+      <x>328</x>
       <y>440</y>
       <w>144</w>
       <h>24</h>
@@ -231,32 +231,32 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>432</x>
-      <y>192</y>
-      <w>200</w>
-      <h>264</h>
+      <x>336</x>
+      <y>200</y>
+      <w>208</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 2.3 sl = new SaleLine(i, quantity)</panel_attributes>
-    <additional_attributes>64;248;144;24</additional_attributes>
+    <additional_attributes>64;240;152;24</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>504</x>
-      <y>192</y>
-      <w>182</w>
-      <h>360</h>
+      <x>560</x>
+      <y>200</y>
+      <w>272</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-2.4 addSaleLine(i, quantity)</panel_attributes>
-    <additional_attributes>112;344;80;24</additional_attributes>
+3.3 addSaleLine(i, quantity)</panel_attributes>
+    <additional_attributes>256;320;24;24</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>552</x>
-      <y>536</y>
+      <x>736</x>
+      <y>520</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
@@ -266,8 +266,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>216</x>
-      <y>496</y>
+      <x>128</x>
+      <y>504</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
@@ -277,8 +277,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>192</x>
-      <y>400</y>
+      <x>104</x>
+      <y>408</y>
       <w>144</w>
       <h>24</h>
     </coordinates>
@@ -288,8 +288,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>320</x>
-      <y>192</y>
+      <x>232</x>
+      <y>200</y>
       <w>216</w>
       <h>320</h>
     </coordinates>
@@ -300,8 +300,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>176</x>
-      <y>400</y>
+      <x>88</x>
+      <y>408</y>
       <w>152</w>
       <h>112</h>
     </coordinates>
@@ -309,5 +309,19 @@ bg=red</panel_attributes>
 2.2 i = new Item(name)
 </panel_attributes>
     <additional_attributes>80;24;80;96</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Package</type>
+    <coordinates>
+      <x>808</x>
+      <y>448</y>
+      <w>112</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>DBLayer
+--
+
+bg=blue</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
