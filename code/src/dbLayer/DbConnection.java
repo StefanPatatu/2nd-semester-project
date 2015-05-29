@@ -13,7 +13,6 @@ import authLayer.DbConfig;
 
 public class DbConnection {
 	
-	@SuppressWarnings("unused")
 	private DatabaseMetaData dma;
 	private static Connection con;
 	//an instance of the class is generated
@@ -37,6 +36,9 @@ public class DbConnection {
             //System.out.println("Connection to " + dma.getURL());
             //System.out.println("Driver " + dma.getDriverName());
             //System.out.println("Database product name " + dma.getDatabaseProductName());
+            if(dma.supportsTransactionIsolationLevel(Connection.TRANSACTION_SERIALIZABLE)) {
+            	con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            }
         } catch(Exception e) {
         	throw new Exception("DbConnection.DbConnection.dbLayer", e);
         }

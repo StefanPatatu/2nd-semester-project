@@ -23,6 +23,10 @@ public class CtrAddress {
 		dbAddress = new DbAddress();
 	}
 	
+	public Address createNewAddress(String country, String city) {
+		return new Address(country, city);
+	}
+	
 	public ArrayList<Address> getAllAddresses() throws Exception {
 		ArrayList<Address> addresses = new ArrayList<>();
 		addresses = dbAddress.getAllAddresses();
@@ -41,29 +45,35 @@ public class CtrAddress {
 		return dbAddress.searchAddressByCity(city);
 	}
 	
+	public Address findAddressbyCountryAndCity(String country, String city) throws Exception {
+		return dbAddress.findAddressByCountryAndCity(country, city);
+	}
+	
 	//returns 1 if successful
-	//returns -1 if unsuccessful
+	//returns negative value if unsuccessful
 	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
 	public int insertAddress(String country, String city) throws Exception {
 		int success = 1;
-		Address address = new Address(country, city);
-		try {
-			DbConnection.startTransaction();
-			dbAddress.insertAddress(address);
-			DbConnection.comitTransaction();
-		} catch(Exception e) {
+		if(findAddressbyCountryAndCity(country, city) == null) {
+			Address address = new Address(country, city);
 			try {
-				DbConnection.rollbackTransaction();
-			} catch (Exception r) {
-				throw new Exception("insertAddress.CtrAddress.controlLayer", r);
+				DbConnection.startTransaction();
+				dbAddress.insertAddress(address);
+				DbConnection.comitTransaction();
+			} catch (Exception e) {
+				try {
+					DbConnection.rollbackTransaction();
+				} catch (Exception r) {
+					throw new Exception("insertAddress.CtrAddress.controlLayer", r);
+				}
+				success = Errors.INSERT_ADDRESS.getCode();
 			}
-			success = -1;
 		}
 		return success;
 	}
 	
 	//returns 1 if successful
-	//returns -1 if unsuccessful
+	//returns negative value if unsuccessful
 	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
 	public int updateAddress(int id_address, String country, String city) throws Exception {
 		int success = 1;
@@ -78,13 +88,13 @@ public class CtrAddress {
 			} catch (Exception r) {
 				throw new Exception("updateAddress.CtrAddress.controlLayer", r);
 			}
-			success = -1;
+			success = Errors.UPDATE_ADDRESS.getCode();
 		}
 		return success;
 	}
 	
 	//returns 1 if successful
-	//returns -1 if unsuccessful
+	//returns negative value if unsuccessful
 	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
 	public int removeAddress(int id_address) throws Exception {
 		int success = 1;
@@ -99,7 +109,7 @@ public class CtrAddress {
 			} catch (Exception r) {
 				throw new Exception("removeAddress.CtrAddress.controlLayer", r);
 			}
-			success = -1;
+			success = Errors.REMOVE_ADDRESS.getCode();
 		}
 		return success;
 	}

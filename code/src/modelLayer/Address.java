@@ -13,7 +13,7 @@ public class Address {
 	private String country;
 	private String city;
 	
-	//constructor
+	//constructor full
 	public Address(
 			int id_address,
 			String country,
@@ -23,7 +23,7 @@ public class Address {
 		this.setCity(city);
 	}
 	
-	//constructor
+	//constructor no id
 	public Address(
 			String country,
 			String city) {
@@ -32,12 +32,17 @@ public class Address {
 		this.setCity(city);	
 	}
 	
-	//constructor
+	//constructor just id
 	public Address(
 			int id_address) {
 		this.setId_address(id_address);
 		this.setCity(null);
 		this.setCountry(null);
+	}
+	
+	//constructor empty
+	public Address() {
+		
 	}
 	
 	//id_address

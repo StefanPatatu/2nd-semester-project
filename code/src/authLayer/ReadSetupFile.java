@@ -10,10 +10,10 @@ import org.jasypt.encryption.pbe.config.SimplePBEConfig;
 import org.jasypt.properties.PropertyValueEncryptionUtils;
 
 /**
- * Address
+ * ReadSetupFile
  * 
  * @author futz
- * @version 2.0
+ * @version 2.1
  */
 
 public class ReadSetupFile {
@@ -28,6 +28,7 @@ public class ReadSetupFile {
 	private final String password = "1B7C4DD1C6IGHIUW955953226444GKS";
 	private final String algorithm = "PBEWithMD5AndDES";
 	
+	//constructor
 	public ReadSetupFile() throws Exception {
 		if(!getProperties()) {
 			throw new Exception("Error reading setup file in ReadSetupFile.ReadSetupFile.authLayer.");

@@ -17,6 +17,7 @@ public interface DbAddressInterface {
 	public Address findAddress(int id_address) throws Exception;
 	public ArrayList<Address> searchAddressByCountry(String country) throws Exception;
 	public ArrayList<Address> searchAddressByCity(String city) throws Exception;
+	public Address findAddressByCountryAndCity(String country, String city) throws Exception;
 	public int insertAddress(Address a) throws Exception;
 	public int updateAddress(Address a) throws Exception;
 	public int removeAddress(Address a) throws Exception;

@@ -1,7 +1,7 @@
 package authLayer;
 
 /**
- * Address
+ * DbConfig
  * 
  * @author futz
  * @version 2.0

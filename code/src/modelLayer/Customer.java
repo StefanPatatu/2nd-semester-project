@@ -16,8 +16,8 @@ public class Customer {
 	private String phoneNr;
 	private String email;
 
-	//constructor	
-	public Customer (
+	//constructor full
+	public Customer(
 			int id_customer,
 			String name,
 			Address address,
@@ -31,7 +31,23 @@ public class Customer {
 		this.setPhoneNr(phoneNr);
 		this.setEmail(email);
 	}
+	
+	//constructor no id
+	public Customer(
+			String name,
+			Address address,
+			String street,
+			String phoneNr,
+			String email) {
+		this.setId_customer(-1);
+		this.setName(name);
+		this.setAddress(address);
+		this.setStreet(street);
+		this.setPhoneNr(phoneNr);
+		this.setEmail(email);
+	}
     
+	//constructor just id
 	public Customer(
 			int id_customer) {
 		this.setId_customer(id_customer);

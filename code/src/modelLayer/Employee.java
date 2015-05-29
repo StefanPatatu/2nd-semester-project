@@ -20,7 +20,7 @@ public class Employee {
 	private String salt;
 	private int rights;
 	
-	//constructor
+	//constructor full
 	public Employee(
 			int id_employee,
 			String person_id,
@@ -38,11 +38,36 @@ public class Employee {
 		this.setAddress(address);
 		this.setStreet(street);
 		this.setPhoneNr(phoneNr);
+		this.setPass(pass);
+		this.setSalt(salt);
 		this.setEmail(email);
 		this.setRights(rights);
 	}
 	
-	//constructor
+	//constructor no id
+	public Employee(
+			String person_id,
+			String name,
+			Address address,
+			String street,
+			String phoneNr,
+			String email,
+			String pass,
+			String salt,
+			int rights) {
+		this.setId_employee(-1);
+		this.setPerson_id(person_id);
+		this.setName(name);
+		this.setAddress(address);
+		this.setStreet(street);
+		this.setPhoneNr(phoneNr);
+		this.setPass(pass);
+		this.setSalt(salt);
+		this.setEmail(email);
+		this.setRights(rights);
+	}
+	
+	//constructor just id
 	public Employee(
 			int id_employee) {
 		this.setId_employee(id_employee);
@@ -51,8 +76,10 @@ public class Employee {
 		this.setAddress(null);
 		this.setStreet(null);
 		this.setPhoneNr(null);
+		this.setPass(null);
+		this.setSalt(null);
 		this.setEmail(null);
-		this.setRights(0);
+		this.setRights(-1);
 	}
 	
 	//id_employee

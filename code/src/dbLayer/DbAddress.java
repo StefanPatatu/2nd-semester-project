@@ -36,6 +36,11 @@ public class DbAddress implements DbAddressInterface {
 	}
 	
 	@Override
+	public Address findAddressByCountryAndCity(String country, String city) throws Exception {
+		return singleWhere("country LIKE '%" + country + "%'" + " AND " + "city LIKE '%" + city + "%'", false);
+	}
+	
+	@Override
 	public int insertAddress(Address a) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Address (country, city) VALUES (?, ?)";

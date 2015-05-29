@@ -17,10 +17,12 @@ import dbLayer.DbConnection;
 public class CtrCustomer {
 	
 	private DbCustomerInterface dbCustomer;
+	private CtrAddress ctrAddress;
 	
 	//constructor
 	public CtrCustomer() {
 		dbCustomer = new DbCustomer();
+		ctrAddress = new CtrAddress();
 	}
 	
 	public ArrayList<Customer> getAllCustomers() throws Exception {
@@ -37,8 +39,46 @@ public class CtrCustomer {
 		return dbCustomer.searchCustomerByName(name);
 	}
 	
+	//returns 1 if successful
+	//returns negative value if unsuccessful
+	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
 	public int insertCustomer(String name, String country, String city, String street, String phoneNr, String email) throws Exception {
-		?is it ok? create address here
+		int success = 1;
+		Customer customer = new Customer(name, ctrAddress.createNewAddress(country, city), street, phoneNr, email);
+		try {
+			DbConnection.startTransaction();
+			dbCustomer.insertCustomer(customer);
+			DbConnection.comitTransaction();
+		} catch (Exception e) {
+			try {
+				DbConnection.rollbackTransaction();
+			} catch (Exception r) {
+				throw new Exception("insertCustomer.CtrCustomer.controlLayer", r);
+			}
+			success = Errors.INSERT_CUSTOMER.getCode();
+		}
+		return success;	
+	}
+	
+	//returns 1 if successful
+	//returns negative value if unsuccessful
+	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
+	public int updateCustomer(int id_address, String name, String country, String city, String street, String phoneNr, String email) throws Exception {
+		int success = 1;
+		Customer customer = new Customer(id_address, name, ctrAddress.createNewAddress(country, city), street, phoneNr, email);
+		try {
+			DbConnection.startTransaction();
+			dbCustomer.updateCustomer(customer);
+			DbConnection.comitTransaction();
+		} catch (Exception e) {
+			try {
+				DbConnection.rollbackTransaction();
+			} catch (Exception r) {
+				throw new Exception("updateCustoemr.CtrCustomer.controlLayer", r);
+			}
+			success = Errors.UPDATE_CUSTOMER.getCode();
+		}
+		return success;	
 	}
 
 }
