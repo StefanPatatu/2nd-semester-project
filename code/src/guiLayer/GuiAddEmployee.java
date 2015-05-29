@@ -22,12 +22,12 @@ import java.awt.Color;
 public class GuiAddEmployee extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textField_name;
+	private JTextField textField_country;
+	private JTextField textField_city;
+	private JTextField textField_street;
+	private JTextField textField_number;
+	private JTextField textField_email;
 	private static GuiAddEmployee instance=null;
 
 	/**
@@ -89,35 +89,35 @@ public class GuiAddEmployee extends JDialog {
 		lblCategory.setBounds(10, 136, 108, 14);
 		contentPane.add(lblCategory);
 		
-		textField = new JTextField();
-		textField.setBounds(115, 10, 150, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textField_name = new JTextField();
+		textField_name.setBounds(115, 10, 150, 20);
+		contentPane.add(textField_name);
+		textField_name.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(115, 36, 150, 20);
-		contentPane.add(textField_1);
+		textField_country = new JTextField();
+		textField_country.setColumns(10);
+		textField_country.setBounds(115, 36, 150, 20);
+		contentPane.add(textField_country);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(115, 60, 150, 20);
-		contentPane.add(textField_2);
+		textField_city = new JTextField();
+		textField_city.setColumns(10);
+		textField_city.setBounds(115, 60, 150, 20);
+		contentPane.add(textField_city);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(115, 85, 150, 20);
-		contentPane.add(textField_3);
+		textField_street = new JTextField();
+		textField_street.setColumns(10);
+		textField_street.setBounds(115, 85, 150, 20);
+		contentPane.add(textField_street);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(115, 110, 150, 20);
-		contentPane.add(textField_4);
+		textField_number = new JTextField();
+		textField_number.setColumns(10);
+		textField_number.setBounds(115, 110, 150, 20);
+		contentPane.add(textField_number);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(115, 135, 150, 20);
-		contentPane.add(textField_5);
+		textField_email = new JTextField();
+		textField_email.setColumns(10);
+		textField_email.setBounds(115, 135, 150, 20);
+		contentPane.add(textField_email);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBackground(new Color(204, 204, 255));
@@ -134,11 +134,15 @@ public class GuiAddEmployee extends JDialog {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
+				if(textField_name.getText().isEmpty()||textField_country.getText().isEmpty()||textField_city.getText().isEmpty()||textField_street.getText().isEmpty()||textField_number.getText().isEmpty()||textField_email.getText().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must complete all fields. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
+				}
+				else
+				{
+					//
 				}
 			}
 		});

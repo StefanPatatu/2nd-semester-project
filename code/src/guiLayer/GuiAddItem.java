@@ -22,12 +22,12 @@ import java.awt.Color;
 public class GuiAddItem extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textField_barcode;
+	private JTextField textField_name;
+	private JTextField textField_price;
+	private JTextField textField_stock;
+	private JTextField textField_type;
+	private JTextField textField_category;
 	private static GuiAddItem instance= null;
 
 	/**
@@ -89,35 +89,35 @@ public class GuiAddItem extends JDialog {
 		lblCategory.setBounds(10, 136, 108, 14);
 		contentPane.add(lblCategory);
 		
-		textField = new JTextField();
-		textField.setBounds(115, 10, 150, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textField_barcode = new JTextField();
+		textField_barcode.setBounds(115, 10, 150, 20);
+		contentPane.add(textField_barcode);
+		textField_barcode.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(115, 36, 150, 20);
-		contentPane.add(textField_1);
+		textField_name = new JTextField();
+		textField_name.setColumns(10);
+		textField_name.setBounds(115, 36, 150, 20);
+		contentPane.add(textField_name);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(115, 60, 150, 20);
-		contentPane.add(textField_2);
+		textField_price = new JTextField();
+		textField_price.setColumns(10);
+		textField_price.setBounds(115, 60, 150, 20);
+		contentPane.add(textField_price);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(115, 85, 150, 20);
-		contentPane.add(textField_3);
+		textField_stock = new JTextField();
+		textField_stock.setColumns(10);
+		textField_stock.setBounds(115, 85, 150, 20);
+		contentPane.add(textField_stock);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(115, 110, 150, 20);
-		contentPane.add(textField_4);
+		textField_type = new JTextField();
+		textField_type.setColumns(10);
+		textField_type.setBounds(115, 110, 150, 20);
+		contentPane.add(textField_type);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(115, 135, 150, 20);
-		contentPane.add(textField_5);
+		textField_category = new JTextField();
+		textField_category.setColumns(10);
+		textField_category.setBounds(115, 135, 150, 20);
+		contentPane.add(textField_category);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBackground(new Color(204, 204, 255));
@@ -135,12 +135,22 @@ public class GuiAddItem extends JDialog {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
+				if(textField_barcode.getText().isEmpty()||textField_category.getText().isEmpty()||textField_name.getText().isEmpty()||textField_price.getText().isEmpty()||textField_stock.getText().isEmpty()||textField_type.getText().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must complete all fields. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				} */
+				} 
+				else
+				{
+				String barcode = textField_barcode.getText();
+				String category =  textField_category.getText();
+				String name = textField_name.getText();
+				Double price = Double.parseDouble(textField_price.getText());
+				int stock = Integer.parseInt(textField_stock.getText());
+				String type = textField_type.getText();
+				
+				}
 			}
 		});
 		btnAdd.setBounds(86, 163, 89, 23);

@@ -22,7 +22,7 @@ import java.awt.Color;
 public class GuiAddSupplier extends JDialog {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textField_id;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -91,10 +91,10 @@ public class GuiAddSupplier extends JDialog {
 		lblCategory.setBounds(10, 136, 108, 14);
 		contentPane.add(lblCategory);
 		
-		textField = new JTextField();
-		textField.setBounds(115, 10, 150, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textField_id = new JTextField();
+		textField_id.setBounds(115, 10, 150, 20);
+		contentPane.add(textField_id);
+		textField_id.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -137,7 +137,7 @@ public class GuiAddSupplier extends JDialog {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
+				if(textField_id.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()||textField_4.getText().isEmpty()||textField_5.getText().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must complete all fields. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
