@@ -25,6 +25,15 @@ public class Address {
 	
 	//constructor
 	public Address(
+			String country,
+			String city) {
+		this.setId_address(-1);
+		this.setCountry(country);
+		this.setCity(city);	
+	}
+	
+	//constructor
+	public Address(
 			int id_address) {
 		this.setId_address(id_address);
 		this.setCity(null);
