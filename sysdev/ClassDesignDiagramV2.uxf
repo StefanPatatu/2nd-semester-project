@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.1">
-  <zoom_level>5</zoom_level>
+  <zoom_level>3</zoom_level>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>570</x>
+      <x>471</x>
       <y>0</y>
-      <w>145</w>
-      <h>60</h>
+      <w>87</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>MainGUI
 --
@@ -24,22 +24,25 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>5</x>
-      <y>190</y>
-      <w>225</w>
-      <h>75</h>
+      <x>0</x>
+      <y>156</y>
+      <w>147</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>EmployeeCtr
 --
-dbEmployee:DBEmployee
+systmLogin:SystemLogin
+dbEmployee:DBEmployeeInterface
+ctrAddress:CtrAddress
 --
-createEmployee(person_id, name, address, phoneNr, eMail, pass, rights) 
-findEmployee(person_id)
-updateName(person_id)
-updateAddress(person_id)
-updatePhoneNr(person_id)
-
-updateEMail(personID)
+getAllEmployees()
+findEmployeeById_employee(id_employee)
+findEmployeeByPerson_id(person_id)
+searchEmployeeByName(name)
+searchEmployeeByRights(rights) 
+getEmployeePass(person_id)
+getEmployeeSalt(person_id)
+insertEmployee(person_id, name, country, city, street, phoneNr, emai, rights)
 
 bg=yellow</panel_attributes>
     <additional_attributes/>
@@ -47,21 +50,20 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>210</x>
-      <y>275</y>
-      <w>190</w>
-      <h>75</h>
+      <x>261</x>
+      <y>150</y>
+      <w>114</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>CustomerCtr
 --
-dbCustomer:DBCustomer
+dbCustomer:DBCustomerInterface
 --
-createCustomer(name, address, phoneNr, eMail)
-getAllCustomers(name)
-findCustomer(name) 
-updateName(name)
-updateAddress(name)
-updateEmail(name)
+getAllCustomers()
+findCustomer(id_customer)
+searchCustomerByName(name) 
+insertCustomer(name, country, city, street, phoneNr, email) 
+updateCustomer(id_address, name, country, city, street, phoneNr, email) 
 
 bg=yellow</panel_attributes>
     <additional_attributes/>
@@ -69,10 +71,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>850</x>
-      <y>280</y>
-      <w>180</w>
-      <h>70</h>
+      <x>639</x>
+      <y>168</y>
+      <w>108</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>ItemCtr
 --
@@ -91,10 +93,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>445</x>
-      <y>250</y>
-      <w>365</w>
-      <h>95</h>
+      <x>396</x>
+      <y>147</y>
+      <w>219</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>SaleCtr
 --
@@ -115,10 +117,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>425</x>
-      <y>55</y>
-      <w>215</w>
-      <h>155</h>
+      <x>384</x>
+      <y>33</y>
+      <w>129</w>
+      <h>93</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;290.0;410.0;10.0</additional_attributes>
@@ -126,10 +128,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>165</x>
-      <y>40</y>
-      <w>415</w>
-      <h>100</h>
+      <x>228</x>
+      <y>24</y>
+      <w>249</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;180.0;810.0;10.0</additional_attributes>
@@ -137,10 +139,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>55</y>
-      <w>35</w>
-      <h>155</h>
+      <x>519</x>
+      <y>33</y>
+      <w>21</w>
+      <h>93</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;290.0;50.0;10.0</additional_attributes>
@@ -148,21 +150,21 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>35</y>
-      <w>155</w>
-      <h>165</h>
+      <x>555</x>
+      <y>21</y>
+      <w>93</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>290.0;310.0;10.0;10.0</additional_attributes>
+    <additional_attributes>290.0;300.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>765</x>
-      <y>180</y>
-      <w>95</w>
-      <h>125</h>
+      <x>588</x>
+      <y>108</y>
+      <w>57</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>170.0;230.0;10.0;10.0</additional_attributes>
@@ -170,43 +172,43 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>220</y>
-      <w>20</w>
-      <h>40</h>
+      <x>507</x>
+      <y>132</y>
+      <w>12</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;20.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;20.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>295</x>
-      <y>185</y>
-      <w>80</w>
-      <h>100</h>
+      <x>312</x>
+      <y>111</y>
+      <w>42</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;180.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
-      <y>120</y>
-      <w>45</w>
-      <h>80</h>
+      <x>63</x>
+      <y>72</y>
+      <w>123</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>70.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;280.0;390.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>5</x>
-      <y>435</y>
-      <w>65</w>
-      <h>85</h>
+      <x>15</x>
+      <y>261</y>
+      <w>39</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>Employee		
 --
@@ -226,10 +228,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>235</x>
-      <y>450</y>
-      <w>80</w>
-      <h>50</h>
+      <x>252</x>
+      <y>270</y>
+      <w>48</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Customer
 --
@@ -246,32 +248,32 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>45</x>
-      <y>260</y>
-      <w>90</w>
-      <h>185</h>
+      <x>30</x>
+      <y>219</y>
+      <w>18</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;350.0;160.0;10.0</additional_attributes>
+    <additional_attributes>40.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>345</y>
-      <w>20</w>
-      <h>115</h>
+      <x>270</x>
+      <y>186</y>
+      <w>30</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>20.0;210.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;280.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>640</x>
-      <y>360</y>
-      <w>90</w>
-      <h>65</h>
+      <x>513</x>
+      <y>219</y>
+      <w>54</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>Invoice	
 --
@@ -290,10 +292,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>505</x>
-      <y>475</y>
-      <w>100</w>
-      <h>115</h>
+      <x>459</x>
+      <y>288</y>
+      <w>60</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>Sale
 --
@@ -317,10 +319,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>450</x>
-      <y>430</y>
-      <w>50</w>
-      <h>40</h>
+      <x>396</x>
+      <y>270</y>
+      <w>30</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>SaleLine
 --
@@ -334,10 +336,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>835</x>
-      <y>500</y>
-      <w>55</w>
-      <h>70</h>
+      <x>687</x>
+      <y>291</y>
+      <w>33</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>Item
 --
@@ -355,65 +357,65 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>465</x>
-      <y>340</y>
-      <w>40</w>
-      <h>100</h>
+      <x>405</x>
+      <y>201</y>
+      <w>27</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;180.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;230.0;70.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>555</x>
-      <y>340</y>
-      <w>65</w>
-      <h>145</h>
+      <x>489</x>
+      <y>201</y>
+      <w>12</w>
+      <h>93</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;270.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;290.0;20.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>340</y>
-      <w>145</w>
-      <h>135</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;250.0;270.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>680</x>
-      <y>340</y>
-      <w>30</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;40.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>855</x>
-      <y>345</y>
+      <x>297</x>
+      <y>201</y>
       <w>105</w>
-      <h>165</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;310.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;260.0;330.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>537</x>
+      <y>201</y>
+      <w>18</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>696</x>
+      <y>207</y>
+      <w>12</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>20.0;280.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1015</x>
-      <y>450</y>
-      <w>105</w>
-      <h>60</h>
+      <x>738</x>
+      <y>270</y>
+      <w>63</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Supplier
 --
@@ -430,33 +432,33 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>475</x>
-      <y>455</y>
-      <w>39</w>
-      <h>49</h>
+      <x>411</x>
+      <y>285</y>
+      <w>53</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..*</panel_attributes>
-    <additional_attributes>30;40;15;15</additional_attributes>
+    <additional_attributes>48;15;9;9</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>790</x>
-      <y>340</y>
-      <w>55</w>
-      <h>175</h>
+      <x>603</x>
+      <y>201</y>
+      <w>90</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>90.0;330.0;10.0;10.0</additional_attributes>
+    <additional_attributes>280.0;310.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>145</x>
-      <y>370</y>
-      <w>50</w>
-      <h>35</h>
+      <x>216</x>
+      <y>222</y>
+      <w>30</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Address
 --
@@ -470,34 +472,34 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>55</x>
-      <y>370</y>
-      <w>99</w>
-      <h>104</h>
+      <x>45</x>
+      <y>222</y>
+      <w>176</w>
+      <h>62</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>90;15;15;95</additional_attributes>
+    <additional_attributes>171;9;9;57</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>180</x>
-      <y>380</y>
-      <w>64</w>
-      <h>94</h>
+      <x>237</x>
+      <y>228</y>
+      <w>20</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>15;15;55;85</additional_attributes>
+    <additional_attributes>9;9;15;51</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>870</x>
-      <y>140</y>
-      <w>105</w>
-      <h>30</h>
+      <x>648</x>
+      <y>84</y>
+      <w>63</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>GuiAddItem
 --
@@ -512,10 +514,10 @@ bg=red
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>855</x>
-      <y>180</y>
-      <w>105</w>
-      <h>25</h>
+      <x>642</x>
+      <y>105</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiUpdateItem
 --
@@ -528,10 +530,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>825</x>
-      <y>230</y>
-      <w>105</w>
-      <h>25</h>
+      <x>624</x>
+      <y>138</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiUpdateStock
 --
@@ -544,10 +546,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>700</x>
-      <y>160</y>
-      <w>105</w>
-      <h>25</h>
+      <x>549</x>
+      <y>96</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiViewItem	
 --
@@ -560,10 +562,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>45</x>
-      <y>100</y>
-      <w>105</w>
-      <h>25</h>
+      <x>156</x>
+      <y>60</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiUpdateEmployee
 --
@@ -576,10 +578,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>70</y>
-      <w>105</w>
-      <h>25</h>
+      <x>129</x>
+      <y>42</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiAddEmployee
 --
@@ -592,10 +594,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>140</x>
-      <y>130</y>
-      <w>105</w>
-      <h>25</h>
+      <x>213</x>
+      <y>78</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiViewEmployee
 --
@@ -608,10 +610,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>260</x>
-      <y>135</y>
-      <w>105</w>
-      <h>25</h>
+      <x>285</x>
+      <y>81</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiAddCustomer
 --
@@ -624,10 +626,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>300</x>
-      <y>165</y>
-      <w>105</w>
-      <h>25</h>
+      <x>309</x>
+      <y>99</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiUpdateCustomer
 --
@@ -640,10 +642,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>395</x>
-      <y>200</y>
-      <w>105</w>
-      <h>25</h>
+      <x>366</x>
+      <y>120</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiViewCustomer
 --
@@ -656,10 +658,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>500</x>
-      <y>170</y>
-      <w>105</w>
-      <h>25</h>
+      <x>429</x>
+      <y>102</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiSale
 --
@@ -672,10 +674,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>605</x>
-      <y>200</y>
-      <w>105</w>
-      <h>25</h>
+      <x>492</x>
+      <y>120</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiViewSale
 --
@@ -688,21 +690,21 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>535</x>
-      <y>190</y>
-      <w>25</w>
-      <h>70</h>
+      <x>450</x>
+      <y>114</y>
+      <w>15</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;120.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;30.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>555</x>
-      <y>55</y>
-      <w>105</w>
-      <h>125</h>
+      <x>462</x>
+      <y>33</y>
+      <w>63</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;230.0;190.0;10.0</additional_attributes>
@@ -710,10 +712,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>55</y>
-      <w>270</w>
-      <h>90</h>
+      <x>321</x>
+      <y>33</y>
+      <w>162</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;160.0;520.0;10.0</additional_attributes>
@@ -721,10 +723,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>365</x>
-      <y>55</y>
-      <w>245</w>
-      <h>120</h>
+      <x>348</x>
+      <y>33</y>
+      <w>147</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;220.0;470.0;10.0</additional_attributes>
@@ -732,32 +734,32 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>345</x>
-      <y>220</y>
-      <w>105</w>
-      <h>65</h>
+      <x>342</x>
+      <y>132</y>
+      <w>57</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;170.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
-      <y>155</y>
-      <w>65</w>
-      <h>130</h>
+      <x>267</x>
+      <y>93</y>
+      <w>33</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;240.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>145</x>
-      <y>25</y>
-      <w>435</w>
-      <h>95</h>
+      <x>216</x>
+      <y>15</y>
+      <w>261</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;170.0;850.0;10.0</additional_attributes>
@@ -765,10 +767,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
-      <y>20</y>
-      <w>480</w>
-      <h>60</h>
+      <x>189</x>
+      <y>12</y>
+      <w>288</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;100.0;940.0;10.0</additional_attributes>
@@ -776,32 +778,32 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>25</x>
+      <x>24</x>
+      <y>54</y>
+      <w>129</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;340.0;410.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
       <y>90</y>
-      <w>35</w>
-      <h>110</h>
+      <w>144</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>50.0;200.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;220.0;460.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>205</x>
-      <y>150</y>
-      <w>20</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;20.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>710</x>
-      <y>50</y>
-      <w>30</w>
-      <h>120</h>
+      <x>555</x>
+      <y>30</y>
+      <w>18</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>40.0;220.0;10.0;10.0</additional_attributes>
@@ -809,10 +811,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>45</y>
-      <w>175</w>
-      <h>195</h>
+      <x>555</x>
+      <y>27</y>
+      <w>105</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>330.0;370.0;10.0;10.0</additional_attributes>
@@ -820,21 +822,21 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>25</y>
-      <w>170</w>
-      <h>125</h>
+      <x>555</x>
+      <y>15</y>
+      <w>99</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>320.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>310.0;230.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
-      <y>250</y>
-      <w>45</w>
-      <h>40</h>
+      <x>651</x>
+      <y>150</y>
+      <w>27</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>70.0;60.0;10.0;10.0</additional_attributes>
@@ -842,48 +844,48 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>955</x>
-      <y>185</y>
-      <w>60</w>
-      <h>105</h>
+      <x>702</x>
+      <y>108</y>
+      <w>36</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>100.0;190.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;200.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>165</y>
-      <w>75</w>
-      <h>125</h>
+      <x>708</x>
+      <y>96</y>
+      <w>42</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>130.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;240.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>880</x>
-      <y>635</y>
-      <w>105</w>
-      <h>25</h>
+      <x>18</x>
+      <y>39</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>
 --
 
 --
 
-bg=green</panel_attributes>
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1355</x>
-      <y>440</y>
-      <w>105</w>
-      <h>40</h>
+      <x>942</x>
+      <y>264</y>
+      <w>63</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Purchase
 --
@@ -898,10 +900,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1160</x>
-      <y>565</y>
-      <w>105</w>
-      <h>35</h>
+      <x>852</x>
+      <y>336</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>PurchaseLine
 --
@@ -915,10 +917,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1300</x>
-      <y>265</y>
-      <w>175</w>
-      <h>50</h>
+      <x>909</x>
+      <y>159</y>
+      <w>105</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>PurchaseCtr
 --
@@ -934,10 +936,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1065</x>
-      <y>315</y>
-      <w>205</w>
-      <h>85</h>
+      <x>768</x>
+      <y>189</y>
+      <w>123</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>SupplierCtr
 --
@@ -957,10 +959,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1015</x>
-      <y>185</y>
-      <w>105</w>
-      <h>25</h>
+      <x>723</x>
+      <y>105</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiAddSupplier
 --
@@ -973,10 +975,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1100</x>
-      <y>210</y>
-      <w>105</w>
-      <h>30</h>
+      <x>789</x>
+      <y>126</y>
+      <w>63</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>GuiUpdateSupplier
 --
@@ -989,10 +991,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1190</x>
-      <y>175</y>
-      <w>105</w>
-      <h>25</h>
+      <x>843</x>
+      <y>105</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiViewSupplier
 --
@@ -1005,10 +1007,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1380</x>
-      <y>145</y>
-      <w>105</w>
-      <h>25</h>
+      <x>957</x>
+      <y>87</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiViewPurchase
 --
@@ -1021,10 +1023,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>1330</x>
-      <y>175</y>
-      <w>105</w>
-      <h>25</h>
+      <x>927</x>
+      <y>105</y>
+      <w>63</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>GuiPurchase
 --
@@ -1037,21 +1039,21 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1065</x>
-      <y>205</y>
-      <w>25</w>
-      <h>120</h>
+      <x>753</x>
+      <y>117</y>
+      <w>30</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>30.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;240.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1130</x>
-      <y>235</y>
-      <w>25</w>
-      <h>90</h>
+      <x>807</x>
+      <y>141</y>
+      <w>15</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;160.0;30.0;10.0</additional_attributes>
@@ -1059,10 +1061,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1215</x>
-      <y>195</y>
-      <w>25</w>
-      <h>130</h>
+      <x>858</x>
+      <y>117</y>
+      <w>15</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>30.0;240.0;10.0;10.0</additional_attributes>
@@ -1070,10 +1072,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1360</x>
-      <y>195</y>
-      <w>20</w>
-      <h>80</h>
+      <x>945</x>
+      <y>117</y>
+      <w>12</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>20.0;140.0;10.0;10.0</additional_attributes>
@@ -1081,10 +1083,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1455</x>
-      <y>165</y>
-      <w>15</w>
-      <h>110</h>
+      <x>1002</x>
+      <y>99</y>
+      <w>9</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
@@ -1092,10 +1094,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1395</x>
-      <y>310</y>
-      <w>20</w>
-      <h>140</h>
+      <x>966</x>
+      <y>186</y>
+      <w>12</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>20.0;260.0;10.0;10.0</additional_attributes>
@@ -1103,10 +1105,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1070</x>
-      <y>395</y>
-      <w>90</w>
-      <h>65</h>
+      <x>771</x>
+      <y>237</y>
+      <w>54</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;110.0;160.0;10.0</additional_attributes>
@@ -1114,33 +1116,33 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1195</x>
-      <y>395</y>
-      <w>20</w>
-      <h>180</h>
+      <x>846</x>
+      <y>237</y>
+      <w>39</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>20.0;340.0;10.0;10.0</additional_attributes>
+    <additional_attributes>110.0;330.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>875</x>
-      <y>520</y>
-      <w>294</w>
-      <h>69</h>
+      <x>711</x>
+      <y>303</y>
+      <w>146</w>
+      <h>47</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>15;15;285;60</additional_attributes>
+    <additional_attributes>9;9;141;42</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
+      <x>555</x>
       <y>0</y>
-      <w>680</w>
-      <h>155</h>
+      <w>408</w>
+      <h>93</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>1340.0;290.0;10.0;10.0</additional_attributes>
@@ -1148,10 +1150,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>10</y>
-      <w>540</w>
-      <h>175</h>
+      <x>555</x>
+      <y>6</y>
+      <w>324</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>1060.0;330.0;10.0;10.0</additional_attributes>
@@ -1159,21 +1161,21 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>20</y>
-      <w>385</w>
-      <h>175</h>
+      <x>555</x>
+      <y>12</y>
+      <w>216</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>750.0;330.0;10.0;10.0</additional_attributes>
+    <additional_attributes>700.0;310.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>5</y>
-      <w>660</w>
-      <h>180</h>
+      <x>555</x>
+      <y>3</y>
+      <w>396</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>1300.0;340.0;10.0;10.0</additional_attributes>
@@ -1181,10 +1183,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>15</y>
-      <w>500</w>
-      <h>205</h>
+      <x>555</x>
+      <y>9</y>
+      <w>300</w>
+      <h>123</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>980.0;390.0;10.0;10.0</additional_attributes>
@@ -1192,22 +1194,22 @@ m2=0..*</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>180</x>
-      <y>370</y>
-      <w>844</w>
-      <h>114</h>
+      <x>237</x>
+      <y>222</y>
+      <w>506</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>15;15;835;105</additional_attributes>
+    <additional_attributes>9;9;501;63</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>685</x>
-      <y>525</y>
-      <w>105</w>
-      <h>40</h>
+      <x>540</x>
+      <y>315</y>
+      <w>63</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Location
 --
@@ -1222,97 +1224,833 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>745</x>
-      <y>340</y>
-      <w>20</w>
-      <h>195</h>
+      <x>576</x>
+      <y>201</y>
+      <w>12</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>20.0;370.0;10.0;10.0</additional_attributes>
+    <additional_attributes>20.0;380.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>775</x>
-      <y>525</y>
-      <w>69</w>
-      <h>24</h>
+      <x>594</x>
+      <y>306</y>
+      <w>98</w>
+      <h>23</h>
     </coordinates>
     <panel_attributes>m1= 0..*
 m2=0..1</panel_attributes>
-    <additional_attributes>60;15;15;15</additional_attributes>
+    <additional_attributes>93;9;9;18</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>300</x>
-      <y>475</y>
-      <w>214</w>
-      <h>54</h>
+      <x>291</x>
+      <y>282</y>
+      <w>173</w>
+      <h>38</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>15;15;205;45</additional_attributes>
+    <additional_attributes>9;9;168;33</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>55</x>
-      <y>475</y>
-      <w>459</w>
-      <h>89</h>
+      <x>45</x>
+      <y>285</y>
+      <w>419</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>15;15;450;80</additional_attributes>
+    <additional_attributes>9;9;414;51</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>590</x>
-      <y>410</y>
-      <w>104</w>
-      <h>114</h>
+      <x>510</x>
+      <y>249</y>
+      <w>35</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>m1=0..*
 m2=0..1</panel_attributes>
-    <additional_attributes>15;105;95;15</additional_attributes>
+    <additional_attributes>9;63;30;9</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>485</x>
-      <y>430</y>
-      <w>359</w>
-      <h>99</h>
+      <x>417</x>
+      <y>270</y>
+      <w>275</w>
+      <h>38</h>
     </coordinates>
     <panel_attributes>m1=0..*
 m2=1</panel_attributes>
-    <additional_attributes>15;15;350;90</additional_attributes>
+    <additional_attributes>9;9;270;33</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1230</x>
-      <y>455</y>
-      <w>130</w>
-      <h>115</h>
+      <x>894</x>
+      <y>273</y>
+      <w>53</w>
+      <h>68</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..* </panel_attributes>
-    <additional_attributes>125;15;15;110</additional_attributes>
+    <additional_attributes>48;9;9;63</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1105</x>
-      <y>435</y>
-      <w>259</w>
-      <h>44</h>
+      <x>792</x>
+      <y>261</y>
+      <w>155</w>
+      <h>26</h>
     </coordinates>
     <panel_attributes>m1= 1
 m2= 0..*
 </panel_attributes>
-    <additional_attributes>15;35;250;15</additional_attributes>
+    <additional_attributes>9;21;150;9</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>228</x>
+      <y>327</y>
+      <w>60</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbAddressInterface
+--
+--
+getAllAddresses()
+findAddress(id_address)
+searchAddressByCountry(country)
+searchAddressByCity(city)
+findAddressByCoutnryAndCity(country, city)
+insertAddress(a)
+updateAddress(a)
+removeAddress(a)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>219</x>
+      <y>414</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbAddress
+--
+.
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>309</x>
+      <y>336</y>
+      <w>81</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbCustomerInterface
+--
+
+--
+getAllCustomers()
+findCustomer(id_customer, retrieveAssoc)
+searchCustomerByName(name)
+insertCustomer(c)
+updateCustomer(c)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>294</x>
+      <y>402</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbCustomer
+--
+dbAddress:DbAddressInterface
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>336</y>
+      <w>117</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbEmployeeInterface
+--
+
+--
+getAllEmployees()
+findEmployeeById_employee(id_employee, retrieveAssoc)
+findEmployeeByPerson_id(person_id, retrieveAssoc)
+searchEmployeeByName(name)
+searchEmployeeByRights(rights) 
+getEmployeePass(person_id)
+getEmployeeSalt(person_id)
+insertEmployee(e)
+updateEmployee(e)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>33</x>
+      <y>411</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbEmployee
+--
+dbAddress:DbAddressInterface
+--
+
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>567</x>
+      <y>432</y>
+      <w>63</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbInvoiceInterface
+--
+
+--
+getAllInvoices()
+findInvoice(id_invoice, retrieveAssoc)
+insertInvoice(i)
+updateInvoice(i)
+updateInvoicePaid(id_invoice)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>603</x>
+      <y>486</y>
+      <w>72</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbInvoice
+--
+dbCustomer:DbCustomerInterface
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>660</x>
+      <y>345</y>
+      <w>72</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbItemInterface
+--
+
+--
+getAllItems()
+findItemById_item(id_item)
+findItemByBarcode(barcode)
+searchItemByName(name)
+searchItemByStockRange(min, max)
+insertItem(i)
+updateItem(i)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>645</x>
+      <y>411</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbItem
+--
+.
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>921</x>
+      <y>351</y>
+      <w>63</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbPurchaseInterface
+--
+
+--
+getAllPurchase()
+findPurchaseById_purchase(id_purchase)
+findPurchasesByDateCreated(dateCreated)
+findPurchaseByDateDelivered(dateDelivered)
+insertPurchase(p)
+updatePurchase(p)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>903</x>
+      <y>411</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbPurchase
+--
+.
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>846</x>
+      <y>372</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbPurchaseLine
+--
+
+--
+getAllPurchases()
+findPurchaeLine(id_purchaseLine, retrieveAssoc)
+insertPurchaseLine(pl)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>816</x>
+      <y>423</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbPurchaseLine
+--
+.
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>486</x>
+      <y>357</y>
+      <w>135</w>
+      <h>69</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt; 
+DbSaleInterface 
+--
+
+--
+getAllSales()
+findSaleById_sale(id_sale, retrieveAssoc)
+findSaleBySaleNr(saleNr, retrieveAssoc)
+searchSaleBySaleStatuses(isPacked, isSent, isPaid)
+searchSaleByDateCreatedInterval(dateCreatedMin, dateCreatedMax)
+insertSale(s, id_inv)
+updateSaleIsPacked(isPacked, id_sale)
+updateSaleIsSent(isSent, id_sale) 
+updateSaleIsPaid(isPaid, id_sale)
+getAllUnpaidSAleForCustomer(id_customer)
+addSalesToInvoice(id_invoice, sales)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>459</x>
+      <y>441</y>
+      <w>69</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>DbSale
+--
+dbEmployee:DbEmployeeInterface
+dbCustomer:DbCustomerInterface
+dbSaleLine:DbSaleLineInterface
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>363</x>
+      <y>381</y>
+      <w>78</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbSaleLineInterface
+--
+
+--
+getAllSaleLinesForASale(id_sale)
+findSaleLine(id_saleLine, retrieveAssoc)
+insertSaleLine(sl, id_sale)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>387</x>
+      <y>429</y>
+      <w>63</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>DbSaleLine
+--
+dbItem:DbItemInterface
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>741</x>
+      <y>345</y>
+      <w>63</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+DbSupplierInterface
+--
+
+--
+getAllSuppliers()
+findSupplier(id_supplier)
+searchSupplierByName(name)
+insertSupplier(sp)
+updateSupplier(sp)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>753</x>
+      <y>402</y>
+      <w>63</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>DbSupplier
+--
+dbAddress:DbAddressInterface
+--
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>219</y>
+      <w>45</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;640.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>75</x>
+      <y>390</y>
+      <w>39</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>243</x>
+      <y>375</y>
+      <w>21</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>321</x>
+      <y>372</y>
+      <w>36</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>489</x>
+      <y>423</y>
+      <w>21</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>408</y>
+      <w>24</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>468</y>
+      <w>24</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>393</y>
+      <w>30</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>381</y>
+      <w>21</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>843</x>
+      <y>396</y>
+      <w>36</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>933</x>
+      <y>393</y>
+      <w>30</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>807</x>
+      <y>237</y>
+      <w>27</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;550.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>159</x>
+      <y>150</y>
+      <w>87</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>AddressCtr
+--
+dbAddress:DbAddressInterface
+--
+createNewAddress(country, city)
+getAllAddresses()
+findAddress(id_address)
+searchAddressByCountry(country)
+searchAddressByCity(city)
+findAddressByCountryAndCity(country, city)
+insertAddress(country, city)
+updateAddress(id_adress, country, city)
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>201</x>
+      <y>201</y>
+      <w>30</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>171</y>
+      <w>21</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>243</x>
+      <y>159</y>
+      <w>24</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>186</x>
+      <y>201</y>
+      <w>48</w>
+      <h>219</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;710.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>186</y>
+      <w>39</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;720.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>438</x>
+      <y>201</y>
+      <w>30</w>
+      <h>246</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;800.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>201</y>
+      <w>21</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;760.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>591</x>
+      <y>201</y>
+      <w>69</w>
+      <h>291</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>210.0;950.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>204</y>
+      <w>27</w>
+      <h>213</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;690.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>912</x>
+      <y>186</y>
+      <w>21</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;750.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>828</x>
+      <y>237</y>
+      <w>12</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;620.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>174</y>
+      <w>33</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>372</x>
+      <y>165</y>
+      <w>30</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>195</y>
+      <w>258</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;840.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>168</y>
+      <w>171</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;550.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>180</y>
+      <w>27</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>243</x>
+      <y>198</y>
+      <w>531</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;1750.0;70.0</additional_attributes>
   </element>
 </diagram>
