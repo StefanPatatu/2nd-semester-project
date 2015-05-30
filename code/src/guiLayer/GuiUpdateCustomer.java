@@ -22,19 +22,25 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
 
+import modelLayer.Customer;
+import controlLayer.CtrCustomer;
+
 import java.awt.Font;
 import java.awt.Color;
 /**
 @author frunziss
 */
 public class GuiUpdateCustomer extends JDialog {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textField_name;
+	private JTextField textField_country;
+	private JTextField textField_city;
+	private JTextField textField_street;
+	private JTextField textField_phone;
+	private JTextField textField_email;
 	private static GuiUpdateCustomer instance= null;
+	private CtrCustomer cc = new CtrCustomer();
+	
+	private Customer customer = cc.searchCustomerByName(GuiMain.getInstance().list_1.getSelectedItem());
 
 	/**
 	 * Launch the application.
@@ -102,7 +108,7 @@ public class GuiUpdateCustomer extends JDialog {
 		lblNewLabel.setBounds(10, 11, 119, 14);
 		namePanel.add(lblNewLabel);
 		
-		JLabel lblName = new JLabel("name");
+		JLabel lblName = new JLabel(customer.getName());
 		lblName.setBounds(177, 13, 46, 14);
 		namePanel.add(lblName);
 		
@@ -111,10 +117,10 @@ public class GuiUpdateCustomer extends JDialog {
 		lblNewLabel_1.setBounds(10, 36, 103, 14);
 		namePanel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(137, 35, 152, 20);
-		namePanel.add(textField);
-		textField.setColumns(10);
+		textField_name = new JTextField();
+		textField_name.setBounds(137, 35, 152, 20);
+		namePanel.add(textField_name);
+		textField_name.setColumns(10);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBackground(new Color(204, 204, 255));
@@ -137,7 +143,12 @@ public class GuiUpdateCustomer extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
+				else
 				*/
+			cc.updateCustomer(customer.getId_customer(), textField_name.getText(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+			
+				
+			
 			}
 		});
 		btnAdd.setBounds(109, 89, 89, 23);
@@ -155,14 +166,14 @@ public class GuiUpdateCustomer extends JDialog {
 		lblNewPrice.setBounds(10, 36, 103, 14);
 		countryPanel.add(lblNewPrice);
 		
-		JLabel lblPrice = new JLabel("country");
-		lblPrice.setBounds(177, 13, 46, 14);
-		countryPanel.add(lblPrice);
+		JLabel lblCountry = new JLabel(customer.getAddress().getCountry());
+		lblCountry.setBounds(177, 13, 46, 14);
+		countryPanel.add(lblCountry);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(137, 35, 152, 20);
-		countryPanel.add(textField_1);
+		textField_country = new JTextField();
+		textField_country.setColumns(10);
+		textField_country.setBounds(137, 35, 152, 20);
+		countryPanel.add(textField_country);
 		
 		JButton btnModify = new JButton("Update");
 		btnModify.setBackground(new Color(204, 204, 255));
@@ -174,6 +185,7 @@ public class GuiUpdateCustomer extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}*/
+				cc.updateCustomer(customer.getId_customer(), customer.getName(), textField_country.getText(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
 			}
 		});
 		btnModify.setBounds(109, 89, 89, 23);
@@ -207,12 +219,17 @@ public class GuiUpdateCustomer extends JDialog {
 		lblNewCity.setBounds(10, 36, 103, 14);
 		cityPanel.add(lblNewCity);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(137, 35, 152, 20);
-		cityPanel.add(textField_2);
+		textField_city = new JTextField();
+		textField_city.setColumns(10);
+		textField_city.setBounds(137, 35, 152, 20);
+		cityPanel.add(textField_city);
 		
 		JButton btnModify_1 = new JButton("Update");
+		btnModify_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), textField_city.getText(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+			}
+		});
 		btnModify_1.setBackground(new Color(204, 204, 255));
 		btnModify_1.setBounds(109, 89, 89, 23);
 		cityPanel.add(btnModify_1);
@@ -237,7 +254,7 @@ public class GuiUpdateCustomer extends JDialog {
 		lblCurrentStreet.setBounds(10, 11, 119, 14);
 		streetPanel.add(lblCurrentStreet);
 		
-		JLabel lblStreet = new JLabel("street");
+		JLabel lblStreet = new JLabel(customer.getStreet());
 		lblStreet.setBounds(177, 13, 46, 14);
 		streetPanel.add(lblStreet);
 		
@@ -246,12 +263,17 @@ public class GuiUpdateCustomer extends JDialog {
 		lblNewStreet.setBounds(10, 36, 103, 14);
 		streetPanel.add(lblNewStreet);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(137, 35, 152, 20);
-		streetPanel.add(textField_3);
+		textField_street = new JTextField();
+		textField_street.setColumns(10);
+		textField_street.setBounds(137, 35, 152, 20);
+		streetPanel.add(textField_street);
 		
 		JButton btnModify_2 = new JButton("Update");
+		btnModify_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), textField_street.getText(), customer.getPhoneNr(), customer.getEmail());
+			}
+		});
 		btnModify_2.setBackground(new Color(204, 204, 255));
 		btnModify_2.setBounds(109, 89, 89, 23);
 		streetPanel.add(btnModify_2);
@@ -275,21 +297,26 @@ public class GuiUpdateCustomer extends JDialog {
 		lblCurrentPhone.setBounds(10, 11, 119, 14);
 		phonePanel.add(lblCurrentPhone);
 		
-		JLabel lblPhon = new JLabel("phon");
-		lblPhon.setBounds(177, 13, 46, 14);
-		phonePanel.add(lblPhon);
+		JLabel lblPhone = new JLabel(customer.getPhoneNr());
+		lblPhone.setBounds(177, 13, 46, 14);
+		phonePanel.add(lblPhone);
 		
 		JLabel lblNewPhone = new JLabel("New phone:");
 		lblNewPhone.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewPhone.setBounds(10, 36, 103, 14);
 		phonePanel.add(lblNewPhone);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(137, 35, 152, 20);
-		phonePanel.add(textField_4);
+		textField_phone = new JTextField();
+		textField_phone.setColumns(10);
+		textField_phone.setBounds(137, 35, 152, 20);
+		phonePanel.add(textField_phone);
 		
 		JButton btnModify_3 = new JButton("Update");
+		btnModify_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), textField_phone.getText(), customer.getEmail());
+			}
+		});
 		btnModify_3.setBackground(new Color(204, 204, 255));
 		btnModify_3.setBounds(109, 89, 89, 23);
 		phonePanel.add(btnModify_3);
@@ -313,7 +340,7 @@ public class GuiUpdateCustomer extends JDialog {
 		lblCurrentEmail.setBounds(10, 11, 119, 14);
 		emailPanel.add(lblCurrentEmail);
 		
-		JLabel lblEmail = new JLabel("email");
+		JLabel lblEmail = new JLabel(customer.getEmail());
 		lblEmail.setBounds(177, 13, 46, 14);
 		emailPanel.add(lblEmail);
 		
@@ -322,12 +349,16 @@ public class GuiUpdateCustomer extends JDialog {
 		lblNewEmail.setBounds(10, 36, 103, 14);
 		emailPanel.add(lblNewEmail);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(137, 35, 152, 20);
-		emailPanel.add(textField_5);
+		textField_email = new JTextField();
+		textField_email.setColumns(10);
+		textField_email.setBounds(137, 35, 152, 20);
+		emailPanel.add(textField_email);
 		
 		JButton btnModify_4 = new JButton("Update");
+		btnModify_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cc.updateCustomer(customer.getId_customer(), customer.getEmail(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), textField_email.getText());
+		}});
 		btnModify_4.setBackground(new Color(204, 204, 255));
 		btnModify_4.setBounds(109, 89, 89, 23);
 		emailPanel.add(btnModify_4);

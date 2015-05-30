@@ -46,6 +46,7 @@ public class GuiMain extends JFrame {
 	private static ServerSocket socket;    
 	private JTextField textField_5;
 	private JTextField textField_6;
+	public List list_1;
 	
 	public static GuiMain getInstance() {
 	      if(instance == null) {
@@ -153,7 +154,7 @@ public class GuiMain extends JFrame {
 				}*/
 			}
 		});
-		button_5.setBounds(281, 11, 90, 23);
+		button_5.setBounds(280, 11, 90, 23);
 		salePanel.add(button_5);
 		
 		List list_3 = new List();
@@ -218,7 +219,7 @@ public class GuiMain extends JFrame {
 				}*/
 			}
 		});
-		btnRegisterPaymeny.setBounds(382, 53, 209, 58);
+		btnRegisterPaymeny.setBounds(376, 175, 209, 64);
 		salePanel.add(btnRegisterPaymeny);
 		
 		JButton btnMarkAsPacked = new JButton("Mark as packed");
@@ -244,8 +245,32 @@ public class GuiMain extends JFrame {
 		
 			}
 		});
-		btnMarkAsPacked.setBounds(209, 266, 162, 23);
+		btnMarkAsPacked.setBounds(376, 38, 209, 58);
 		salePanel.add(btnMarkAsPacked);
+		
+		JButton btnMarkAsSent = new JButton("Mark as sent");
+		btnMarkAsSent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*if(list.getSelectedItems().length==0)
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				} */
+				int response=JOptionPane.showConfirmDialog(null, "Are you sure you want to mark the selected sale as sent?", "sent",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+				      System.out.println("No button clicked");
+				    } else if (response == JOptionPane.YES_OPTION) {
+				      JOptionPane.showMessageDialog(null, "The selected item was marked as packed");
+				    } else if (response == JOptionPane.CLOSED_OPTION) {
+				      System.out.println("JOptionPane closed");
+				    }
+			}});
+		
+		btnMarkAsSent.setForeground(Color.BLACK);
+		btnMarkAsSent.setBackground(new Color(204, 204, 255));
+		btnMarkAsSent.setBounds(376, 107, 209, 59);
+		salePanel.add(btnMarkAsSent);
 		
 		
 		
@@ -409,7 +434,7 @@ public class GuiMain extends JFrame {
 		button.setBounds(417, 11, 89, 23);
 		customerPanel.add(button);
 		
-		List list_1 = new List();
+		 list_1 = new List();
 		list_1.setForeground(Color.BLACK);
 		list_1.setBackground(Color.LIGHT_GRAY);
 		list_1.setBounds(90, 37, 416, 222);

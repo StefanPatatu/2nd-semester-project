@@ -42,6 +42,7 @@ public class GuiSale extends JDialog {
 	private JPanel contentPane;
 	private JTextField searchField;
 	private static GuiSale instance=null;
+	private JTextField textField;
 	
 
 	/**
@@ -97,7 +98,7 @@ public class GuiSale extends JDialog {
 		        }
 			}
 		});
-		searchField.setBounds(10, 39, 193, 23);
+		searchField.setBounds(10, 108, 193, 23);
 		panel.add(searchField);
 		searchField.setColumns(10);
 		
@@ -119,17 +120,17 @@ public class GuiSale extends JDialog {
 				}*/
 			}
 		});
-		btnSearch.setBounds(206, 38, 84, 24);
+		btnSearch.setBounds(206, 107, 84, 24);
 		panel.add(btnSearch);
 		
 		JLabel lblSearchProduct = new JLabel("Search product");
 		lblSearchProduct.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSearchProduct.setBounds(10, 11, 156, 23);
+		lblSearchProduct.setBounds(10, 80, 156, 23);
 		panel.add(lblSearchProduct);
 		
 		List itemList = new List();
 		itemList.setBackground(Color.LIGHT_GRAY);
-		itemList.setBounds(10, 68, 280, 196);
+		itemList.setBounds(10, 137, 280, 127);
 		panel.add(itemList);
 		
 		itemList.add("Acidophilus bifidus kompl.caps. N30");
@@ -204,6 +205,21 @@ public class GuiSale extends JDialog {
 		JLabel lblPriceunit_1 = new JLabel("Price/Unit");
 		lblPriceunit_1.setBounds(97, 296, 69, 14);
 		panel.add(lblPriceunit_1);
+		
+		JLabel lblInsertCustomerTo = new JLabel("Insert customer to sale");
+		lblInsertCustomerTo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblInsertCustomerTo.setBounds(10, 11, 280, 23);
+		panel.add(lblInsertCustomerTo);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(10, 33, 193, 23);
+		panel.add(textField);
+		
+		JButton button = new JButton("Search");
+		button.setBackground(new Color(204, 204, 255));
+		button.setBounds(206, 32, 84, 24);
+		panel.add(button);
 		
 		
 		
