@@ -1,5 +1,12 @@
 package controlLayer;
 
+/**
+ * Errors
+ * 
+ * @author futz
+ * @version 2.5
+ */
+
 public enum Errors {
 	
 	INSERT_ADDRESS(-1, "Insert operation failed. Rolling back."),
@@ -9,6 +16,9 @@ public enum Errors {
 	INSERT_CUSTOMER(-4, "Insert operation failed. Rolling back."),
 	UPDATE_CUSTOMER(-5, "Update operation failed. Rolling back."),
 	REMOVE_CUSTOMER(-6, "Remove operation failed. Rolling back."),
+	GET_DISCOUNT(-21, "Error while trying to calculate the discount."),
+	GET_DISCOUNT_LOOP(-25, "Error while trying to calculate the discount."),
+	GET_ALL_SALES_C(-22, "Unable to retrieve the sales from the database."),
 	
 	INSERT_EMPLOYEE(-7, "Insert operation failed. Rolling back."),
 	UPDATE_EMPLOYEE(-8, "Update operation failed. Rolling back."),
@@ -26,6 +36,10 @@ public enum Errors {
 	UNABLE_TO_GET_ID(-18, "An error occured while trying to get the item id."),
 	UNABLE_TO_GET_PRICE(-19, "An error occured while trying to get the price."),
 	INSERT_SALELINE(-20, "Insert operation failed. Rolling back."),
+	
+	SALE_TOTAL_PRICE(-24, "Error while trying to calculate the sale's total"),
+	GET_ALL_SALELINES_FOR_SALE(-23, "Unable to retrieve the sale lines from the database."),
+	
 	
 	;
 	

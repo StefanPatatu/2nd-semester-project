@@ -9,7 +9,7 @@ import modelLayer.Sale;
  * DbSaleInterface
  * 
  * @author DarkSun + futz
- * @version 1.3
+ * @version 1.4
  */
 
 public interface DbSaleInterface {
@@ -24,6 +24,7 @@ public interface DbSaleInterface {
 	public int updateSaleIsSent(boolean isSent, int id_sale) throws Exception;
 	public int updateSaleIsPaid(boolean isPaid, int id_sale) throws Exception;
 	public ArrayList<Sale> getAllUnpaidSalesForCustomer(int id_customer) throws Exception;
+	public ArrayList<Sale> getAllSalesForCustomer(int id_customer) throws Exception;
 	public int addSalesToInvoice(int id_invoice, ArrayList<Sale> sales) throws Exception;
 	
 }

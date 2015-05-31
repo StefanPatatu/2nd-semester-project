@@ -12,7 +12,7 @@ import modelLayer.SaleLine;
  * DbSale
  * 
  * @author DarkSun + futz
- * @version 1.5
+ * @version 1.6
  */
 
 public class DbSale implements DbSaleInterface {
@@ -27,8 +27,8 @@ public class DbSale implements DbSaleInterface {
 	}
 
 	@Override
-	public Sale findSaleById_sale(int id_Sale, boolean retrieveAssoc) throws Exception {
-		Sale s = singleWhere("id_sale=" + id_Sale, retrieveAssoc);
+	public Sale findSaleById_sale(int id_sale, boolean retrieveAssoc) throws Exception {
+		Sale s = singleWhere("id_sale=" + id_sale, retrieveAssoc);
 		return s;
 	}
 
@@ -167,6 +167,26 @@ public class DbSale implements DbSaleInterface {
 			throw new SQLException("getAllUnpaidSalesForCustomer.DbSale.dbLayer", sqle);
 		} catch (Exception e) {
 			throw new Exception ("getAllUnpaidSalesForCustomer.DbSale.dbLayer", e);
+		}
+		return sales;
+	}
+	
+	@Override
+	public ArrayList<Sale> getAllSalesForCustomer(int id_customer) throws Exception {
+		ResultSet resultSet;
+		ArrayList<Sale> sales = new ArrayList<>();
+		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale WHERE id_c=?";
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+			statement.setInt(1, id_customer);
+			resultSet = statement.executeQuery(string);
+			while(resultSet.next()) {
+				Sale s = buildSale(resultSet);
+				sales.add(s);
+			}
+		} catch (SQLException sqle) {
+			throw new SQLException("getAllSalesForCustomer.DbSale.dbLayer", sqle);
+		} catch (Exception e) {
+			throw new Exception ("getAllSalesForCustomer.DbSale.dbLayer", e);
 		}
 		return sales;
 	}
