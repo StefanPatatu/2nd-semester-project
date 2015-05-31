@@ -133,7 +133,7 @@ bg=red</panel_attributes>
       <h>184</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-1.1 checkCustomer(name)</panel_attributes>
+1.1 searchCustomerByName(name)</panel_attributes>
     <additional_attributes>24;168;272;24</additional_attributes>
   </element>
   <element>
@@ -214,7 +214,7 @@ bg=red</panel_attributes>
       <h>296</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-3.2 addSale()</panel_attributes>
+3.2 insertSale()</panel_attributes>
     <additional_attributes>128;280;24;24</additional_attributes>
   </element>
   <element>
@@ -249,7 +249,7 @@ bg=red</panel_attributes>
       <h>336</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-3.3 addSaleLine(i, quantity)</panel_attributes>
+3.3 insertSaleLine(i, quantity)</panel_attributes>
     <additional_attributes>256;320;24;24</additional_attributes>
   </element>
   <element>
