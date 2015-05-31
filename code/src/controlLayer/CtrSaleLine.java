@@ -12,7 +12,7 @@ import dbLayer.DbConnection;
  * CtrSaleLine
  * 
  * @author futz
- * @version 1.0
+ * @version 1.1
  */
 
 public class CtrSaleLine {
@@ -75,6 +75,34 @@ public class CtrSaleLine {
 			}
 		}
 		return success;
+	}
+	
+	//returns a saleLine object if successful
+	//returns null otherwise
+	public SaleLine createSaleLine(int quantity, String barcode) {
+		int success = 1;
+		Item item = null;
+		double price = -1;
+		SaleLine saleLine = new SaleLine();
+		saleLine.setQuantity(quantity);
+		try {
+			item = ctrItem.findItemByBarcode(barcode);
+			saleLine.setItem(item);
+		} catch (Exception e) {
+			success = Errors.UNABLE_TO_GET_ITEM.getCode();
+		}
+		try {
+			price = item.getPrice();
+			saleLine.setPrice(item.getPrice());
+		} catch (Exception e) {
+			success = Errors.UNABLE_TO_GET_PRICE.getCode();
+		}
+		if(success == 1) {
+			return saleLine;
+		} else {
+			return null;
+		}
+		
 	}
 
 }

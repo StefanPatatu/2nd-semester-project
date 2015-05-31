@@ -22,11 +22,16 @@ public class CtrSale {
 	
 	private DbSaleInterface dbSale;
 	private CtrSaleLine ctrSaleLine;
+	private ArrayList<SaleLine> saleLines;
+	private CtrEmployee ctrEmployee;
+	private CtrCustomer ctrCustomer;
 	
 	//constructor
 	public CtrSale() {
 		dbSale = new DbSale();
 		ctrSaleLine = new CtrSaleLine();
+		ctrEmployee = new CtrEmployee();
+		ctrCustomer = new CtrCustomer():
 	}
 	
 	public ArrayList<Sale> getAllSale() throws Exception {
@@ -64,7 +69,18 @@ public class CtrSale {
 			boolean isPaid,
 			Timestamp datePaid,
 			int id_employee,
-			int id_customer) {
+			int id_customer,
+			ArrayList<SaleLine> saleLines) {
+		int success = 1;
+		int discount = ctrCustomer.getDiscount(id_customer);
+		java.util.Date date= new java.util.Date();
+		Timestamp dateCreated = new Timestamp(date.getTime());
+		Employee employee = ctrEmployee.findEmployeeById_employee(id_employee);
+		Customer customer = ctrCustomer.findCustomer(id_customer);
+		Sale sale = new Sale(saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines) {
+			
+		}
+		
 		return 0;
 	}
 	
@@ -72,6 +88,24 @@ public class CtrSale {
 		ArrayList<Sale> sales = new ArrayList<>();
 		sales = dbSale.getAllSalesForCustomer(id_customer);
 		return sales;
+	}
+	
+	//creates an empty saleLine array and returns it
+	public ArrayList<SaleLine> startSale() {
+		saleLines = new ArrayList<>();
+		return saleLines;
+	}
+	
+	//returns 1 if successful
+	//returns -27 if unable to add the sale to the ArrayList
+	public int addSaleLineToSale(int quantity, String barcode, ArrayList<SaleLine> saleLines) {
+		int success = 1;
+		SaleLine saleLine = new SaleLine();
+		saleLine = ctrSaleLine.createSaleLine(quantity, barcode);
+		if(saleLine == null) {
+			success = Errors.ADD_SALELINE_TO_SALE.getCode();
+		}
+		return success;
 	}
 	
 	//returns the total price of the sale if successful

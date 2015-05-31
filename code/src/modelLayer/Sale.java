@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Sale
  * 
  * @author futz
- * @version 1.3
+ * @version 1.5
  */
 
 public class Sale {
@@ -26,7 +26,7 @@ public class Sale {
 	private Customer customer;
 	private ArrayList<SaleLine> saleLines;
 
-	//constructor
+	//constructor full
 	public Sale(
 			int id_sale,
 			String saleNr,
@@ -56,7 +56,36 @@ public class Sale {
 		this.setSaleLines(saleLines);
 	}
 	
-	//constructor
+	//constructor no id
+	public Sale(
+			String saleNr,
+			int discount,
+			Timestamp dateCreated,
+			boolean isPacked,
+			Timestamp datePacked,
+			boolean isSent,
+			Timestamp dateSent,
+			boolean isPaid,
+			Timestamp datePaid,
+			Employee employee,
+			Customer customer,
+			ArrayList<SaleLine> saleLines) {
+		this.setId_sale(-1);
+		this.setSaleNr(saleNr);
+		this.setDiscount(discount);
+		this.setDateCreated(dateCreated);
+		this.setPacked(isPacked);
+		this.setDatePacked(datePacked);
+		this.setSent(isSent);
+		this.setDateSent(dateSent);
+		this.setPaid(isPaid);
+		this.setDatePaid(datePaid);
+		this.setEmployee(employee);
+		this.setCustomer(customer);
+		this.setSaleLines(saleLines);
+	}
+	
+	//constructor no saleLines
 	public Sale(
 			int id_sale,
 			String saleNr,

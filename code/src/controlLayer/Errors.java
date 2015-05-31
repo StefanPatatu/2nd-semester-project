@@ -32,13 +32,17 @@ public enum Errors {
 	INSERT_ITEM(-15, "Insert operation failed. Rolling back."),
 	UPDATE_ITEM(-16, "Update operation failed. Rolling back."),
 	
+	
+	//CtrSaleLine
 	UNABLE_TO_GET_ITEM(-17, "An error occured while trying to get the item object."),
 	UNABLE_TO_GET_ID(-18, "An error occured while trying to get the item id."),
 	UNABLE_TO_GET_PRICE(-19, "An error occured while trying to get the price."),
 	INSERT_SALELINE(-20, "Insert operation failed. Rolling back."),
 	
+	//Ctr Sale
 	SALE_TOTAL_PRICE(-24, "Error while trying to calculate the sale's total"),
 	GET_ALL_SALELINES_FOR_SALE(-23, "Unable to retrieve the sale lines from the database."),
+	ADD_SALELINE_TO_SALE(-27, "Unable create and add this sale to the ArrayList.")
 	
 	
 	;
