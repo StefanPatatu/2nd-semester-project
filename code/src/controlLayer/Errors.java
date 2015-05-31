@@ -13,6 +13,20 @@ public enum Errors {
 	INSERT_EMPLOYEE(-7, "Insert operation failed. Rolling back."),
 	UPDATE_EMPLOYEE(-8, "Update operation failed. Rolling back."),
 	REMOVE_EMPLOYEE(-9, "Remove operation failed. Rolling back."),
+	UNAUTHENTICATED_USER(-10, "User not authenticated. Please log in."),
+	AUTHENTICATE_FAILED(-11, "Authentication operation failed. Please try again"),
+	
+	BARCODE_EXISTS(-12, "An item with this barcode already exists."),
+	NAME_EXISTS(-13, "An item with this exact same name already exists."),
+	CONFLICT_CHECK(-14, "An error occured while trying to check for conflcits."),
+	INSERT_ITEM(-15, "Insert operation failed. Rolling back."),
+	UPDATE_ITEM(-16, "Update operation failed. Rolling back."),
+	
+	UNABLE_TO_GET_ITEM(-17, "An error occured while trying to get the item object."),
+	UNABLE_TO_GET_ID(-18, "An error occured while trying to get the item id."),
+	UNABLE_TO_GET_PRICE(-19, "An error occured while trying to get the price."),
+	INSERT_SALELINE(-20, "Insert operation failed. Rolling back."),
+	
 	;
 	
 	private final int code;

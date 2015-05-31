@@ -4,7 +4,7 @@ package modelLayer;
  * Employee
  * 
  * @author futz
- * @version 1.5
+ * @version 1.6
  */
 
 public class Employee {
@@ -80,6 +80,11 @@ public class Employee {
 		this.setSalt(null);
 		this.setEmail(null);
 		this.setRights(-1);
+	}
+	
+	//constructor empty
+	public Employee() {
+		
 	}
 	
 	//id_employee

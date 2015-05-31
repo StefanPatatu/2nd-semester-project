@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * SystemLogin
  * 
  * @author futz
- * @version 1.0
+ * @version 1.1
  */
 
 public class SystemLogin {
@@ -17,7 +17,7 @@ public class SystemLogin {
 	}
 	
 	//returns user access level:
-	//-1 - authentication error
+	//-11 - authenticate_failed
 	//1 - worker
 	//2 - cashier
 	//3 - manager

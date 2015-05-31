@@ -4,7 +4,7 @@ package modelLayer;
  * Item
  * 
  * @author Kristis133 + futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class Item {
@@ -17,7 +17,7 @@ public class Item {
 	private String itemType;
 	private String category;
 	
-	//constructor
+	//constructor full
 	public Item(
 			int id_item,
 			String barcode,
@@ -35,7 +35,24 @@ public class Item {
 		this.setCategory(category);
 	}
 	
-	//constructor
+	//constructor no id
+	public Item(
+			String barcode,
+			String name,
+			double price,
+			int stock,
+			String itemType,
+			String category) {
+		this.setId_item(-1);
+		this.setBarcode(barcode);
+		this.setName(name);
+		this.setPrice(price);
+		this.setStock(stock);
+		this.setItemType(itemType);
+		this.setCategory(category);
+	}
+	
+	//constructor just id
 	public Item(
 			int id_item) {
 		this.setId_item(id_item);
@@ -45,6 +62,11 @@ public class Item {
 		this.setStock(-1);
 		this.setItemType(null);
 		this.setCategory(null);
+	}
+	
+	//constructor empty
+	public Item() {
+		
 	}
 	
 	//id_item

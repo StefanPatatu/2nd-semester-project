@@ -11,7 +11,7 @@ import dbLayer.DbConnection;
  * CtrAddress
  * 
  * @author futz
- * @version 1.0
+ * @version 1.1
  */
 
 public class CtrAddress {
@@ -23,8 +23,15 @@ public class CtrAddress {
 		dbAddress = new DbAddress();
 	}
 	
-	public Address createNewAddress(String country, String city) {
-		return new Address(country, city);
+	//creates a new address using the country and city provided,
+	//inserts it into the database and returns the address object,
+	//In case the address already exists, it is just returned.
+	public Address createNewAddress(String country, String city) throws Exception {
+		if(insertAddress(country, city) == 1) {
+			return findAddressbyCountryAndCity(country, city);
+		} else {
+			throw new Exception("createNewAddress.CtrAddress.controlLayer");
+		}
 	}
 	
 	public ArrayList<Address> getAllAddresses() throws Exception {

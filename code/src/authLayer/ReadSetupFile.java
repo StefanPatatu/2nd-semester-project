@@ -13,7 +13,7 @@ import org.jasypt.properties.PropertyValueEncryptionUtils;
  * ReadSetupFile
  * 
  * @author futz
- * @version 2.1
+ * @version 2.2
  */
 
 public class ReadSetupFile {
@@ -27,6 +27,7 @@ public class ReadSetupFile {
 	private StandardPBEStringEncryptor encryptor = null;
 	private final String password = "1B7C4DD1C6IGHIUW955953226444GKS";
 	private final String algorithm = "PBEWithMD5AndDES";
+	private final int iterations = 1394;
 	
 	//constructor
 	public ReadSetupFile() throws Exception {
@@ -79,7 +80,7 @@ public class ReadSetupFile {
 		
 		SimplePBEConfig config = new SimplePBEConfig(); 
 		config.setAlgorithm(algorithm);
-		config.setKeyObtentionIterations(1000);
+		config.setKeyObtentionIterations(iterations);
 		config.setPassword(password);
 		
 		encryptor = new StandardPBEStringEncryptor();
