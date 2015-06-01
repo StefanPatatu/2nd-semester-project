@@ -12,7 +12,7 @@ import modelLayer.SaleLine;
  * DbSale
  * 
  * @author DarkSun + futz
- * @version 1.6
+ * @version 1.7
  */
 
 public class DbSale implements DbSaleInterface {

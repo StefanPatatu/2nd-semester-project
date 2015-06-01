@@ -15,7 +15,7 @@ import dbLayer.DbConnection;
  * CtrSale
  * 
  * @author futz
- * @version 1.0
+ * @version 1.2
  */
 
 public class CtrSale {

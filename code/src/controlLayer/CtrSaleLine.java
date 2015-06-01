@@ -12,7 +12,7 @@ import dbLayer.DbConnection;
  * CtrSaleLine
  * 
  * @author futz
- * @version 1.1
+ * @version 1.2
  */
 
 public class CtrSaleLine {

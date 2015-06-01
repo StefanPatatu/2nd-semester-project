@@ -4,7 +4,7 @@ package controlLayer;
  * Errors
  * 
  * @author futz
- * @version 2.5
+ * @version 2.6
  */
 
 public enum Errors {
