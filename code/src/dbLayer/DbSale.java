@@ -105,10 +105,14 @@ public class DbSale implements DbSaleInterface {
 	@Override
 	public int updateSaleIsPacked(boolean isPacked, int id_sale) throws Exception {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isPacked=? WHERE id_sale=?";
+		//current date
+		java.util.Date date= new java.util.Date();
+		Timestamp datePacked = new Timestamp(date.getTime());
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isPacked=?, datePacked=?  WHERE id_sale=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setBoolean(1, isPacked);
-			statement.setInt(2, id_sale);
+			statement.setTimestamp(2, datePacked);
+			statement.setInt(3, id_sale);
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateSaleIsPacked.DbSale.dbLayer", sqle);
@@ -121,10 +125,14 @@ public class DbSale implements DbSaleInterface {
 	@Override
 	public int updateSaleIsSent(boolean isSent, int id_sale) throws Exception {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isSent=? WHERE id_sale=?";
+		//current date
+		java.util.Date date= new java.util.Date();
+		Timestamp dateSent = new Timestamp(date.getTime());
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isSent=?, dateSent=? WHERE id_sale=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setBoolean(1, isSent);
-			statement.setInt(2, id_sale);
+			statement.setTimestamp(2, dateSent);
+			statement.setInt(3, id_sale);
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateSaleIsSent.DbSale.dbLayer", sqle);
@@ -137,10 +145,14 @@ public class DbSale implements DbSaleInterface {
 	@Override
 	public int updateSaleIsPaid(boolean isPaid, int id_sale) throws Exception {
 		int result = 0;
-		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isPaid=? WHERE id_sale=?";
+		//current date
+		java.util.Date date= new java.util.Date();
+		Timestamp datePaid = new Timestamp(date.getTime());
+		String string = "UPDATE " + authLayer.DbConfig.DBTablePrefix + "Sale SET isPaid=?, datePaid=? WHERE id_sale=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setBoolean(1, isPaid);
-			statement.setInt(2, id_sale);
+			statement.setTimestamp(2, datePaid);
+			statement.setInt(3, id_sale);
 			result = statement.executeUpdate();
 		} catch (SQLException sqle) {
 			throw new SQLException("updateSaleIsPaid.DbSale.dbLayer", sqle);

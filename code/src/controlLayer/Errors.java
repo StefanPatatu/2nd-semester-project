@@ -48,6 +48,10 @@ public enum Errors {
 	INSERT_SALE(-30, "Insert operation failed. Rolling back."),
 	ADD_SALE_TO_DB(-31, "The preconditions for adding a sale to the database are not fulfilled."),
 	INSERT_SALELINE_INTO_SALE(-32, "SaleLine could not be inserted."),
+	UPDATE_ISPACKED(-33, "Could not update isPacked."),
+	UPDATE_ISSENT(-34, "Could not update isSent."),
+	UPDATE_ISPAID(-35, "Could not update isPaid."),
+
 	
 	
 	;

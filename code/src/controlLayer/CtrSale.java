@@ -57,6 +57,13 @@ public class CtrSale {
 	
 	//******************************************************************************************
 	//INSERT SALE PART START
+	//
+	//Usage:
+	//Call startSale() and keep the ArrayList<SaleLine> object
+	//Call addSaleLineToSale() as many times as necessary
+	//When done call insertSale()
+	//Note that nothing is added to the database until insertSale()
+	//That means you can remove a saleLine if needed
 	//******************************************************************************************
 	
 	//creates an empty saleLine array and returns it
@@ -164,6 +171,66 @@ public class CtrSale {
 	//INSERT SALE PART END
 	//******************************************************************************************
 	
+	//returns 1 if successful
+	//returns negative value if unsuccessful
+	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
+	public int updateSaleIsPacked(boolean isPacked, int id_sale) throws Exception {
+		int success = 1;
+		try {
+			DbConnection.startTransaction();
+			dbSale.updateSaleIsPacked(isPacked, id_sale);
+			DbConnection.comitTransaction();
+		} catch (Exception e) {
+			try {
+				DbConnection.rollbackTransaction();
+			} catch (Exception r) {
+				throw new Exception("updateSaleIsPacked.CtrSale.controlLayer", r);
+			}
+			success = Errors.UPDATE_ISPACKED.getCode();
+		}
+		return success;
+	}
+	
+	//returns 1 if successful
+	//returns negative value if unsuccessful
+	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
+	public int updateSaleIsSent(boolean isSent, int id_sale) throws Exception {
+		int success = 1;
+		try {
+			DbConnection.startTransaction();
+			dbSale.updateSaleIsSent(isSent, id_sale);
+			DbConnection.comitTransaction();
+		} catch (Exception e) {
+			try {
+				DbConnection.rollbackTransaction();
+			} catch (Exception r) {
+				throw new Exception("updateSaleIsSent.CtrSale.controlLayer", r);
+			}
+			success = Errors.UPDATE_ISSENT.getCode();
+		}
+		return success;
+	}
+	
+	//returns 1 if successful
+	//returns negative value if unsuccessful
+	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
+	public int updateSaleIsPaid(boolean isSent, int id_sale) throws Exception {
+		int success = 1;
+		try {
+			DbConnection.startTransaction();
+			dbSale.updateSaleIsPaid(isSent, id_sale);
+			DbConnection.comitTransaction();
+		} catch (Exception e) {
+			try {
+				DbConnection.rollbackTransaction();
+			} catch (Exception r) {
+				throw new Exception("updateSaleIsPaid.CtrSale.controlLayer", r);
+			}
+			success = Errors.UPDATE_ISPAID.getCode();
+		}
+		return success;
+	}
+	
 	public ArrayList<Sale> getAllUnpaidSalesForCustomer(int id_customer) throws Exception {
 		ArrayList<Sale> sales = new ArrayList<>();
 		sales = dbSale.getAllUnpaidSalesForCustomer(id_customer);
@@ -196,8 +263,4 @@ public class CtrSale {
 		return success;
 	}
 	
-	//******************************************************************************************
-	//
-	//******************************************************************************************
-
 }
