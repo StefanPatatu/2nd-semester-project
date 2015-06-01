@@ -31,7 +31,7 @@ public class CtrSale {
 		dbSale = new DbSale();
 		ctrSaleLine = new CtrSaleLine();
 		ctrEmployee = new CtrEmployee();
-		ctrCustomer = new CtrCustomer():
+		ctrCustomer = new CtrCustomer();
 	}
 	
 	public ArrayList<Sale> getAllSale() throws Exception {

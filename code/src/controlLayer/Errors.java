@@ -39,7 +39,7 @@ public enum Errors {
 	UNABLE_TO_GET_PRICE(-19, "An error occured while trying to get the price."),
 	INSERT_SALELINE(-20, "Insert operation failed. Rolling back."),
 	
-	//Ctr Sale
+	//CtrSale
 	SALE_TOTAL_PRICE(-24, "Error while trying to calculate the sale's total"),
 	GET_ALL_SALELINES_FOR_SALE(-23, "Unable to retrieve the sale lines from the database."),
 	ADD_SALELINE_TO_SALE(-27, "Unable create and add this sale to the ArrayList.")
