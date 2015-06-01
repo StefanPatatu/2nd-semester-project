@@ -151,55 +151,18 @@ public class GuiAddCustomer extends JDialog {
 					String city = textField_city.getText();
 					String country = textField_country.getText();
 					String street = textField_street.getText();
-					ArrayList<Address> addresses = new ArrayList<>();
-					try {
-						addresses=ca.getAllAddresses();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Can't access addresses.", "Error", JOptionPane.ERROR_MESSAGE);
-					}
-					ArrayList<Customer> customers = new ArrayList<>();
-					try {
-						customers= cc.getAllCustomers();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Can't access customer.", "Error", JOptionPane.ERROR_MESSAGE);
-					}
 					String name = textField_name.getText();
 					String number = textField_number.getText();
 					String email = textField_email.getText();
-					/*boolean found = false;
-					for(Address currAddress:addresses)
-					{
-						if(currAddress.getCountry().equals(country)&&currAddress.getCity().equals(city))
-						{
-							found=true;
-						}
-						
-						
-							
-						
-					}
-					if(found==false)
-					{
-						try {
-							ca.insertAddress(country, city);
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							//e1.printStackTrace();
-							JOptionPane.showMessageDialog(null, "Can't create address.", "Error", JOptionPane.ERROR_MESSAGE);
-						}
-					}*/
+
 					try {
-						if(cc.searchCustomerByName(name)!=null)
-						{
-							cc.insertCustomer(name, country, city, street, number, email);
-						}
+						cc.insertCustomer(name, country, city, street, number, email);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Can't find customer.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "Can't insert customer. ", "Error",
+						        JOptionPane.ERROR_MESSAGE);
 					}
-					
+							
 				}
 					
 			}

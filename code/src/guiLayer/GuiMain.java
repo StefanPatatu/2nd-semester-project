@@ -1,7 +1,6 @@
 package guiLayer;
 
 import java.awt.BorderLayout;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -25,7 +24,11 @@ import java.io.IOException;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+
 import javax.swing.JLabel;
+
+import authLayer.DbConfig;
+
 import java.awt.Toolkit;
 import java.awt.Color;
 /**
@@ -38,6 +41,7 @@ public class GuiMain extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	
 
 	/**
 	 * Launch the application.
@@ -75,6 +79,7 @@ public class GuiMain extends JFrame {
 			public void run() {
 				try {
 					checkIfRunning();
+					 DbConfig dbb = new DbConfig();
 					GuiMain frame = GuiMain.getInstance();
 					frame.setVisible(true);
 				} catch (Exception e) {
