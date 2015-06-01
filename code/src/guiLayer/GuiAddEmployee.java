@@ -15,6 +15,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import controlLayer.CtrCustomer;
+import controlLayer.CtrEmployee;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -24,11 +27,15 @@ public class GuiAddEmployee extends JDialog {
 	private JPanel contentPane;
 	private JTextField textField_Id;
 	private JTextField textField_name;
-	private JTextField textField_address;
+	private JTextField textField_country;
 	private JTextField textField_street;
 	private JTextField textField_number;
 	private JTextField textField_email;
 	private static GuiAddEmployee instance=null;
+	private JTextField textField_city;
+	private CtrEmployee ce= new CtrEmployee();
+	private JTextField textField_pass;
+	private JTextField textField_rights;
 
 	/**
 	 * Launch the application.
@@ -69,10 +76,10 @@ public class GuiAddEmployee extends JDialog {
 		lblName.setBounds(10, 36, 108, 14);
 		contentPane.add(lblName);
 		
-		JLabel lblAddress = new JLabel("Address:");
-		lblAddress.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblAddress.setBounds(10, 61, 108, 14);
-		contentPane.add(lblAddress);
+		JLabel lblCountry = new JLabel("Country:");
+		lblCountry.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCountry.setBounds(10, 61, 108, 14);
+		contentPane.add(lblCountry);
 		
 		JLabel lblStreet = new JLabel("Street:");
 		lblStreet.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -99,10 +106,10 @@ public class GuiAddEmployee extends JDialog {
 		textField_name.setBounds(115, 36, 150, 20);
 		contentPane.add(textField_name);
 		
-		textField_address = new JTextField();
-		textField_address.setColumns(10);
-		textField_address.setBounds(115, 60, 150, 20);
-		contentPane.add(textField_address);
+		textField_country = new JTextField();
+		textField_country.setColumns(10);
+		textField_country.setBounds(115, 60, 150, 20);
+		contentPane.add(textField_country);
 		
 		textField_street = new JTextField();
 		textField_street.setColumns(10);
@@ -134,20 +141,70 @@ public class GuiAddEmployee extends JDialog {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField_Id.getText().isEmpty()||textField_name.getText().isEmpty()||textField_address.getText().isEmpty()||textField_street.getText().isEmpty()||textField_number.getText().isEmpty()||textField_email.getText().isEmpty() )
+				if(textField_Id.getText().isEmpty()||textField_name.getText().isEmpty()||textField_country.getText().isEmpty()||textField_street.getText().isEmpty()||textField_number.getText().isEmpty()||textField_email.getText().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must complete all fields. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
 				else
-				{
-					//
+				{	String id=textField_Id.getText();
+					String city = textField_city.getText();
+					String country = textField_country.getText();
+					String street = textField_street.getText();
+					String name = textField_name.getText();
+					String number = textField_number.getText();
+					String email = textField_email.getText();
+					String pass =textField_pass.getText();
+					int rights =Integer.parseInt(textField_rights.getText());
+
+					try {
+			ce.insertEmployee(id, name, number, email, pass, rights, country, city, street);
+					//	GuiMain.getInstance().refreshList();
+						
+						JOptionPane.showMessageDialog(new JFrame(), "Employee added successfully. ", "Error", JOptionPane.ERROR_MESSAGE);
+//					GuiAddCustomer.this.dispose();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(new JFrame(), "Can't insert employee. ", "Error",
+						        JOptionPane.ERROR_MESSAGE);
+					}
+					
 				}
+				
 			}
 		});
 		btnAdd.setBounds(87, 244, 89, 23);
 		contentPane.add(btnAdd);
+		
+		JLabel lblCity = new JLabel("City:");
+		lblCity.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCity.setBounds(10, 162, 108, 14);
+		contentPane.add(lblCity);
+		
+		textField_city = new JTextField();
+		textField_city.setColumns(10);
+		textField_city.setBounds(115, 161, 150, 20);
+		contentPane.add(textField_city);
+		
+		JLabel lblPass = new JLabel("Pass:");
+		lblPass.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPass.setBounds(10, 187, 108, 14);
+		contentPane.add(lblPass);
+		
+		textField_pass = new JTextField();
+		textField_pass.setColumns(10);
+		textField_pass.setBounds(115, 186, 150, 20);
+		contentPane.add(textField_pass);
+		
+		JLabel lblRights = new JLabel("Rights:");
+		lblRights.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblRights.setBounds(10, 213, 108, 14);
+		contentPane.add(lblRights);
+		
+		textField_rights = new JTextField();
+		textField_rights.setColumns(10);
+		textField_rights.setBounds(115, 212, 150, 20);
+		contentPane.add(textField_rights);
 	}
-
 }
