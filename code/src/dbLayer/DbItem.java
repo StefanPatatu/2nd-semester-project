@@ -21,13 +21,13 @@ public class DbItem implements DbItemInterface {
 	
 	@Override
 	public Item findItemById_Item(int id_item) throws Exception {
-		Item i = singleWhere("id_item=" + id_item, false);
+		Item i = singleWhere("id_item='" + id_item + "'", false);
 		return i;
 	}
 	
 	@Override
 	public Item findItemByBarcode(String barcode) throws Exception {
-		Item i = singleWhere("barcode=" + barcode, false);
+		Item i = singleWhere("barcode='" + barcode + "'", false);
 		return i;
 	}
 	
@@ -44,7 +44,7 @@ public class DbItem implements DbItemInterface {
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setInt(1, min);
 			statement.setInt(2, max);
-			resultSet = statement.executeQuery(string);
+			resultSet = statement.executeQuery();
 			while(resultSet.next()) {
 				Item i = buildItem(resultSet);
 				items.add(i);
@@ -61,20 +61,20 @@ public class DbItem implements DbItemInterface {
 	public int insertItem(Item i) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Item (barcode, name, price, stock, itemType, category) VALUES (?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, i.getBarcode());
 			statement.setString(2, i.getName());
 			statement.setDouble(3, i.getPrice());
 			statement.setInt(4, i.getStock());
 			statement.setString(5, i.getItemType());
 			statement.setString(6, i.getCategory());
-			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+			result = statement.executeUpdate();
 			int id_item = new GeneratedKey().getGeneratedKey(statement);
 			i.setId_item(id_item);
 		} catch (SQLException sqle) {
-			throw new SQLException("insertEmployee.DbEmployee.dbLayer", sqle);
+			throw new SQLException("insertItem.DbEmployee.dbLayer", sqle);
 		} catch (Exception e) {
-			throw new Exception("insertEmployee.DbEmployee.dbLayer", e);
+			throw new Exception("insertItem.DbEmployee.dbLayer", e);
 		}
 		return result;
 	}

@@ -24,7 +24,7 @@ public class DbInvoice implements DbInvoiceInterface {
 	
 	@Override
 	public Invoice findInvoice(int id_invoice, boolean retrieveAssoc) throws Exception {
-		Invoice i = singleWhere("id_invoice=" + id_invoice, retrieveAssoc);
+		Invoice i = singleWhere("id_invoice='" + id_invoice + "'", retrieveAssoc);
 		return i;
 	}
 	
@@ -32,13 +32,13 @@ public class DbInvoice implements DbInvoiceInterface {
 	public int insertInvoice(Invoice i) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Invoice (invoiceNr, dateCreated, isPaid, datePaid, id_c) VALUES (?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, i.getInvoiceNr());
 			statement.setTimestamp(2, i.getDateCreated());
 			statement.setBoolean(3, i.isPaid());
 			statement.setTimestamp(4, i.getDatePaid());
 			statement.setInt(5, i.getCustomer().getId_customer());
-			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+			result = statement.executeUpdate();
 			int id_invoice = new GeneratedKey().getGeneratedKey(statement);
 			i.setId_invoice(id_invoice);
 		} catch (SQLException sqle) {

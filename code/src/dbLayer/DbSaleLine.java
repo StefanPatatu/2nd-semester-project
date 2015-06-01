@@ -19,12 +19,12 @@ public class DbSaleLine implements DbSaleLineInterface {
 
 	@Override
 	public ArrayList<SaleLine> getAllSaleLinesForASale(int id_sale) throws Exception {
-		return miscWhere("id_s=" + id_sale, false);
+		return miscWhere("id_s='" + id_sale + "'", false);
 	}
 
 	@Override
 	public SaleLine findSaleLine(int id_saleLine, boolean retrieveAssoc) throws Exception {
-		SaleLine sl = singleWhere("id_saleLine=" + id_saleLine, retrieveAssoc);
+		SaleLine sl = singleWhere("id_saleLine='" + id_saleLine + "'", retrieveAssoc);
 		return sl;
 	}
 
@@ -32,12 +32,12 @@ public class DbSaleLine implements DbSaleLineInterface {
 	public int insertSaleLine(SaleLine sl, int id_sale) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO" + authLayer.DbConfig.DBTablePrefix + "SaleLine (quantity, price, id_i, id_s) VALUES (?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setInt(1, sl.getQuantity());
 			statement.setDouble(2, sl.getPrice());
 			statement.setInt(3, sl.getItem().getId_item());
 			statement.setInt(4, id_sale);
-			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+			result = statement.executeUpdate();
 			int id_saleLine = new GeneratedKey().getGeneratedKey(statement);
 			sl.setId_saleLine(id_saleLine);
 		} catch (SQLException sqle) {

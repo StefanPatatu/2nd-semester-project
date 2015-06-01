@@ -21,7 +21,7 @@ public class DbAddress implements DbAddressInterface {
 	
 	@Override
 	public Address findAddress(int id_address) throws Exception {
-		Address a = singleWhere("id_address=" + id_address, false);
+		Address a = singleWhere("id_address='" + id_address + "'", false);
 		return a;
 	}
 	
@@ -44,10 +44,10 @@ public class DbAddress implements DbAddressInterface {
 	public int insertAddress(Address a) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Address (country, city) VALUES (?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, a.getCountry());
 			statement.setString(2, a.getCity());
-			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+			result = statement.executeUpdate();
 			int id_address = new GeneratedKey().getGeneratedKey(statement);
 			a.setId_address(id_address);
 		} catch (SQLException sqle) {

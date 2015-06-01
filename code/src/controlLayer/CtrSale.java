@@ -23,15 +23,11 @@ public class CtrSale {
 	private DbSaleInterface dbSale;
 	private CtrSaleLine ctrSaleLine;
 	private ArrayList<SaleLine> saleLines;
-	private CtrEmployee ctrEmployee;
-	private CtrCustomer ctrCustomer;
 	
 	//constructor
 	public CtrSale() {
 		dbSale = new DbSale();
 		ctrSaleLine = new CtrSaleLine();
-		ctrEmployee = new CtrEmployee();
-		ctrCustomer = new CtrCustomer();
 	}
 	
 	public ArrayList<Sale> getAllSale() throws Exception {
@@ -60,6 +56,12 @@ public class CtrSale {
 		return sales;
 	}
 	
+	//SEND AN id_invoice = -1 IF THE SALE IS NOT PAID NOW. OTHERWISE SEND THE INVOICE id
+	//returns 1 if successful
+	//returns -28 if error trying to find the customer
+	//returns -29 if error trying to find the employee
+	//returns -30 if unsuccessful
+	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
 	public int insertSale(
 			String saleNr,
 			boolean isPacked,
@@ -70,18 +72,56 @@ public class CtrSale {
 			Timestamp datePaid,
 			int id_employee,
 			int id_customer,
-			ArrayList<SaleLine> saleLines) {
+			ArrayList<SaleLine> saleLines,
+			int id_inv) throws Exception {
 		int success = 1;
+		//initialize
+		CtrEmployee ctrEmployee = new CtrEmployee();
+		CtrCustomer ctrCustomer = new CtrCustomer();
+		//discount
 		int discount = ctrCustomer.getDiscount(id_customer);
+		//current date
 		java.util.Date date= new java.util.Date();
 		Timestamp dateCreated = new Timestamp(date.getTime());
-		Employee employee = ctrEmployee.findEmployeeById_employee(id_employee);
-		Customer customer = ctrCustomer.findCustomer(id_customer);
-		Sale sale = new Sale(saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines) {
+		//get employee
+		Employee employee = null;
+		try {
+			employee = ctrEmployee.findEmployeeById_employee(id_employee);
+		} catch (Exception e1) {
+			success = Errors.FIND_EMPLOYEE.getCode();
+		}
+		//get customer
+		Customer customer = null;
+		try {
+			customer = ctrCustomer.findCustomer(id_customer);
+		} catch (Exception e) {
+			success = Errors.FIND_CUSTOMER.getCode();
+		}
+		//add sale to database
+		if(success == 1 && employee != null && customer != null) {
+			//means everything went smooth
+			//create sale object and add it to the database
+			Sale sale = new Sale(saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines);
+			try {
+				DbConnection.startTransaction();
+				dbSale.insertSale(sale, id_inv);
+				DbConnection.comitTransaction();
+			} catch (Exception e) {
+				try {
+					DbConnection.rollbackTransaction();
+				} catch (Exception r) {
+					throw new Exception("insertSale.CtrSale.controlLayer", r);
+				}
+				success = Errors.INSERT_SALE.getCode();
+			}
+		} else {
+			success = 
+		}
+		//add the salelines to the database
+		if(success == 1 && employee != null && customer != null && saleLines != null) {
 			
 		}
-		
-		return 0;
+		return success;
 	}
 	
 	public ArrayList<Sale> getAllSalesForCustomer(int id_customer) throws Exception {
@@ -92,10 +132,11 @@ public class CtrSale {
 	
 	//creates an empty saleLine array and returns it
 	public ArrayList<SaleLine> startSale() {
-		saleLines = new ArrayList<>();
+		ArrayList<SaleLine> saleLines = new ArrayList<>();
 		return saleLines;
 	}
 	
+	//creates and adds a saleLine to the arrayList
 	//returns 1 if successful
 	//returns -27 if unable to add the sale to the ArrayList
 	public int addSaleLineToSale(int quantity, String barcode, ArrayList<SaleLine> saleLines) {

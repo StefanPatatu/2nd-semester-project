@@ -42,7 +42,12 @@ public enum Errors {
 	//CtrSale
 	SALE_TOTAL_PRICE(-24, "Error while trying to calculate the sale's total"),
 	GET_ALL_SALELINES_FOR_SALE(-23, "Unable to retrieve the sale lines from the database."),
-	ADD_SALELINE_TO_SALE(-27, "Unable create and add this sale to the ArrayList.")
+	ADD_SALELINE_TO_SALE(-27, "Unable create and add this sale to the ArrayList."),
+	FIND_CUSTOMER(-28, "Error trying to find the customer."),
+	FIND_EMPLOYEE(-29, "Error trying to find the employee."),
+	INSERT_SALE(-30, "Insert operation failed. Rolling back."),
+	ADD_SALE_TO_DB(-31, "The preconditions for adding a sale to the database are not fulfilled."),
+	
 	
 	
 	;

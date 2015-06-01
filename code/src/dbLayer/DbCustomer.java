@@ -24,7 +24,7 @@ public class DbCustomer implements DbCustomerInterface {
 	
 	@Override
 	public Customer findCustomer(int id_customer, boolean retrieveAssoc) throws Exception{
-		Customer c = singleWhere("id_customer=" + id_customer, retrieveAssoc);
+		Customer c = singleWhere("id_customer='" + id_customer + "'", retrieveAssoc);
 		return c;
 	}
 	
@@ -37,13 +37,13 @@ public class DbCustomer implements DbCustomerInterface {
 	public int insertCustomer(Customer c) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Customer (name, phoneNr, email, c_address, street) VALUES (?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, c.getName());
 			statement.setString(2, c.getPhoneNr());
 			statement.setString(3, c.getEmail());
 			statement.setInt(4, c.getAddress().getId_address());
 			statement.setString(5, c.getStreet());
-			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+			result = statement.executeUpdate();
 			int id_customer = new GeneratedKey().getGeneratedKey(statement);
 			c.setId_customer(id_customer);
 		} catch (SQLException sqle) {

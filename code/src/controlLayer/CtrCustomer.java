@@ -19,13 +19,11 @@ public class CtrCustomer {
 	
 	private DbCustomerInterface dbCustomer;
 	private CtrAddress ctrAddress;
-	private CtrSale ctrSale;
 	
 	//constructor
 	public CtrCustomer() {
 		dbCustomer = new DbCustomer();
 		ctrAddress = new CtrAddress();
-		ctrSale = new CtrSale();
 	}
 	
 	public ArrayList<Customer> getAllCustomers() throws Exception {
@@ -93,6 +91,7 @@ public class CtrCustomer {
 		int success = Errors.GET_DISCOUNT.getCode();
 		double totalMoneySpent = 0;
 		ArrayList<Sale> sales = new ArrayList<>();
+		CtrSale ctrSale = new CtrSale();
 		//retrieve all sales ever made by the customer
 		try {
 			sales = ctrSale.getAllSalesForCustomer(id_customer);
@@ -106,6 +105,8 @@ public class CtrCustomer {
 				try {
 					double tmpVar = ctrSale.getSaleTotalPrice(tmpSale.getId_sale());
 					if (tmpVar < 0) {
+						//means an error occurred
+						//return the error code
 						success = (int) tmpVar;
 						break;
 					}

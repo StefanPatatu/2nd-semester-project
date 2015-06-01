@@ -28,13 +28,13 @@ public class DbSale implements DbSaleInterface {
 
 	@Override
 	public Sale findSaleById_sale(int id_sale, boolean retrieveAssoc) throws Exception {
-		Sale s = singleWhere("id_sale=" + id_sale, retrieveAssoc);
+		Sale s = singleWhere("id_sale='" + id_sale + "'", retrieveAssoc);
 		return s;
 	}
 
 	@Override
 	public Sale findSaleBySaleNr(String saleNr, boolean retrieveAssoc) throws Exception {
-		Sale s = singleWhere("saleNr=" + saleNr, retrieveAssoc);
+		Sale s = singleWhere("saleNr='" + saleNr + "'", retrieveAssoc);
 		return s;
 	}
 	
@@ -74,7 +74,7 @@ public class DbSale implements DbSaleInterface {
 	public int insertSale(Sale s, int id_inv) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Sale (saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, id_e, id_c, id_inv) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	    try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+	    try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 	    	statement.setString(1, s.getSaleNr());
 	    	statement.setInt(2, s.getDiscount());
 	    	statement.setTimestamp(3, s.getDateCreated());
@@ -91,7 +91,7 @@ public class DbSale implements DbSaleInterface {
 	    	} else {
 	    		statement.setInt(12, id_inv);
 	    	}
-	    	result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+	    	result = statement.executeUpdate();
 			int id_sale = new GeneratedKey().getGeneratedKey(statement);
 			s.setId_sale(id_sale);
 		} catch (SQLException sqle) {

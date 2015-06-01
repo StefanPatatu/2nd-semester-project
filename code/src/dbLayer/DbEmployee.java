@@ -24,13 +24,13 @@ public class DbEmployee implements DbEmployeeInterface {
 
 	@Override
 	public Employee findEmployeeById_employee(int id_employee, boolean retrieveAssoc) throws Exception {
-		Employee emp = singleWhere("id_employee=" + id_employee, retrieveAssoc);
+		Employee emp = singleWhere("id_employee='" + id_employee + "'", retrieveAssoc);
 		return emp;
 	}
 
 	@Override
 	public Employee findEmployeeByPerson_id(String person_id, boolean retrieveAssoc) throws Exception {
-		Employee emp = singleWhere("person_id=" + person_id, retrieveAssoc);
+		Employee emp = singleWhere("person_id='" + person_id + "'", retrieveAssoc);
 		return emp;
 	}
 
@@ -46,7 +46,7 @@ public class DbEmployee implements DbEmployeeInterface {
 
 	@Override
 	public String getEmployeePass(int person_id) throws Exception {
-		Employee emp = singleWhere("person_id=" + person_id, false);
+		Employee emp = singleWhere("person_id='" + person_id + "'", false);
 		if(emp == null) {
 			return null;
 		} else {
@@ -56,7 +56,7 @@ public class DbEmployee implements DbEmployeeInterface {
 
 	@Override
 	public String getEmployeeSalt(int person_id) throws Exception {
-		Employee emp = singleWhere("person_id=" + person_id, false);
+		Employee emp = singleWhere("person_id='" + person_id + "'", false);
 		if(emp == null) {
 			return null;
 		} else {
@@ -68,7 +68,7 @@ public class DbEmployee implements DbEmployeeInterface {
 	public int insertEmployee(Employee emp) throws Exception {
 		int result = 0;
 		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "Employee (person_id, name, phoneNr, email, pass, salt, rights, e_address, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
+		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, emp.getPerson_id());
 			statement.setString(2, emp.getName());
 			statement.setString(3, emp.getPhoneNr());
@@ -78,7 +78,7 @@ public class DbEmployee implements DbEmployeeInterface {
 			statement.setInt(7, emp.getRights());
 			statement.setInt(8, emp.getAddress().getId_address());
 			statement.setString(9, emp.getStreet());
-			result = statement.executeUpdate(string, Statement.RETURN_GENERATED_KEYS);
+			result = statement.executeUpdate();
 			int id_employee = new GeneratedKey().getGeneratedKey(statement);
 			emp.setId_employee(id_employee);
 		} catch (SQLException sqle) {
