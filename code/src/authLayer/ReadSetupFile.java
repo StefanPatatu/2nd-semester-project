@@ -27,7 +27,7 @@ public class ReadSetupFile {
 	private StandardPBEStringEncryptor encryptor = null;
 	private final String password = "1B7C4DD1C6IGHIUW955953226444GKS";
 	private final String algorithm = "PBEWithMD5AndDES";
-	private final int iterations = 1394;
+	private final int iterations = 1000;
 	
 	//constructor
 	public ReadSetupFile() throws Exception {
