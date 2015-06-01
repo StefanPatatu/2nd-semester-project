@@ -27,8 +27,8 @@ public class SystemLogin {
 	
 	public ArrayList<String> getHashedPasswordAndSalt(String password) {
 		ArrayList<String> passAndSalt = new ArrayList<>();
-		passAndSalt.set(0, password);
-		passAndSalt.set(1, "123");
+		passAndSalt.add("password");
+		passAndSalt.add("123");
 		return passAndSalt;
 	}
 

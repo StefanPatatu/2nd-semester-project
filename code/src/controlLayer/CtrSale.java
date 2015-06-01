@@ -60,7 +60,9 @@ public class CtrSale {
 	//returns 1 if successful
 	//returns -28 if error trying to find the customer
 	//returns -29 if error trying to find the employee
-	//returns -30 if unsuccessful
+	//returns -30 if could not insert sale
+	//returns -31 if could not add sale to database
+	//returns -32 if error when adding one of the saleLines to the database
 	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
 	public int insertSale(
 			String saleNr,
@@ -78,6 +80,7 @@ public class CtrSale {
 		//initialize
 		CtrEmployee ctrEmployee = new CtrEmployee();
 		CtrCustomer ctrCustomer = new CtrCustomer();
+		Sale sale = null;
 		//discount
 		int discount = ctrCustomer.getDiscount(id_customer);
 		//current date
@@ -101,7 +104,7 @@ public class CtrSale {
 		if(success == 1 && employee != null && customer != null) {
 			//means everything went smooth
 			//create sale object and add it to the database
-			Sale sale = new Sale(saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines);
+			sale = new Sale(saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines);
 			try {
 				DbConnection.startTransaction();
 				dbSale.insertSale(sale, id_inv);
@@ -115,10 +118,19 @@ public class CtrSale {
 				success = Errors.INSERT_SALE.getCode();
 			}
 		} else {
-			success = 
+			success = Errors.ADD_SALE_TO_DB.getCode();
 		}
 		//add the salelines to the database
-		if(success == 1 && employee != null && customer != null && saleLines != null) {
+		if(success == 1 && employee != null && customer != null && saleLines != null && sale.getId_sale() != -1) {
+			System.out.println("yay!");
+			for (SaleLine saleLine : saleLines) {
+				try {
+					System.out.println(ctrSaleLine.insertSaleLine(saleLine.getQuantity(), saleLine.getItem().getBarcode(), sale.getId_sale()));
+				} catch (Exception e) {
+					success = Errors.INSERT_SALELINE_INTO_SALE.getCode();
+					break;
+				}
+			}
 			
 		}
 		return success;
@@ -145,6 +157,8 @@ public class CtrSale {
 		saleLine = ctrSaleLine.createSaleLine(quantity, barcode);
 		if(saleLine == null) {
 			success = Errors.ADD_SALELINE_TO_SALE.getCode();
+		} else {
+			saleLines.add(saleLine);
 		}
 		return success;
 	}

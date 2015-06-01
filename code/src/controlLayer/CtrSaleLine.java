@@ -82,6 +82,7 @@ public class CtrSaleLine {
 	public SaleLine createSaleLine(int quantity, String barcode) {
 		int success = 1;
 		Item item = null;
+		@SuppressWarnings("unused")//it is used in the 2nd try/catch:P
 		double price = -1;
 		SaleLine saleLine = new SaleLine();
 		saleLine.setQuantity(quantity);

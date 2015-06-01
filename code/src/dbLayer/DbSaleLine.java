@@ -31,7 +31,7 @@ public class DbSaleLine implements DbSaleLineInterface {
 	@Override
 	public int insertSaleLine(SaleLine sl, int id_sale) throws Exception {
 		int result = 0;
-		String string = "INSERT INTO" + authLayer.DbConfig.DBTablePrefix + "SaleLine (quantity, price, id_i, id_s) VALUES (?, ?, ?, ?)";
+		String string = "INSERT INTO " + authLayer.DbConfig.DBTablePrefix + "SaleLine (quantity, price, id_i, id_s) VALUES (?, ?, ?, ?)";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string, Statement.RETURN_GENERATED_KEYS)) {
 			statement.setInt(1, sl.getQuantity());
 			statement.setDouble(2, sl.getPrice());

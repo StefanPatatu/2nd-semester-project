@@ -178,7 +178,7 @@ public class DbSale implements DbSaleInterface {
 		String string = "SELECT * FROM " + authLayer.DbConfig.DBTablePrefix + "Sale WHERE id_c=?";
 		try (PreparedStatement statement = DbConnection.getInstance().getDbCon().prepareStatement(string)) {
 			statement.setInt(1, id_customer);
-			resultSet = statement.executeQuery(string);
+			resultSet = statement.executeQuery();
 			while(resultSet.next()) {
 				Sale s = buildSale(resultSet);
 				sales.add(s);
