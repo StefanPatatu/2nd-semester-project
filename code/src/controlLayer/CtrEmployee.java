@@ -62,7 +62,7 @@ public class CtrEmployee {
 	//returns 1 if successful
 	//returns negative value if unsuccessful
 	//throws Exception if rollbackTransaction() fails -> means something terribly wrong happened
-	public int insertEmployee(String person_id, String name, String phoneNr, String email, String pass, int rights, String country, String city, String street ) throws Exception {
+	public int insertEmployee(String person_id, String name, String phoneNr, String email, String pass, int rights, String country, String city, String street) throws Exception {
 		int success = 1;
 		ArrayList<String> passAndSalt = systemLogin.getHashedPasswordAndSalt(pass);
 		Employee employee = new Employee(person_id, name, ctrAddress.createNewAddress(country, city), street, phoneNr, email, passAndSalt.get(0), passAndSalt.get(1), rights);

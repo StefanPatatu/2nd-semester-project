@@ -22,7 +22,6 @@ public class CtrSale {
 	
 	private DbSaleInterface dbSale;
 	private CtrSaleLine ctrSaleLine;
-	private ArrayList<SaleLine> saleLines;
 	
 	//constructor
 	public CtrSale() {
@@ -30,7 +29,7 @@ public class CtrSale {
 		ctrSaleLine = new CtrSaleLine();
 	}
 	
-	public ArrayList<Sale> getAllSale() throws Exception {
+	public ArrayList<Sale> getAllSales() throws Exception {
 		ArrayList<Sale> sales = new ArrayList<>();
 		sales = dbSale.getAllSales();
 		return sales;
@@ -54,6 +53,31 @@ public class CtrSale {
 		ArrayList<Sale> sales = new ArrayList<>();
 		sales = dbSale.searchSaleByDateCreatedInterval(dateCreatedMin, dateCreatedMax);
 		return sales;
+	}
+	
+	//******************************************************************************************
+	//INSERT SALE PART START
+	//******************************************************************************************
+	
+	//creates an empty saleLine array and returns it
+	public ArrayList<SaleLine> startSale() {
+		ArrayList<SaleLine> saleLines = new ArrayList<>();
+		return saleLines;
+	}
+	
+	//creates and adds a saleLine to the arrayList
+	//returns 1 if successful
+	//returns -27 if unable to add the sale to the ArrayList
+	public int addSaleLineToSale(int quantity, String barcode, ArrayList<SaleLine> saleLines) {
+		int success = 1;
+		SaleLine saleLine = new SaleLine();
+		saleLine = ctrSaleLine.createSaleLine(quantity, barcode);
+		if(saleLine == null) {
+			success = Errors.ADD_SALELINE_TO_SALE.getCode();
+		} else {
+			saleLines.add(saleLine);
+		}
+		return success;
 	}
 	
 	//SEND AN id_invoice = -1 IF THE SALE IS NOT PAID NOW. OTHERWISE SEND THE INVOICE id
@@ -136,31 +160,19 @@ public class CtrSale {
 		return success;
 	}
 	
+	//******************************************************************************************
+	//INSERT SALE PART END
+	//******************************************************************************************
+	
+	public ArrayList<Sale> getAllUnpaidSalesForCustomer(int id_customer) throws Exception {
+		ArrayList<Sale> sales = new ArrayList<>();
+		sales = dbSale.getAllUnpaidSalesForCustomer(id_customer);
+		return sales;
+	}
 	public ArrayList<Sale> getAllSalesForCustomer(int id_customer) throws Exception {
 		ArrayList<Sale> sales = new ArrayList<>();
 		sales = dbSale.getAllSalesForCustomer(id_customer);
 		return sales;
-	}
-	
-	//creates an empty saleLine array and returns it
-	public ArrayList<SaleLine> startSale() {
-		ArrayList<SaleLine> saleLines = new ArrayList<>();
-		return saleLines;
-	}
-	
-	//creates and adds a saleLine to the arrayList
-	//returns 1 if successful
-	//returns -27 if unable to add the sale to the ArrayList
-	public int addSaleLineToSale(int quantity, String barcode, ArrayList<SaleLine> saleLines) {
-		int success = 1;
-		SaleLine saleLine = new SaleLine();
-		saleLine = ctrSaleLine.createSaleLine(quantity, barcode);
-		if(saleLine == null) {
-			success = Errors.ADD_SALELINE_TO_SALE.getCode();
-		} else {
-			saleLines.add(saleLine);
-		}
-		return success;
 	}
 	
 	//returns the total price of the sale if successful
@@ -184,6 +196,8 @@ public class CtrSale {
 		return success;
 	}
 	
-	
+	//******************************************************************************************
+	//
+	//******************************************************************************************
 
 }

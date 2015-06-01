@@ -1,5 +1,6 @@
 package dbLayer;
 
+import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -16,25 +17,46 @@ public class Maintestpreapredstatement {
 	private static CtrItem ctrItem;
 	private static CtrSale ctrSale;
 	private static CtrEmployee ctrEmployee;
+	private static DbConnection dbConnection;
+	private static CheckConnection checkCOn;
 
 	public static void main(String[] args) {
+		
+		
+		
+		
+		
 		ctrItem = new CtrItem();
 		ctrSale = new CtrSale();
 		ctrEmployee = new CtrEmployee();
+		
+		
 		try {
 			DbConfig dbconfing = new DbConfig();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		/*
+		for(int i = 1; i<5; i++) {
+			checkCOn = new CheckConnection();
+			boolean bla = checkCOn.isValidd();
+			if(bla) {
+				System.out.println("is");
+			} else {
+				System.out.println("is not");
+			}
+		}
+		*/
 		try {
-			System.out.println(ctrEmployee.insertEmployee("2", "Emp", "44545", "ecmp@emp", "monkey", 1, "Ro", "tralala", "street"));
+			System.out.println(ctrEmployee.insertEmployee("34", "emp210", "445s450", "ecmp@esmp0", "monkey0", 1, "Ro00000", "tralala00000", "street0000"));
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		*/
+		
+		/*
 		System.out.println("-----------");
 		
 		Timestamp tms = null;
@@ -107,6 +129,16 @@ public class Maintestpreapredstatement {
 	
 	private static int insertItemTest() throws Exception {
 		return ctrItem.insertItem("12", "name", 12, 1, "type", "cat");
+	}
+	
+	
+	/////
+	private static String checkConnection() {
+		if(DbConnection.isValid()) {
+			return "open";
+		} else {
+			return "closed";
+		}
 	}
 
 }
