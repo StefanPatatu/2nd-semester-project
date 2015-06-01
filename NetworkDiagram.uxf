@@ -78,6 +78,8 @@ bg=blue</panel_attributes>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
+10
+
 Conduct 
 Interviews</panel_attributes>
     <additional_attributes>140.0;10.0;10.0;110.0</additional_attributes>
@@ -88,12 +90,14 @@ Interviews</panel_attributes>
       <x>50</x>
       <y>230</y>
       <w>150</w>
-      <h>70</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-Investigate
+Investigate  4
 other 
-system</panel_attributes>
+system
+
+</panel_attributes>
     <additional_attributes>130.0;30.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -116,7 +120,7 @@ system</panel_attributes>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-Investigate
+Investigate    20
 packages</panel_attributes>
     <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
   </element>
@@ -129,10 +133,9 @@ packages</panel_attributes>
       <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-Analyse 
+Analyse     6
 requirements
-
-bgblue</panel_attributes>
+</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
@@ -144,7 +147,7 @@ bgblue</panel_attributes>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-Produce 
+Produce   5
 report</panel_attributes>
     <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
   </element>
