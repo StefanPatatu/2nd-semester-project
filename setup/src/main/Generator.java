@@ -41,7 +41,7 @@ public class Generator {
 	
 	private String generateFinalQuery() {
 		String finalQuery = generateCleanUpQuery(DBName) + "\r\n" + generateCreateTablesQuery(DBTablePrefix);
-		//System.out.println(finalQuery);
+		System.out.println(finalQuery);
 		return finalQuery;
 	}
 	

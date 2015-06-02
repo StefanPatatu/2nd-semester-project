@@ -12,6 +12,13 @@ import org.junit.Test;
 import authLayer.DbConfig;
 import controlLayer.CtrAddress;
 
+/**
+ * TestCtrAddress
+ * 
+ * @author futz
+ * @version 1.0
+ */
+
 public class TestCtrAddress {
 	
 	static CtrAddress ctrAddress;

@@ -15,7 +15,7 @@ import dbLayer.DbConnection;
  * CtrSale
  * 
  * @author futz
- * @version 1.2
+ * @version 1.3
  */
 
 public class CtrSale {
@@ -77,8 +77,7 @@ public class CtrSale {
 	//returns -27 if unable to add the sale to the ArrayList
 	public int addSaleLineToSale(int quantity, String barcode, ArrayList<SaleLine> saleLines) {
 		int success = 1;
-		SaleLine saleLine = new SaleLine();
-		saleLine = ctrSaleLine.createSaleLine(quantity, barcode);
+		SaleLine saleLine = ctrSaleLine.createSaleLine(quantity, barcode);
 		if(saleLine == null) {
 			success = Errors.ADD_SALELINE_TO_SALE.getCode();
 		} else {
@@ -87,7 +86,7 @@ public class CtrSale {
 		return success;
 	}
 	
-	//SEND AN id_invoice = -1 IF THE SALE IS NOT PAID NOW. OTHERWISE SEND THE INVOICE id
+	//SEND AN id_invoice = -1 IF THE SALE IS NOT PAID NOW. OTHERWISE SEND THE INVOICE ID
 	//returns 1 if successful
 	//returns -28 if error trying to find the customer
 	//returns -29 if error trying to find the employee
@@ -153,7 +152,6 @@ public class CtrSale {
 		}
 		//add the salelines to the database
 		if(success == 1 && employee != null && customer != null && saleLines != null && sale.getId_sale() != -1) {
-			System.out.println("yay!");
 			for (SaleLine saleLine : saleLines) {
 				try {
 					System.out.println(ctrSaleLine.insertSaleLine(saleLine.getQuantity(), saleLine.getItem().getBarcode(), sale.getId_sale()));

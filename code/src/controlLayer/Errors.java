@@ -20,6 +20,7 @@ public enum Errors {
 	GET_DISCOUNT_LOOP(-25, "Error while trying to calculate the discount."),
 	GET_ALL_SALES_C(-22, "Unable to retrieve the sales from the database."),
 	
+	//CtrEmployee
 	INSERT_EMPLOYEE(-7, "Insert operation failed. Rolling back."),
 	UPDATE_EMPLOYEE(-8, "Update operation failed. Rolling back."),
 	REMOVE_EMPLOYEE(-9, "Remove operation failed. Rolling back."),

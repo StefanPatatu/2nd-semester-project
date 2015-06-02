@@ -88,7 +88,11 @@ public class CtrSaleLine {
 		saleLine.setQuantity(quantity);
 		try {
 			item = ctrItem.findItemByBarcode(barcode);
-			saleLine.setItem(item);
+			if(item == null) {
+				throw new Exception("No item with this barcode found.");
+			} else {
+				saleLine.setItem(item);
+			}
 		} catch (Exception e) {
 			success = Errors.UNABLE_TO_GET_ITEM.getCode();
 		}
