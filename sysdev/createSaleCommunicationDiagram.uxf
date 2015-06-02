@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.1">
-  <zoom_level>8</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>800</x>
-      <y>304</y>
-      <w>112</w>
-      <h>56</h>
+      <x>931</x>
+      <y>287</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>ModelLayer
 --
@@ -18,10 +18,10 @@ bg=green</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>800</x>
-      <y>208</y>
-      <w>112</w>
-      <h>56</h>
+      <x>931</x>
+      <y>203</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>CtrLayer
 --
@@ -32,10 +32,10 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>424</x>
-      <y>8</y>
-      <w>144</w>
-      <h>24</h>
+      <x>602</x>
+      <y>28</y>
+      <w>126</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>guiMain:GuiMain</panel_attributes>
     <additional_attributes/>
@@ -43,44 +43,44 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>280</x>
-      <y>144</y>
-      <w>416</w>
-      <h>40</h>
+      <x>7</x>
+      <y>154</y>
+      <w>1056</w>
+      <h>34</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>24;24;400;24</additional_attributes>
+    <additional_attributes>21;21;1043;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>216</x>
-      <y>256</y>
-      <w>504</w>
-      <h>40</h>
+      <x>7</x>
+      <y>252</y>
+      <w>1056</w>
+      <h>34</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>24;24;488;24</additional_attributes>
+    <additional_attributes>21;21;1043;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>424</x>
-      <y>8</y>
-      <w>116</w>
-      <h>96</h>
+      <x>609</x>
+      <y>28</y>
+      <w>91</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-handleSale(e)</panel_attributes>
-    <additional_attributes>64;80;64;24</additional_attributes>
+getInstance()</panel_attributes>
+    <additional_attributes>49;63;49;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>400</x>
-      <y>88</y>
-      <w>184</w>
-      <h>24</h>
+      <x>581</x>
+      <y>91</y>
+      <w>161</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>guiSale:GuiSale</panel_attributes>
     <additional_attributes/>
@@ -88,10 +88,10 @@ handleSale(e)</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>800</x>
-      <y>72</y>
-      <w>112</w>
-      <h>56</h>
+      <x>931</x>
+      <y>84</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>UILayer
 --
@@ -102,24 +102,24 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>368</x>
-      <y>88</y>
-      <w>234</w>
-      <h>128</h>
+      <x>364</x>
+      <y>91</y>
+      <w>552</w>
+      <h>97</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-1. startSale(name)
-2. 1*[1..n]addSaleLine(name,quantity)
-3. finishSale(e, isPaid)</panel_attributes>
-    <additional_attributes>120;112;120;24</additional_attributes>
+1. startSale()
+2. 1*[1..n]addSaleLineToSale(quantity, barcode, saleLines)
+3. insertSale(saleNr, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, id_employee, id_customer, saleLines)</panel_attributes>
+    <additional_attributes>280;84;280;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>400</x>
-      <y>200</y>
-      <w>184</w>
-      <h>24</h>
+      <x>567</x>
+      <y>175</y>
+      <w>210</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>ctrSale:CtrSale</panel_attributes>
     <additional_attributes/>
@@ -127,22 +127,22 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>128</x>
-      <y>200</y>
-      <w>288</w>
-      <h>184</h>
+      <x>483</x>
+      <y>245</y>
+      <w>174</w>
+      <h>244</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-1.1 searchCustomerByName(name)</panel_attributes>
-    <additional_attributes>24;168;272;24</additional_attributes>
+3.4 findCustomer(id_customer)</panel_attributes>
+    <additional_attributes>91;231;91;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>40</x>
-      <y>368</y>
-      <w>144</w>
-      <h>24</h>
+      <x>490</x>
+      <y>476</y>
+      <w>126</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>dbCustomer:DBCustomer</panel_attributes>
     <additional_attributes/>
@@ -150,10 +150,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>32</x>
-      <y>264</y>
-      <w>144</w>
-      <h>24</h>
+      <x>581</x>
+      <y>322</y>
+      <w>126</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>customer:Customer</panel_attributes>
     <additional_attributes/>
@@ -161,23 +161,23 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>0</x>
-      <y>264</y>
-      <w>190</w>
-      <h>120</h>
+      <x>476</x>
+      <y>322</y>
+      <w>230</w>
+      <h>167</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-1.2 c = new Customer(name)
+3.5 customer = new Customer(id_customer)
 </panel_attributes>
-    <additional_attributes>96;24;104;104</additional_attributes>
+    <additional_attributes>119;21;119;154</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>440</x>
-      <y>400</y>
-      <w>184</w>
-      <h>24</h>
+      <x>602</x>
+      <y>378</y>
+      <w>161</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>sale:Sale</panel_attributes>
     <additional_attributes/>
@@ -185,10 +185,10 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>560</x>
-      <y>480</y>
-      <w>184</w>
-      <h>24</h>
+      <x>714</x>
+      <y>427</y>
+      <w>161</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>dbSale:DBSale</panel_attributes>
     <additional_attributes/>
@@ -196,34 +196,34 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>392</x>
-      <y>200</y>
-      <w>278</w>
+      <x>385</x>
+      <y>175</y>
+      <w>651</w>
       <h>216</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-3.1 s = new Sale(e, c,1*:sls = saleLines,isPaid)</panel_attributes>
-    <additional_attributes>144;200;136;24</additional_attributes>
+3.6 sale = new Sale(saleNr, discount, dateCreated, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, employee, customer, saleLines)</panel_attributes>
+    <additional_attributes>329;203;329;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>536</x>
-      <y>200</y>
-      <w>144</w>
-      <h>296</h>
+      <x>693</x>
+      <y>175</y>
+      <w>155</w>
+      <h>265</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-3.2 insertSale()</panel_attributes>
-    <additional_attributes>128;280;24;24</additional_attributes>
+3.7 insertSale(sale, id_inv)</panel_attributes>
+    <additional_attributes>105;252;105;182;56;182;56;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>328</x>
-      <y>440</y>
-      <w>144</w>
-      <h>24</h>
+      <x>140</x>
+      <y>315</y>
+      <w>126</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>saleLine:SaleLine</panel_attributes>
     <additional_attributes/>
@@ -231,56 +231,233 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>336</x>
-      <y>200</y>
-      <w>208</w>
-      <h>256</h>
+      <x>84</x>
+      <y>189</y>
+      <w>244</w>
+      <h>139</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-2.3 sl = new SaleLine(i, quantity)</panel_attributes>
-    <additional_attributes>64;240;152;24</additional_attributes>
+2.5 saleLine = new SaleLine(quantity, barcode)</panel_attributes>
+    <additional_attributes>126;126;126;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>200</y>
-      <w>272</w>
-      <h>336</h>
+      <x>742</x>
+      <y>161</y>
+      <w>268</w>
+      <h>328</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-3.3 insertSaleLine(i, quantity)</panel_attributes>
-    <additional_attributes>256;320;24;24</additional_attributes>
+3.3 1*[1..n]insertSaleLine(quantity, barcode, id_sale)</panel_attributes>
+    <additional_attributes>161;315;161;238;140;238;140;21;35;21</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>736</x>
-      <y>520</y>
-      <w>144</w>
-      <h>24</h>
+      <x>847</x>
+      <y>476</y>
+      <w>126</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>dbSaleLine:DBSaleLine</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.baselet.element.old.element.Class</type>
+    <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>128</x>
-      <y>504</y>
-      <w>144</w>
-      <h>24</h>
+      <x>938</x>
+      <y>413</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
-    <panel_attributes>dbItem:DBItem</panel_attributes>
+    <panel_attributes>DBLayer
+--
+
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
     <coordinates>
-      <x>104</x>
-      <y>408</y>
-      <w>144</w>
-      <h>24</h>
+      <x>112</x>
+      <y>189</y>
+      <w>161</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>ctrSaleLine:CtrSaleLine</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>224</x>
+      <y>161</y>
+      <w>356</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+2.1 craateSaleLine(quantity, barcode)</panel_attributes>
+    <additional_attributes>49;42;105;42;105;21;343;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>329</x>
+      <y>238</y>
+      <w>161</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>ctrEmployee:CtrEmployee</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>518</x>
+      <y>245</y>
+      <w>161</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>ctrCustomer:CtrCustomer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>595</x>
+      <y>175</y>
+      <w>34</w>
+      <h>83</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>21;70;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>357</x>
+      <y>175</y>
+      <w>246</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+3.1 findEmployeeById_employee(id_employee)</panel_attributes>
+    <additional_attributes>35;63;35;42;217;42;217;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>217</x>
+      <y>427</y>
+      <w>126</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>dbEmployee:DbEmployee</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>210</x>
+      <y>238</y>
+      <w>246</w>
+      <h>202</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+3.2 findEmployeeById_employee(id_employee)
+</panel_attributes>
+    <additional_attributes>63;189;63;70;189;70;189;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>329</x>
+      <y>350</y>
+      <w>161</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>employee:Employee</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>301</x>
+      <y>350</y>
+      <w>236</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+3.3 employee = new Employee(id_employee)
+</panel_attributes>
+    <additional_attributes>119;21;119;77;42;77</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>7</x>
+      <y>392</y>
+      <w>1056</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>21;21;1043;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>14</x>
+      <y>231</y>
+      <w>98</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>ctrItem:CtrItem</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>91</x>
+      <y>189</y>
+      <w>196</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+2.2 findItemByBarcode(barcode)</panel_attributes>
+    <additional_attributes>21;49;112;49;112;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>49</x>
+      <y>441</y>
+      <w>126</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>dbItem:DbItem</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>0</x>
+      <y>231</y>
+      <w>175</w>
+      <h>223</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+2.3 findItemByBarcode(barcode)</panel_attributes>
+    <additional_attributes>91;210;91;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Class</type>
+    <coordinates>
+      <x>98</x>
+      <y>357</y>
+      <w>112</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>item:Item</panel_attributes>
     <additional_attributes/>
@@ -288,40 +465,13 @@ bg=red</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>232</x>
-      <y>200</y>
-      <w>216</w>
-      <h>320</h>
+      <x>70</x>
+      <y>357</y>
+      <w>161</w>
+      <h>97</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-2.1 findItem(name)</panel_attributes>
-    <additional_attributes>24;304;200;24</additional_attributes>
-  </element>
-  <element>
-    <type>com.baselet.element.old.element.Relation</type>
-    <coordinates>
-      <x>88</x>
-      <y>408</y>
-      <w>152</w>
-      <h>112</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-2.2 i = new Item(name)
-</panel_attributes>
-    <additional_attributes>80;24;80;96</additional_attributes>
-  </element>
-  <element>
-    <type>com.baselet.element.old.element.Package</type>
-    <coordinates>
-      <x>808</x>
-      <y>448</y>
-      <w>112</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>DBLayer
---
-
-bg=blue</panel_attributes>
-    <additional_attributes/>
+2.4 item = new Item(barcode)</panel_attributes>
+    <additional_attributes>84;21;84;84</additional_attributes>
   </element>
 </diagram>

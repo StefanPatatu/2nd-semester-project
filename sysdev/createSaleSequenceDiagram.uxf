@@ -56,7 +56,7 @@
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-startSale(name)</panel_attributes>
+startSale()</panel_attributes>
     <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -68,7 +68,7 @@ startSale(name)</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-addSaleLine(name, quantity)</panel_attributes>
+addSaleLineToSale(quantity, barcode)</panel_attributes>
     <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -87,14 +87,14 @@ returns the current sale lines with total price
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
+      <x>140</x>
       <y>320</y>
-      <w>340</w>
+      <w>740</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-finish sale(e, isPaid)</panel_attributes>
-    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
+insertSale(saleNr, isPacked, datePacked, isSent, dateSent, isPaid, datePaid, id_employee, id_customer, saleLines)</panel_attributes>
+    <additional_attributes>520.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
