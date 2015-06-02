@@ -27,15 +27,15 @@ import java.awt.Color;
 public class GuiViewCustomer extends JDialog {
 
 	private JPanel contentPane;
-	private static GuiViewCustomer instance=null;
+	
 	private CtrCustomer cc= new CtrCustomer();
 	private GuiMain gm = GuiMain.getInstance();
 	
-	private Customer customer=cc.searchCustomerByName(gm.list_1.getSelectedItem());
 	
 	
 	
-		JOptionPane.showMessageDialog(null, "Bullshit, stefan :)).", "Error", JOptionPane.ERROR_MESSAGE);
+	
+	//	JOptionPane.showMessageDialog(null, "Bullshit, stefan :)).", "Error", JOptionPane.ERROR_MESSAGE);
 	
 			
 	
@@ -48,14 +48,21 @@ public class GuiViewCustomer extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public static GuiViewCustomer getInstance()
-	{
-		if(instance == null) {
-	         instance = new GuiViewCustomer();
-	      }
-	      return instance;
-	}
+	
 	public GuiViewCustomer() {
+		Customer customer=null;
+		try {
+			for(Customer curr:cc.getAllCustomers())
+			{
+				if(curr.getName().equals(gm.list_customers.getSelectedItem()))
+				{
+					customer=cc.findCustomer(curr.getId_customer());
+				}
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		setModal(true);
 		setTitle("View Customer");
 		setResizable(false);

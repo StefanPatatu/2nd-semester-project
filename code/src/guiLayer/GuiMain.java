@@ -24,9 +24,15 @@ import java.io.IOException;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
+import controlLayer.CtrCheckConnection;
+import controlLayer.CtrCustomer;
+import controlLayer.CtrEmployee;
+import modelLayer.Customer;
+import modelLayer.Employee;
 import authLayer.DbConfig;
 
 import java.awt.Toolkit;
@@ -35,12 +41,23 @@ import java.awt.Color;
 @author frunziss
 */
 public class GuiMain extends JFrame {
+	private static ArrayList<GuiCustomerWrapper<Customer>> gcw = new ArrayList<>();
+	private static ArrayList<Customer> customers = new ArrayList<>();
+	private static ArrayList<GuiEmployeeWrapper<Employee>> gew = new ArrayList<>();
+	private static ArrayList<Employee> employees = new ArrayList<>();
+//	private static List list_customers;
+	private static CtrCustomer cc=new CtrCustomer();
+	private static CtrEmployee ce=new CtrEmployee();
+	
 	private static GuiMain instance=null;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textField_employees;
+	public List list_customers=new List();
+	public List list_employees=new List();
+	public JLabel lblFuck = new JLabel("Fuck");
 	
 
 	/**
@@ -50,9 +67,13 @@ public class GuiMain extends JFrame {
 	private static ServerSocket socket;    
 	private JTextField textField_5;
 	private JTextField textField_6;
-	public List list_1;
+	
+	
+	
 	
 	public static GuiMain getInstance() {
+		
+		
 	      if(instance == null) {
 	         instance = new GuiMain();
 	      }
@@ -81,6 +102,8 @@ public class GuiMain extends JFrame {
 					checkIfRunning();
 					 DbConfig dbb = new DbConfig();
 					GuiMain frame = GuiMain.getInstance();
+					GuiCheckThread cgt=new GuiCheckThread();
+					cgt.start();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -93,6 +116,49 @@ public class GuiMain extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiMain() {
+		//-----------------------------------------------------------------------------------------
+		try {
+			customers=cc.getAllCustomers();
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		for(Customer curr:customers)
+		{
+			gcw.add(new GuiCustomerWrapper<Customer>(curr, curr::getName));
+			
+			
+		}
+		
+		for(GuiCustomerWrapper<Customer>curr:gcw)
+		{
+			list_customers.add(curr.getObject().getName());
+		}
+		//-----------------------------------------------------------
+		//-----------------------------------------------------------------------------------------
+		try {
+			employees=ce.getAllEmployees();
+			
+			
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		for(Employee curr:employees)
+		{
+			gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
+			
+			
+		}
+		
+		
+		for(GuiEmployeeWrapper<Employee>curr:gew)
+		{
+			list_employees.add(curr.getObject().getName());
+		}
+		//-----------------------------------------------------------
 		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setBackground(new Color(204, 204, 255));
@@ -278,6 +344,10 @@ public class GuiMain extends JFrame {
 		salePanel.add(btnMarkAsSent);
 		
 		
+		lblFuck.setBounds(464, 12, 46, 14);
+		salePanel.add(lblFuck);
+		
+		
 		
 		
 		tabbedPane.addTab("Item", itemPanel);
@@ -434,16 +504,34 @@ public class GuiMain extends JFrame {
 				{
 					
 				}*/
+				ArrayList<Customer> result = new ArrayList<>();
+			try {
+				 result = cc.searchCustomerByName(textField_1.getText());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			gcw= new ArrayList<>();
+			GuiMain.getInstance().list_customers.removeAll();
+			for(Customer curr:result)
+			{
+				gcw.add(new GuiCustomerWrapper<Customer>(curr, curr::getName));
+			}
+			for(GuiCustomerWrapper<Customer>curr:gcw)
+			{
+				GuiMain.getInstance().list_customers.add(curr.toString());
+			}
+			
 			}
 		});
 		button.setBounds(417, 11, 89, 23);
 		customerPanel.add(button);
 		
-		 list_1 = new List();
-		list_1.setForeground(Color.BLACK);
-		list_1.setBackground(Color.LIGHT_GRAY);
-		list_1.setBounds(90, 37, 416, 222);
-		customerPanel.add(list_1);
+		 
+		list_customers.setForeground(Color.BLACK);
+		list_customers.setBackground(Color.LIGHT_GRAY);
+		list_customers.setBounds(90, 37, 416, 222);
+		customerPanel.add(list_customers);
 		
 		JButton btnAdd_1 = new JButton("Add");
 		btnAdd_1.setBackground(new Color(204, 204, 255));
@@ -490,7 +578,7 @@ public class GuiMain extends JFrame {
 				} 
 				else
 				{*/
-				GuiViewCustomer vc =GuiViewCustomer.getInstance();
+				GuiViewCustomer vc =new GuiViewCustomer();
 				vc.setVisible(true);
 				
 				//}
@@ -498,6 +586,13 @@ public class GuiMain extends JFrame {
 		});
 		btnViewInformation_1.setBounds(215, 266, 134, 23);
 		customerPanel.add(btnViewInformation_1);
+		
+		
+		
+	
+		
+		
+		
 		
 		tabbedPane.addTab("Purchase", purchasePanel);
 		purchasePanel.setLayout(null);
@@ -697,24 +792,55 @@ public class GuiMain extends JFrame {
 		employeePanel.setBounds(20, 116, 147, 239);
 		tabbedPane.addTab("Employee", employeePanel);
 		
-		tabbedPane.setEnabledAt(5, false);
+		//tabbedPane.setEnabledAt(5, false);
 		employeePanel.setLayout(null);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(90, 12, 327, 20);
-		employeePanel.add(textField_4);
+		textField_employees = new JTextField();
+		textField_employees.setColumns(10);
+		textField_employees.setBounds(90, 12, 327, 20);
+		employeePanel.add(textField_employees);
 		
 		JButton button_1 = new JButton("Search");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*	if(textField.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the customer in order to be displayed. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				}
+				else
+				{
+					
+				}*/
+				ArrayList<Employee> result = new ArrayList<>();
+			try {
+				 result = ce.searchEmployeeByName(textField_employees.getText());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			gew= new ArrayList<>();
+			GuiMain.getInstance().list_employees.removeAll();
+			for(Employee curr:result)
+			{
+				gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
+			}
+			for(GuiEmployeeWrapper<Employee>curr:gew)
+			{
+				GuiMain.getInstance().list_employees.add(curr.toString());
+			}
+			}
+		});
 		button_1.setBackground(new Color(204, 204, 255));
 		button_1.setBounds(417, 11, 89, 23);
 		employeePanel.add(button_1);
 		
-		List list_2 = new List();
-		list_2.setForeground(Color.BLACK);
-		list_2.setBackground(Color.LIGHT_GRAY);
-		list_2.setBounds(90, 37, 416, 222);
-		employeePanel.add(list_2);
+		List list_employees = new List();
+		list_employees.setForeground(Color.BLACK);
+		list_employees.setBackground(Color.LIGHT_GRAY);
+		list_employees.setBounds(90, 37, 416, 222);
+		employeePanel.add(list_employees);
 		
 		JButton button_2 = new JButton("Add");
 		button_2.setBackground(new Color(204, 204, 255));

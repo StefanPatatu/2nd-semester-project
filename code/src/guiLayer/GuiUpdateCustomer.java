@@ -27,6 +27,7 @@ import controlLayer.CtrCustomer;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.util.ArrayList;
 /**
 @author frunziss
 */
@@ -39,8 +40,11 @@ public class GuiUpdateCustomer extends JDialog {
 	private JTextField textField_email;
 	private static GuiUpdateCustomer instance= null;
 	private CtrCustomer cc = new CtrCustomer();
+	private Customer customer = null;
+	private ArrayList<Customer> customers=null;
+	private ArrayList<GuiCustomerWrapper<Customer>> gcw=new ArrayList<>();
 	
-	private Customer customer = cc.searchCustomerByName(GuiMain.getInstance().list_1.getSelectedItem());
+	
 
 	/**
 	 * Launch the application.
@@ -58,6 +62,19 @@ public class GuiUpdateCustomer extends JDialog {
 	      return instance;
 	}
 	public GuiUpdateCustomer() {
+		 
+		 try {
+			for(Customer curr:cc.getAllCustomers())
+			 {
+				 if(curr.getName().equals(GuiMain.getInstance().list_customers.getSelectedItem()))
+				 {
+					 customer=cc.findCustomer(curr.getId_customer());
+				 }
+			 }
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setModal(true);
 		setResizable(false);
@@ -145,7 +162,38 @@ public class GuiUpdateCustomer extends JDialog {
 				}
 				else
 				*/
-			cc.updateCustomer(customer.getId_customer(), textField_name.getText(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+			
+				try {
+					cc.updateCustomer(customer.getId_customer(), textField_name.getText(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					customers=cc.getAllCustomers();
+					gcw= new ArrayList<GuiCustomerWrapper<Customer>>();
+					GuiMain.getInstance().list_customers.removeAll();
+					
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				for(Customer curr:customers)
+				{
+					gcw.add(new GuiCustomerWrapper<Customer>(curr, curr::getName));
+					
+					
+				}
+				
+				for(GuiCustomerWrapper<Customer>curr:gcw)
+				{
+					GuiMain.getInstance().list_customers.add(curr.getObject().getName());
+				}
+				
+			
+				GuiUpdateCustomer.this.dispose();
+			
 			
 				
 			
@@ -185,7 +233,13 @@ public class GuiUpdateCustomer extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}*/
-				cc.updateCustomer(customer.getId_customer(), customer.getName(), textField_country.getText(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+				try {
+					cc.updateCustomer(customer.getId_customer(), customer.getName(), textField_country.getText(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+					GuiUpdateCustomer.this.dispose();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnModify.setBounds(109, 89, 89, 23);
@@ -227,7 +281,13 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_1 = new JButton("Update");
 		btnModify_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), textField_city.getText(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+				try {
+					GuiUpdateCustomer.this.dispose();
+					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), textField_city.getText(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnModify_1.setBackground(new Color(204, 204, 255));
@@ -271,7 +331,13 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_2 = new JButton("Update");
 		btnModify_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), textField_street.getText(), customer.getPhoneNr(), customer.getEmail());
+				try {
+					GuiUpdateCustomer.this.dispose();
+					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), textField_street.getText(), customer.getPhoneNr(), customer.getEmail());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnModify_2.setBackground(new Color(204, 204, 255));
@@ -314,7 +380,13 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_3 = new JButton("Update");
 		btnModify_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), textField_phone.getText(), customer.getEmail());
+				try {
+					GuiUpdateCustomer.this.dispose();
+					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), textField_phone.getText(), customer.getEmail());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnModify_3.setBackground(new Color(204, 204, 255));
@@ -357,7 +429,13 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_4 = new JButton("Update");
 		btnModify_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cc.updateCustomer(customer.getId_customer(), customer.getEmail(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), textField_email.getText());
+				try {
+					GuiUpdateCustomer.this.dispose();
+					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), textField_email.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}});
 		btnModify_4.setBackground(new Color(204, 204, 255));
 		btnModify_4.setBounds(109, 89, 89, 23);

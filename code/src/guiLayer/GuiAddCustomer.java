@@ -35,6 +35,8 @@ public class GuiAddCustomer extends JDialog {
 	private static GuiAddCustomer instance=null;
 	private CtrAddress ca =  new CtrAddress();
 	private CtrCustomer cc= new CtrCustomer();
+	private ArrayList<GuiCustomerWrapper<Customer>> gcw = new ArrayList<>();
+	private ArrayList<Customer> customers = new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +55,30 @@ public class GuiAddCustomer extends JDialog {
 	      return instance;
 	}
 	public GuiAddCustomer() {
+		try {
+			customers=cc.getAllCustomers();
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		try {
+			customers=cc.getAllCustomers();
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		for(Customer curr:customers)
+		{
+			gcw.add(new GuiCustomerWrapper<Customer>(curr, curr::getName));
+			
+			
+		}
+		
+		for(GuiCustomerWrapper<Customer>curr:gcw)
+		{
+			GuiMain.getInstance().list_customers.add(curr.getObject().getName());
+		}
 		setModal(true);
 		setTitle("Add Customer");
 		setResizable(false);
@@ -157,6 +183,34 @@ public class GuiAddCustomer extends JDialog {
 
 					try {
 						cc.insertCustomer(name, country, city, street, number, email);
+						customers = cc.getAllCustomers();
+						gcw= new ArrayList<>();
+						GuiMain.getInstance().list_customers.removeAll();
+						try {
+							customers=cc.getAllCustomers();
+						} catch (Exception e2) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						try {
+							customers=cc.getAllCustomers();
+							
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						for(Customer curr:customers)
+						{
+							gcw.add(new GuiCustomerWrapper<Customer>(curr, curr::getName));
+							
+							
+						}
+						
+						for(GuiCustomerWrapper<Customer>curr:gcw)
+						{
+							GuiMain.getInstance().list_customers.add(curr.getObject().getName());
+						}
+						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(new JFrame(), "Can't insert customer. ", "Error",

@@ -15,12 +15,15 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import modelLayer.Customer;
+import modelLayer.Employee;
 import controlLayer.CtrCustomer;
 import controlLayer.CtrEmployee;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class GuiAddEmployee extends JDialog {
 
@@ -36,6 +39,9 @@ public class GuiAddEmployee extends JDialog {
 	private CtrEmployee ce= new CtrEmployee();
 	private JTextField textField_pass;
 	private JTextField textField_rights;
+	
+	private ArrayList<GuiEmployeeWrapper<Employee>> gew = new ArrayList<>();
+	private ArrayList<Employee> employees = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -55,6 +61,30 @@ public class GuiAddEmployee extends JDialog {
 	      return instance;
 	}
 	public GuiAddEmployee() {
+		try {
+			employees=ce.getAllEmployees();
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		try {
+			employees=ce.getAllEmployees();
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		for(Employee curr:employees)
+		{
+			gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
+			
+			
+		}
+		
+		for(GuiEmployeeWrapper<Employee>curr:gew)
+		{
+			GuiMain.getInstance().list_employees.add(curr.getObject().getName());
+		}
 		setModal(true);
 		setTitle("Add Employee");
 		setResizable(false);
@@ -162,7 +192,33 @@ public class GuiAddEmployee extends JDialog {
 			ce.insertEmployee(id, name, number, email, pass, rights, country, city, street);
 					//	GuiMain.getInstance().refreshList();
 						
-						JOptionPane.showMessageDialog(new JFrame(), "Employee added successfully. ", "Error", JOptionPane.ERROR_MESSAGE);
+			employees = ce.getAllEmployees();
+			gew= new ArrayList<>();
+			GuiMain.getInstance().list_employees.removeAll();
+			try {
+				employees=ce.getAllEmployees();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			try {
+				employees=ce.getAllEmployees();
+				
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			for(Employee curr:employees)
+			{
+				gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
+				
+				
+			}
+			
+			for(GuiEmployeeWrapper<Employee>curr:gew)
+			{
+				GuiMain.getInstance().list_employees.add(curr.getObject().getName());
+			}
 //					GuiAddCustomer.this.dispose();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
