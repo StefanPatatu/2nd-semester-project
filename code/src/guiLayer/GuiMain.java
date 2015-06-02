@@ -31,8 +31,10 @@ import javax.swing.JLabel;
 import controlLayer.CtrCheckConnection;
 import controlLayer.CtrCustomer;
 import controlLayer.CtrEmployee;
+import controlLayer.CtrItem;
 import modelLayer.Customer;
 import modelLayer.Employee;
+import modelLayer.Item;
 import authLayer.DbConfig;
 
 import java.awt.Toolkit;
@@ -45,18 +47,22 @@ public class GuiMain extends JFrame {
 	private static ArrayList<Customer> customers = new ArrayList<>();
 	private static ArrayList<GuiEmployeeWrapper<Employee>> gew = new ArrayList<>();
 	private static ArrayList<Employee> employees = new ArrayList<>();
+	private static ArrayList<GuiItemWrapperGood<Item>> giw = new ArrayList<>();
+	private static ArrayList<Item> items = new ArrayList<>();
 //	private static List list_customers;
 	private static CtrCustomer cc=new CtrCustomer();
 	private static CtrEmployee ce=new CtrEmployee();
+	private static CtrItem ci=new CtrItem();
 	
 	private static GuiMain instance=null;
-	private JTextField textField;
+	private JTextField textField_items;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_employees;
 	public List list_customers=new List();
 	public List list_employees=new List();
+	public List list_items=new List();
 	public JLabel lblFuck = new JLabel("Fuck");
 	
 
@@ -159,6 +165,29 @@ public class GuiMain extends JFrame {
 			list_employees.add(curr.getObject().getName());
 		}
 		//-----------------------------------------------------------
+		//-----------------------------------------------------------------------------------------
+				try {
+					items=ci.getAllItems();
+					
+					
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				for(Item curr:items)
+				{
+					giw.add(new GuiItemWrapperGood<Item>(curr, curr::getName));
+					
+					
+				}
+				
+				
+				for(GuiItemWrapperGood<Item>curr:giw)
+				{
+					list_items.add(curr.getObject().getName());
+				}
+				//-----------------------------------------------------------
 		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setBackground(new Color(204, 204, 255));
@@ -353,8 +382,8 @@ public class GuiMain extends JFrame {
 		tabbedPane.addTab("Item", itemPanel);
 		itemPanel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		textField_items = new JTextField();
+		textField_items.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
@@ -367,9 +396,9 @@ public class GuiMain extends JFrame {
 		        }
 			}
 		});
-		textField.setBounds(90, 12, 327, 20);
-		itemPanel.add(textField);
-		textField.setColumns(10);
+		textField_items.setBounds(90, 12, 327, 20);
+		itemPanel.add(textField_items);
+		textField_items.setColumns(10);
 		
 		JButton btnItem = new JButton("Search");
 		btnItem.setBackground(new Color(204, 204, 255));
@@ -385,16 +414,33 @@ public class GuiMain extends JFrame {
 				{
 					
 				}*/
+				ArrayList<Item> result = new ArrayList<>();
+				try {
+					 result = ci.searchItemByName(textField_items.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				giw= new ArrayList<>();
+				GuiMain.getInstance().list_items.removeAll();
+				for(Item curr:result)
+				{
+					giw.add(new GuiItemWrapperGood<Item>(curr, curr::getName));
+				}
+				for(GuiItemWrapperGood<Item>curr:giw)
+				{
+					GuiMain.getInstance().list_items.add(curr.toString());
+				}
 			}
 		});
 		btnItem.setBounds(417, 11, 89, 23);
 		itemPanel.add(btnItem);
 		
-		List list = new List();
-		list.setForeground(Color.BLACK);
-		list.setBackground(Color.LIGHT_GRAY);
-		list.setBounds(90, 38, 416, 222);
-		itemPanel.add(list);
+		//List list_items = new List();
+		list_items.setForeground(Color.BLACK);
+		list_items.setBackground(Color.LIGHT_GRAY);
+		list_items.setBounds(90, 38, 416, 222);
+		itemPanel.add(list_items);
 		
 		JButton btnViewInformation = new JButton("View");
 		btnViewInformation.setBackground(new Color(204, 204, 255));
@@ -408,7 +454,7 @@ public class GuiMain extends JFrame {
 				} 
 				else
 				{*/
-				GuiViewItem vi = GuiViewItem.getInstance();
+				GuiViewItem vi = new GuiViewItem();
 				vi.setVisible(true);
 				
 				//}
@@ -454,6 +500,7 @@ public class GuiMain extends JFrame {
 		itemPanel.add(btnUpdateStock);
 		
 		JButton btnModify_1 = new JButton("Modify");
+		btnModify_1.setEnabled(false);
 		btnModify_1.setBackground(new Color(204, 204, 255));
 		btnModify_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -836,7 +883,7 @@ public class GuiMain extends JFrame {
 		button_1.setBounds(417, 11, 89, 23);
 		employeePanel.add(button_1);
 		
-		List list_employees = new List();
+		//List list_employees = new List();
 		list_employees.setForeground(Color.BLACK);
 		list_employees.setBackground(Color.LIGHT_GRAY);
 		list_employees.setBounds(90, 37, 416, 222);
@@ -846,17 +893,27 @@ public class GuiMain extends JFrame {
 		button_2.setBackground(new Color(204, 204, 255));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GuiAddEmployee ae=new GuiAddEmployee();
+				ae.getInstance();
+				ae.setVisible(true);
 			}
 		});
 		button_2.setBounds(90, 266, 124, 23);
 		employeePanel.add(button_2);
 		
 		JButton button_3 = new JButton("View Information");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GuiViewEmployee ve = new GuiViewEmployee();
+				ve.setVisible(true);
+			}
+		});
 		button_3.setBackground(new Color(204, 204, 255));
 		button_3.setBounds(215, 266, 134, 23);
 		employeePanel.add(button_3);
 		
 		JButton button_4 = new JButton("Modify");
+		button_4.setEnabled(false);
 		button_4.setBackground(new Color(204, 204, 255));
 		button_4.setBounds(350, 266, 156, 23);
 		employeePanel.add(button_4);

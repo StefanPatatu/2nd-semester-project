@@ -15,6 +15,10 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import controlLayer.CtrEmployee;
+import modelLayer.Customer;
+import modelLayer.Employee;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -25,6 +29,8 @@ public class GuiViewEmployee extends JDialog {
 	*/
 	private JPanel contentPane;
 	private static GuiViewEmployee instance=null;
+	private static CtrEmployee ce = new CtrEmployee();
+	private static GuiMain gm=GuiMain.getInstance();
 
 	/**
 	 * Launch the application.
@@ -42,6 +48,21 @@ public class GuiViewEmployee extends JDialog {
 	      return instance;
 	}
 	public GuiViewEmployee() {
+		
+		 Employee employee=null;
+			try {
+				for(Employee curr:ce.getAllEmployees())
+				{
+					if(curr.getName().equals(gm.list_employees.getSelectedItem()))
+					{
+						employee=ce.findEmployeeById_employee(curr.getId_employee());
+					}
+				}
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		
 		setModal(true);
 		setTitle("View Employee");
 		setResizable(false);
@@ -90,23 +111,23 @@ public class GuiViewEmployee extends JDialog {
 		btnCancel.setBounds(95, 136, 89, 23);
 		contentPane.add(btnCancel);
 		
-		JLabel lblBarcode_1 = new JLabel("name");
+		JLabel lblBarcode_1 = new JLabel(employee.getName());
 		lblBarcode_1.setBounds(95, 13, 140, 14);
 		contentPane.add(lblBarcode_1);
 		
-		JLabel lblName_1 = new JLabel("country");
+		JLabel lblName_1 = new JLabel(employee.getAddress().getCountry());
 		lblName_1.setBounds(95, 38, 140, 14);
 		contentPane.add(lblName_1);
 		
-		JLabel lblPrice_1 = new JLabel("street");
+		JLabel lblPrice_1 = new JLabel(employee.getStreet());
 		lblPrice_1.setBounds(93, 63, 140, 14);
 		contentPane.add(lblPrice_1);
 		
-		JLabel lblStock_1 = new JLabel("phoneNumber");
+		JLabel lblStock_1 = new JLabel(employee.getPhoneNr());
 		lblStock_1.setBounds(93, 86, 140, 14);
 		contentPane.add(lblStock_1);
 		
-		JLabel lblType_1 = new JLabel("email");
+		JLabel lblType_1 = new JLabel(employee.getEmail());
 		lblType_1.setBounds(93, 113, 140, 14);
 		contentPane.add(lblType_1);
 	}

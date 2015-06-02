@@ -16,6 +16,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import modelLayer.Item;
+import controlLayer.CtrItem;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -27,6 +30,9 @@ public class GuiUpdateStock extends JDialog {
 	private JPanel contentPane;
 	private JTextField textField;
 	private static GuiUpdateStock instance=null;
+	private GuiMain gm=GuiMain.getInstance();
+	private CtrItem ci = new CtrItem();
+	private Item item = null;
 
 	/**
 	 * Launch the application.
@@ -44,6 +50,18 @@ public class GuiUpdateStock extends JDialog {
 	      return instance;
 	}
 	public GuiUpdateStock() {
+		try {
+			for(Item curr:ci.getAllItems())
+			{
+				if(curr.getName().equals(gm.list_items.getSelectedItem()))
+				{
+					item=ci.findItemByBarcode(curr.getBarcode());
+				}
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		setModal(true);
 		setTitle("Update Stock");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -54,7 +72,7 @@ public class GuiUpdateStock extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblName = new JLabel("name");
+		JLabel lblName = new JLabel(item.getName());
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setBounds(100, 11, 227, 14);
 		contentPane.add(lblName);
@@ -64,7 +82,7 @@ public class GuiUpdateStock extends JDialog {
 		lblNewLabel.setBounds(22, 45, 192, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblCurrstock = new JLabel("currStock");
+		JLabel lblCurrstock = new JLabel(String.valueOf(item.getStock()));
 		lblCurrstock.setBounds(152, 47, 144, 14);
 		contentPane.add(lblCurrstock);
 		
@@ -88,6 +106,15 @@ public class GuiUpdateStock extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}*/
+				try {
+					ci.updateItem(item.getId_item(), item.getBarcode(), item.getName(), item.getPrice(), Integer.parseInt(textField.getText())+item.getStock(), item.getItemType(), item.getCategory());
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSubmit.setBounds(135, 110, 89, 23);

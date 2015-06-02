@@ -50,7 +50,7 @@ public class GuiViewCustomer extends JDialog {
 	 */
 	
 	public GuiViewCustomer() {
-		Customer customer=null;
+		 Customer customer=null;
 		try {
 			for(Customer curr:cc.getAllCustomers())
 			{
@@ -63,6 +63,7 @@ public class GuiViewCustomer extends JDialog {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+		
 		setModal(true);
 		setTitle("View Customer");
 		setResizable(false);
@@ -109,7 +110,7 @@ public class GuiViewCustomer extends JDialog {
 		});
 		btnCancel.setBounds(95, 166, 89, 23);
 		contentPane.add(btnCancel);
-		
+		System.out.println(customer.getEmail());
 		JLabel lblBarcode_1 = new JLabel(customer.getName());
 		lblBarcode_1.setBounds(95, 13, 140, 14);
 		contentPane.add(lblBarcode_1);

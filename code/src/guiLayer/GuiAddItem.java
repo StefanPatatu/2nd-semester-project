@@ -15,9 +15,14 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import modelLayer.Employee;
+import modelLayer.Item;
+import controlLayer.CtrItem;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class GuiAddItem extends JDialog {
 
@@ -29,6 +34,11 @@ public class GuiAddItem extends JDialog {
 	private JTextField textField_type;
 	private JTextField textField_category;
 	private static GuiAddItem instance= null;
+	private CtrItem ci = new CtrItem();
+	private ArrayList<GuiItemWrapperGood<Item>> giw = new ArrayList<>(); 
+	private ArrayList<Item> items = new ArrayList<>();
+	
+	
 
 	/**
 	 * Launch the application.
@@ -149,10 +159,39 @@ public class GuiAddItem extends JDialog {
 				Double price = Double.parseDouble(textField_price.getText());
 				int stock = Integer.parseInt(textField_stock.getText());
 				String type = textField_type.getText();
+				try {
+					ci.insertItem(barcode, name, price, stock, type, category);
+					giw= new ArrayList<>();
+					GuiMain.getInstance().list_items.removeAll();
+					try {
+						items=ci.getAllItems();
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					for(Item curr:items)
+					{
+						giw.add(new GuiItemWrapperGood<Item>(curr, curr::getName));
+						
+						
+					}
+					
+					for(GuiItemWrapperGood<Item>curr:giw)
+					{
+						GuiMain.getInstance().list_items.add(curr.getObject().getName());
+					}
+//							GuiAddCustomer.this.dispose();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(new JFrame(), "Can't insert employee. ", "Error",
+								        JOptionPane.ERROR_MESSAGE);
+							}
+				 
 				
 				}
-			}
-		});
+			
+		}});
 		btnAdd.setBounds(86, 163, 89, 23);
 		contentPane.add(btnAdd);
 	}

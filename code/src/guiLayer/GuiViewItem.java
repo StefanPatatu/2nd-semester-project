@@ -15,6 +15,10 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import controlLayer.CtrItem;
+import modelLayer.Employee;
+import modelLayer.Item;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -24,7 +28,10 @@ public class GuiViewItem extends JDialog {
 	@author frunziss
 	*/
 	private JPanel contentPane;
-	private static GuiViewItem instance=null;
+//	private static GuiViewItem instance=null;
+	private Item item = null;
+	private GuiMain gm = GuiMain.getInstance();
+	private CtrItem ci = new CtrItem();
 
 	/**
 	 * Launch the application.
@@ -34,14 +41,20 @@ public class GuiViewItem extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public static GuiViewItem getInstance()
-	{
-		if(instance == null) {
-	         instance = new GuiViewItem();
-	      }
-	      return instance;
-	}
+	
 	public GuiViewItem() {
+		try {
+			for(Item curr:ci.getAllItems())
+			{
+				if(curr.getName().equals(gm.list_items.getSelectedItem()))
+				{
+					item=ci.findItemByBarcode(curr.getBarcode());
+				}
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		setModal(true);
 		setTitle("View Item");
 		setResizable(false);
@@ -94,27 +107,27 @@ public class GuiViewItem extends JDialog {
 		btnCancel.setBounds(93, 161, 89, 23);
 		contentPane.add(btnCancel);
 		
-		JLabel lblBarcode_1 = new JLabel("barcode");
+		JLabel lblBarcode_1 = new JLabel(item.getBarcode());
 		lblBarcode_1.setBounds(95, 13, 140, 14);
 		contentPane.add(lblBarcode_1);
 		
-		JLabel lblName_1 = new JLabel("name");
+		JLabel lblName_1 = new JLabel(item.getName());
 		lblName_1.setBounds(95, 38, 140, 14);
 		contentPane.add(lblName_1);
 		
-		JLabel lblPrice_1 = new JLabel("price");
+		JLabel lblPrice_1 = new JLabel(String.valueOf(item.getPrice()));
 		lblPrice_1.setBounds(93, 63, 140, 14);
 		contentPane.add(lblPrice_1);
 		
-		JLabel lblStock_1 = new JLabel("stock");
+		JLabel lblStock_1 = new JLabel(String.valueOf(item.getStock()));
 		lblStock_1.setBounds(93, 86, 140, 14);
 		contentPane.add(lblStock_1);
 		
-		JLabel lblType_1 = new JLabel("type");
+		JLabel lblType_1 = new JLabel(item.getItemType());
 		lblType_1.setBounds(93, 113, 140, 14);
 		contentPane.add(lblType_1);
 		
-		JLabel lblCategory_1 = new JLabel("category");
+		JLabel lblCategory_1 = new JLabel(item.getCategory());
 		lblCategory_1.setBounds(93, 138, 140, 14);
 		contentPane.add(lblCategory_1);
 	}

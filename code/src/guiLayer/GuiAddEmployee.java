@@ -61,30 +61,8 @@ public class GuiAddEmployee extends JDialog {
 	      return instance;
 	}
 	public GuiAddEmployee() {
-		try {
-			employees=ce.getAllEmployees();
-		} catch (Exception e2) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		try {
-			employees=ce.getAllEmployees();
-			
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		for(Employee curr:employees)
-		{
-			gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
-			
-			
-		}
 		
-		for(GuiEmployeeWrapper<Employee>curr:gew)
-		{
-			GuiMain.getInstance().list_employees.add(curr.getObject().getName());
-		}
+		
 		setModal(true);
 		setTitle("Add Employee");
 		setResizable(false);
@@ -191,8 +169,9 @@ public class GuiAddEmployee extends JDialog {
 					try {
 			ce.insertEmployee(id, name, number, email, pass, rights, country, city, street);
 					//	GuiMain.getInstance().refreshList();
+						employees=new ArrayList<>();
 						
-			employees = ce.getAllEmployees();
+			
 			gew= new ArrayList<>();
 			GuiMain.getInstance().list_employees.removeAll();
 			try {
@@ -201,13 +180,7 @@ public class GuiAddEmployee extends JDialog {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			try {
-				employees=ce.getAllEmployees();
-				
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+			
 			for(Employee curr:employees)
 			{
 				gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
