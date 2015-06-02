@@ -30,7 +30,7 @@ public class GuiCheckThread extends Thread
 			}
 		
 		
-			gm.lblFuck.setText(result);
+			gm.lblcheck.setText(result);
 			
 			
 		}

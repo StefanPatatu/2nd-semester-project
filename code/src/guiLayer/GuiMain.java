@@ -63,7 +63,7 @@ public class GuiMain extends JFrame {
 	public List list_customers=new List();
 	public List list_employees=new List();
 	public List list_items=new List();
-	public JLabel lblFuck = new JLabel("Fuck");
+	public JLabel lblcheck = new JLabel("check");
 	
 
 	/**
@@ -200,7 +200,7 @@ public class GuiMain extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setBounds(10, 11, 606, 344);
-	
+		
 		getContentPane().add(tabbedPane);
 		
 		JPanel itemPanel = new JPanel();
@@ -213,6 +213,7 @@ public class GuiMain extends JFrame {
 		customerPanel.setBounds(116, 116, 147, 239);
 		
 		JPanel purchasePanel = new JPanel();
+		
 		purchasePanel.setBackground(Color.GRAY);
 		purchasePanel.setBounds(20,116,147,239);
 		
@@ -373,12 +374,12 @@ public class GuiMain extends JFrame {
 		salePanel.add(btnMarkAsSent);
 		
 		
-		lblFuck.setBounds(464, 12, 46, 14);
-		salePanel.add(lblFuck);
+		lblcheck.setBounds(464, 12, 46, 14);
+		salePanel.add(lblcheck);
 		
 		
 		
-		
+		;
 		tabbedPane.addTab("Item", itemPanel);
 		itemPanel.setLayout(null);
 		
@@ -921,5 +922,6 @@ public class GuiMain extends JFrame {
 		JLabel lblNotWorkingYet = new JLabel("Not working yet");
 		lblNotWorkingYet.setBounds(215, 141, 46, 14);
 		employeePanel.add(lblNotWorkingYet);
+		
 	}
 }
