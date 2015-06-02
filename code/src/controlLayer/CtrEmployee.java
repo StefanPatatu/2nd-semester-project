@@ -36,11 +36,11 @@ public class CtrEmployee {
 	}
 	
 	public Employee findEmployeeById_employee(int id_employee) throws Exception {
-		return dbEmployee.findEmployeeById_employee(id_employee, false);
+		return dbEmployee.findEmployeeById_employee(id_employee, true);
 	}
 	
 	public Employee findEmployeeByPerson_id(String person_id) throws Exception {
-		return dbEmployee.findEmployeeByPerson_id(person_id, false);
+		return dbEmployee.findEmployeeByPerson_id(person_id, true);
 	}
 	
 	public ArrayList<Employee> searchEmployeeByName(String name) throws Exception {
