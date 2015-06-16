@@ -113,7 +113,11 @@ public class CtrEmployee {
 		try {
 			employee = findEmployeeByPerson_id(person_id);
 			try {
-				rights = systemLogin.Authenticate(employee.getId_employee(), employee.getPass(), employee.getSalt());
+				if(systemLogin.authenticate(password, employee.getSalt(), employee.getPass())) {
+					rights = employee.getRights();
+				} else {
+					rights = Errors.AUTHENTICATE_FAILED.getCode();
+				}
 			} catch (Exception e) {
 				rights = Errors.AUTHENTICATE_FAILED.getCode();	
 			}
