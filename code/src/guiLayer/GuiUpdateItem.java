@@ -22,15 +22,27 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
 
+import modelLayer.Customer;
+import modelLayer.Item;
+import controlLayer.CtrCustomer;
+import controlLayer.CtrItem;
+
 import java.awt.Font;
 import java.awt.Color;
+import java.util.ArrayList;
 /**
 @author frunziss
 */
 public class GuiUpdateItem extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
-	private static GuiUpdateItem instance=null;
+	private GuiMain gm = GuiMain.getInstance();
+	
+	private CtrItem ci = new CtrItem();
+	private Item item = null;
+	private ArrayList<Item> items=null;
+	private ArrayList<GuiItemWrapperGood<Item>> giw=new ArrayList<>();
+
 
 	/**
 	 * Launch the application.
@@ -40,14 +52,22 @@ public class GuiUpdateItem extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public static GuiUpdateItem getInstance()
-	{
-		if(instance == null) {
-	         instance = new GuiUpdateItem();
-	      }
-	      return instance;
-	}
+	
 	public GuiUpdateItem() {
+		
+		 try {
+				for(Item curr:ci.getAllItems())
+				 {
+					 if(curr.getName().equals(GuiMain.getInstance().list_items.getSelectedItem()))
+					 {
+						 item=ci.findItemById_item(curr.getId_item());
+						 				 }
+				 }
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(new JFrame(), "Can't get all items. ", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setModal(true);
 		setResizable(false);
@@ -89,8 +109,8 @@ public class GuiUpdateItem extends JDialog {
 		lblNewLabel.setBounds(10, 11, 119, 14);
 		namePanel.add(lblNewLabel);
 		
-		JLabel lblName = new JLabel("name");
-		lblName.setBounds(177, 13, 46, 14);
+		JLabel lblName = new JLabel(item.getName());
+		lblName.setBounds(177, 13, 112, 14);
 		namePanel.add(lblName);
 		
 		JLabel lblNewLabel_1 = new JLabel("New name:");
@@ -118,12 +138,44 @@ public class GuiUpdateItem extends JDialog {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*if(textField.getText().isEmpty())
+				if(textField.getText().isEmpty())
 				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new name. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}*/
+				}
+				else
+				{
+				
+				try {
+					GuiUpdateItem.this.dispose();
+					ci.updateItem(item.getId_item(), item.getBarcode(), textField.getText(), item.getPrice(), item.getStock(), item.getItemType(), item.getCategory());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					items=ci.getAllItems();
+					giw= new ArrayList<GuiItemWrapperGood<Item>>();
+					GuiMain.getInstance().list_items.removeAll();
+					
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(new JFrame(), "Can't get all customers. ", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				for(Item curr:items)
+				{
+					giw.add(new GuiItemWrapperGood<Item>(curr, curr::getName));
+					
+					
+				}
+				
+				for(GuiItemWrapperGood<Item>curr:giw)
+				{
+					GuiMain.getInstance().list_items.add(curr.getObject().getName());
+				}
+				}
 			}
 		});
 		btnAdd.setBounds(109, 89, 89, 23);
@@ -141,7 +193,7 @@ public class GuiUpdateItem extends JDialog {
 		lblNewPrice.setBounds(10, 36, 103, 14);
 		pricePanel.add(lblNewPrice);
 		
-		JLabel lblPrice = new JLabel("price");
+		JLabel lblPrice = new JLabel(Double.toString(item.getPrice()));
 		lblPrice.setBounds(177, 13, 46, 14);
 		pricePanel.add(lblPrice);
 		
@@ -154,12 +206,23 @@ public class GuiUpdateItem extends JDialog {
 		btnUpdate.setBackground(new Color(204, 204, 255));
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			/*	if(textField.getText().isEmpty())
+				if(textField_1.getText().isEmpty())
 				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new price. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
-				}*/
+				}
+				else
+				{
+				
+				try {
+					GuiUpdateItem.this.dispose();
+					ci.updateItem(item.getId_item(), item.getBarcode(), item.getName(), Double.parseDouble(textField_1.getText()), item.getStock(), item.getItemType(), item.getCategory());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
 			}
 		});
 		btnUpdate.setBounds(109, 89, 89, 23);

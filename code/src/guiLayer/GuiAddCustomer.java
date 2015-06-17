@@ -55,6 +55,7 @@ public class GuiAddCustomer extends JDialog {
 	      return instance;
 	}
 	public GuiAddCustomer() {
+		/*
 		try {
 			customers=cc.getAllCustomers();
 		} catch (Exception e2) {
@@ -79,6 +80,7 @@ public class GuiAddCustomer extends JDialog {
 		{
 			GuiMain.getInstance().list_customers.add(curr.getObject().getName());
 		}
+		*/
 		setModal(true);
 		setTitle("Add Customer");
 		setResizable(false);
@@ -210,7 +212,7 @@ public class GuiAddCustomer extends JDialog {
 						{
 							GuiMain.getInstance().list_customers.add(curr.getObject().getName());
 						}
-						
+						GuiAddCustomer.this.dispose();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(new JFrame(), "Can't insert customer. ", "Error",

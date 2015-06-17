@@ -54,13 +54,7 @@ public class GuiUpdateCustomer extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public static GuiUpdateCustomer getInstance()
-	{
-		if(instance == null) {
-	         instance = new GuiUpdateCustomer();
-	      }
-	      return instance;
-	}
+	
 	public GuiUpdateCustomer() {
 		 
 		 try {
@@ -126,7 +120,7 @@ public class GuiUpdateCustomer extends JDialog {
 		namePanel.add(lblNewLabel);
 		
 		JLabel lblName = new JLabel(customer.getName());
-		lblName.setBounds(177, 13, 46, 14);
+		lblName.setBounds(177, 13, 167, 14);
 		namePanel.add(lblName);
 		
 		JLabel lblNewLabel_1 = new JLabel("New name:");
@@ -154,14 +148,14 @@ public class GuiUpdateCustomer extends JDialog {
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	if(textField.getText().isEmpty())
+				if(textField_name.getText().isEmpty())
 				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new name. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
 				else
-				*/
+				{
 			
 				try {
 					cc.updateCustomer(customer.getId_customer(), textField_name.getText(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
@@ -194,7 +188,7 @@ public class GuiUpdateCustomer extends JDialog {
 			
 				GuiUpdateCustomer.this.dispose();
 			
-			
+				}
 				
 			
 			}
@@ -215,7 +209,7 @@ public class GuiUpdateCustomer extends JDialog {
 		countryPanel.add(lblNewPrice);
 		
 		JLabel lblCountry = new JLabel(customer.getAddress().getCountry());
-		lblCountry.setBounds(177, 13, 46, 14);
+		lblCountry.setBounds(177, 13, 157, 14);
 		countryPanel.add(lblCountry);
 		
 		textField_country = new JTextField();
@@ -225,23 +219,29 @@ public class GuiUpdateCustomer extends JDialog {
 		
 		JButton btnModify = new JButton("Update");
 		btnModify.setBackground(new Color(204, 204, 255));
-		btnModify.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				/*if(textField.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
+		btnModify.addActionListener(new ActionListener (){
+			
+				public void actionPerformed(ActionEvent e) {
+					if(textField_name.getText().isEmpty())
+					{
+						JOptionPane.showMessageDialog(new JFrame(), "You must input the new country. ", "Error",
+						        JOptionPane.ERROR_MESSAGE);
+					
+					}
+					else
+					{
 				
-				}*/
 				try {
 					cc.updateCustomer(customer.getId_customer(), customer.getName(), textField_country.getText(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
 					GuiUpdateCustomer.this.dispose();
-				} catch (Exception e) {
+				} catch (Exception e2) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e2.printStackTrace();
 				}
-			}
-		});
+					
+				}
+			
+			}});
 		btnModify.setBounds(109, 89, 89, 23);
 		countryPanel.add(btnModify);
 		
@@ -264,8 +264,8 @@ public class GuiUpdateCustomer extends JDialog {
 		lblUpdateName.setBounds(10, 11, 119, 14);
 		cityPanel.add(lblUpdateName);
 		
-		JLabel lblCity = new JLabel("city");
-		lblCity.setBounds(177, 13, 46, 14);
+		JLabel lblCity = new JLabel(customer.getAddress().getCity());
+		lblCity.setBounds(177, 13, 173, 14);
 		cityPanel.add(lblCity);
 		
 		JLabel lblNewCity = new JLabel("New city:");
@@ -281,12 +281,21 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_1 = new JButton("Update");
 		btnModify_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(textField_city.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new city. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				}
+				else
+				{
 				try {
 					GuiUpdateCustomer.this.dispose();
 					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), textField_city.getText(), customer.getStreet(), customer.getPhoneNr(), customer.getEmail());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
 				}
 			}
 		});
@@ -315,7 +324,7 @@ public class GuiUpdateCustomer extends JDialog {
 		streetPanel.add(lblCurrentStreet);
 		
 		JLabel lblStreet = new JLabel(customer.getStreet());
-		lblStreet.setBounds(177, 13, 46, 14);
+		lblStreet.setBounds(177, 13, 183, 14);
 		streetPanel.add(lblStreet);
 		
 		JLabel lblNewStreet = new JLabel("New street:");
@@ -331,12 +340,21 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_2 = new JButton("Update");
 		btnModify_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(textField_name.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new Street. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				}
+				else
+				{
 				try {
 					GuiUpdateCustomer.this.dispose();
 					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), textField_street.getText(), customer.getPhoneNr(), customer.getEmail());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
 				}
 			}
 		});
@@ -364,7 +382,7 @@ public class GuiUpdateCustomer extends JDialog {
 		phonePanel.add(lblCurrentPhone);
 		
 		JLabel lblPhone = new JLabel(customer.getPhoneNr());
-		lblPhone.setBounds(177, 13, 46, 14);
+		lblPhone.setBounds(177, 13, 198, 14);
 		phonePanel.add(lblPhone);
 		
 		JLabel lblNewPhone = new JLabel("New phone:");
@@ -380,12 +398,21 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_3 = new JButton("Update");
 		btnModify_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(textField_name.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new phone. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				}
+				else
+				{
 				try {
 					GuiUpdateCustomer.this.dispose();
 					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), textField_phone.getText(), customer.getEmail());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
 				}
 			}
 		});
@@ -413,7 +440,7 @@ public class GuiUpdateCustomer extends JDialog {
 		emailPanel.add(lblCurrentEmail);
 		
 		JLabel lblEmail = new JLabel(customer.getEmail());
-		lblEmail.setBounds(177, 13, 46, 14);
+		lblEmail.setBounds(177, 13, 191, 14);
 		emailPanel.add(lblEmail);
 		
 		JLabel lblNewEmail = new JLabel("New email:");
@@ -429,12 +456,22 @@ public class GuiUpdateCustomer extends JDialog {
 		JButton btnModify_4 = new JButton("Update");
 		btnModify_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(textField_name.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the new email. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				}
+				else
+				{
+				
 				try {
 					GuiUpdateCustomer.this.dispose();
 					cc.updateCustomer(customer.getId_customer(), customer.getName(), customer.getAddress().getCountry(), customer.getAddress().getCity(), customer.getStreet(), customer.getPhoneNr(), textField_email.getText());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
 				}
 		}});
 		btnModify_4.setBackground(new Color(204, 204, 255));

@@ -42,13 +42,14 @@ public class GuiUpdateStock extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public static GuiUpdateStock getInstance()
+/*	public static GuiUpdateStock getInstance()
 	{
 		if(instance == null) {
 	         instance = new GuiUpdateStock();
 	      }
 	      return instance;
 	}
+	*/
 	public GuiUpdateStock() {
 		try {
 			for(Item curr:ci.getAllItems())
@@ -100,12 +101,14 @@ public class GuiUpdateStock extends JDialog {
 		btnSubmit.setBackground(new Color(204, 204, 255));
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	if(textField.getText().isEmpty())
+				if(textField.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "You must input a positive value. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
 				
-				}*/
 				try {
 					ci.updateItem(item.getId_item(), item.getBarcode(), item.getName(), item.getPrice(), Integer.parseInt(textField.getText())+item.getStock(), item.getItemType(), item.getCategory());
 				} catch (NumberFormatException e1) {
@@ -115,7 +118,8 @@ public class GuiUpdateStock extends JDialog {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
+				GuiUpdateStock.this.dispose();
+			}}
 		});
 		btnSubmit.setBounds(135, 110, 89, 23);
 		contentPane.add(btnSubmit);

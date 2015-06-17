@@ -265,6 +265,7 @@ public class GuiMain extends JFrame {
 		salePanel.add(list_3);
 		
 		JButton button_6 = new JButton("Add");
+		button_6.setEnabled(false);
 		button_6.setBackground(new Color(204, 204, 255));
 		button_6.setForeground(new Color(0, 0, 0));
 		button_6.addActionListener(new ActionListener() {
@@ -447,18 +448,18 @@ public class GuiMain extends JFrame {
 		btnViewInformation.setBackground(new Color(204, 204, 255));
 		btnViewInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	if(list.getSelectedItems().length==0)
+				if(list_items.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				} 
 				else
-				{*/
+				{
 				GuiViewItem vi = new GuiViewItem();
 				vi.setVisible(true);
 				
-				//}
+				}
 			}
 		});
 		btnViewInformation.setBounds(179, 266, 124, 23);
@@ -480,18 +481,18 @@ public class GuiMain extends JFrame {
 		btnUpdateStock.setBackground(new Color(204, 204, 255));
 		btnUpdateStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 /*if(list.getSelectedItems().length==0)
+				 if(list_items.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
 				
-				else{*/
-				GuiUpdateStock us = GuiUpdateStock.getInstance();
+				else{
+				GuiUpdateStock us =  new GuiUpdateStock();
 				us.setVisible(true);
 			
-				//}
+				}
 				
 				
 				
@@ -501,22 +502,22 @@ public class GuiMain extends JFrame {
 		itemPanel.add(btnUpdateStock);
 		
 		JButton btnModify_1 = new JButton("Modify");
-		btnModify_1.setEnabled(false);
+		
 		btnModify_1.setBackground(new Color(204, 204, 255));
 		btnModify_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	if(list.getSelectedItems().length==0)
+				if(list_items.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}
 				else
-				{*/
-				GuiUpdateItem ui=GuiUpdateItem.getInstance();
+				{
+				GuiUpdateItem ui=new GuiUpdateItem();
 				ui.setVisible(true);
 				
-				//}
+				}
 			}
 		});
 		btnModify_1.setBounds(417, 266, 89, 23);
@@ -597,18 +598,18 @@ public class GuiMain extends JFrame {
 		btnModify.setBackground(new Color(204, 204, 255));
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			/*	if(list.getSelectedItems().length==0)
+				if(list_customers.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No customer were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				} 
 				else
-				{*/
-				GuiUpdateCustomer uc = GuiUpdateCustomer.getInstance();
+				{
+				GuiUpdateCustomer uc = new GuiUpdateCustomer();
 				uc.setVisible(true);
 				
-			//	}
+				}
 			}
 		});
 		btnModify.setBounds(350, 266, 156, 23);
@@ -618,22 +619,32 @@ public class GuiMain extends JFrame {
 		btnViewInformation_1.setBackground(new Color(204, 204, 255));
 		btnViewInformation_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			/*	if(list.getSelectedItems().length==0)
+				if(list_customers.getSelectedItems().length==0)
 				{
 					JOptionPane.showMessageDialog(new JFrame(), "No customer were selected. ", "Error",
 					        JOptionPane.ERROR_MESSAGE);
 				
 				} 
 				else
-				{*/
+				{
 				GuiViewCustomer vc =new GuiViewCustomer();
 				vc.setVisible(true);
 				
-				//}
+				}
 			}
 		});
 		btnViewInformation_1.setBounds(215, 266, 134, 23);
 		customerPanel.add(btnViewInformation_1);
+		
+		JButton btnNewButton = new JButton("Create sale ");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GuiSale gs = new GuiSale();
+				gs.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(90, 289, 416, 29);
+		customerPanel.add(btnNewButton);
 		
 		
 		
@@ -914,7 +925,7 @@ public class GuiMain extends JFrame {
 		employeePanel.add(button_3);
 		
 		JButton button_4 = new JButton("Modify");
-		button_4.setEnabled(false);
+		
 		button_4.setBackground(new Color(204, 204, 255));
 		button_4.setBounds(350, 266, 156, 23);
 		employeePanel.add(button_4);

@@ -30,10 +30,14 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
 
+import controlLayer.CtrItem;
+import modelLayer.Item;
+
 import java.awt.Scrollbar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+import java.util.ArrayList;
 /**
 @author frunziss
 */
@@ -42,7 +46,12 @@ public class GuiSale extends JDialog {
 	private JPanel contentPane;
 	private JTextField searchField;
 	private static GuiSale instance=null;
-	private JTextField textField;
+	private GuiMain gm = new GuiMain();
+	private CtrItem ci = new CtrItem();
+	private static ArrayList<GuiItemWrapperGood<Item>> giw = new ArrayList<>();
+	private List itemList = new List();
+	
+	
 	
 
 	/**
@@ -98,7 +107,7 @@ public class GuiSale extends JDialog {
 		        }
 			}
 		});
-		searchField.setBounds(10, 108, 193, 23);
+		searchField.setBounds(10, 39, 193, 23);
 		panel.add(searchField);
 		searchField.setColumns(10);
 		
@@ -112,39 +121,43 @@ public class GuiSale extends JDialog {
 		});
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*if(searchField.getText().isEmpty())
+				ArrayList<Item> result = new ArrayList<>();
+				try {
+					 result = ci.searchItemByName(searchField.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				giw= new ArrayList<>();
+				itemList.removeAll();
+				for(Item curr:result)
 				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the item in order to be displayed. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				}*/
+					giw.add(new GuiItemWrapperGood<Item>(curr, curr::getName));
+				}
+				for(GuiItemWrapperGood<Item>curr:giw)
+				{
+					itemList.add(curr.toString());
+				}
 			}
 		});
-		btnSearch.setBounds(206, 107, 84, 24);
+		btnSearch.setBounds(206, 38, 84, 24);
 		panel.add(btnSearch);
 		
 		JLabel lblSearchProduct = new JLabel("Search product");
 		lblSearchProduct.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSearchProduct.setBounds(10, 80, 156, 23);
+		lblSearchProduct.setBounds(10, 11, 156, 23);
 		panel.add(lblSearchProduct);
 		
-		List itemList = new List();
+		
 		itemList.setBackground(Color.LIGHT_GRAY);
-		itemList.setBounds(10, 137, 280, 127);
+		itemList.setBounds(10, 68, 280, 196);
+		for(String curr:gm.getInstance().list_items.getItems())
+		{
+			itemList.add(curr);
+		}
 		panel.add(itemList);
 		
-		itemList.add("Acidophilus bifidus kompl.caps. N30");
-		itemList.add("Acta Visio caps. N30");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
-		itemList.add("Alyvuogių lapų ekstraktas Swanson 500mg caps. N60");
+		
 		
 		TextField quantityField = new TextField();
 		quantityField.addKeyListener(new KeyAdapter() {
@@ -198,28 +211,16 @@ public class GuiSale extends JDialog {
 		lblPriceunit.setBounds(10, 290, 84, 22);
 		panel.add(lblPriceunit);
 		
-		JLabel lblStock_1 = new JLabel("Stock");
+		
+		JLabel lblStock_1 = new JLabel(itemList.getSelectedItem());
+		
 		lblStock_1.setBounds(97, 272, 46, 14);
 		panel.add(lblStock_1);
+		
 		
 		JLabel lblPriceunit_1 = new JLabel("Price/Unit");
 		lblPriceunit_1.setBounds(97, 296, 69, 14);
 		panel.add(lblPriceunit_1);
-		
-		JLabel lblInsertCustomerTo = new JLabel("Insert customer to sale");
-		lblInsertCustomerTo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblInsertCustomerTo.setBounds(10, 11, 280, 23);
-		panel.add(lblInsertCustomerTo);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(10, 33, 193, 23);
-		panel.add(textField);
-		
-		JButton button = new JButton("Search");
-		button.setBackground(new Color(204, 204, 255));
-		button.setBounds(206, 32, 84, 24);
-		panel.add(button);
 		
 		
 		
