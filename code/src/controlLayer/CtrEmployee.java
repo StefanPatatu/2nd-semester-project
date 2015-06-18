@@ -65,7 +65,11 @@ public class CtrEmployee {
 	public int insertEmployee(String person_id, String name, String phoneNr, String email, String pass, int rights, String country, String city, String street) throws Exception {
 		int success = 1;
 		ArrayList<String> passAndSalt = systemLogin.getHashedPasswordAndSalt(pass);
+		System.out.println("########insertEmployee#########");
+		System.out.println("passAndSalt.get(0): "+ passAndSalt.get(0));
+		System.out.println("passAndSalt.get(1): "+ passAndSalt.get(1));
 		Employee employee = new Employee(person_id, name, ctrAddress.createNewAddress(country, city), street, phoneNr, email, passAndSalt.get(0), passAndSalt.get(1), rights);
+		System.out.println("Employee: " + person_id + ", " + name + ", " + street + ", " + phoneNr + ", " + email + ", " + passAndSalt.get(0) + ", " + passAndSalt.get(1) + ", " + rights);
 		try {
 			DbConnection.startTransaction();
 			dbEmployee.insertEmployee(employee);
@@ -78,6 +82,7 @@ public class CtrEmployee {
 			}
 			success = Errors.INSERT_EMPLOYEE.getCode();
 		}
+		System.out.println("success: " + success);
 		return success;	
 	}
 	
@@ -112,6 +117,7 @@ public class CtrEmployee {
 		Employee employee = new Employee();
 		try {
 			employee = findEmployeeByPerson_id(person_id);
+			System.out.println("authenticateEmployee: person_id: " + person_id + " password: " + password);
 			try {
 				if(systemLogin.authenticate(password, employee.getSalt(), employee.getPass())) {
 					rights = employee.getRights();
@@ -124,6 +130,7 @@ public class CtrEmployee {
 		} catch (Exception e) {
 			rights = Errors.AUTHENTICATE_FAILED.getCode();
 		}
+		System.out.println("authenticateEmployee: rights: " + rights);
 		return rights;
 	}
 

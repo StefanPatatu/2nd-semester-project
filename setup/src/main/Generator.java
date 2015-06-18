@@ -195,8 +195,8 @@ public class Generator {
 				"	name			nvarchar(128)				NOT NULL,\r\n" + 
 				"	phoneNr			nvarchar(16)				NOT NULL,\r\n" + 
 				"	email			nvarchar(128)				NOT NULL,\r\n" + 
-				"	pass			char(64)					NOT NULL,\r\n" + 
-				"	salt			char(20)					NOT NULL,\r\n" + 
+				"	pass			char(1024)					NOT NULL,\r\n" + 
+				"	salt			char(512)					NOT NULL,\r\n" + 
 				"	rights			int							NOT NULL,\r\n" + 
 				"	e_address		int							NOT NULL,\r\n" + 
 				"	street			nvarchar(128)				NOT NULL,\r\n" + 

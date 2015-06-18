@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -41,9 +42,33 @@ public class SystemLogin {
 	//returns true if password is correct:
 	//returns false otherwise
 	public boolean authenticate(String password, String salt, String hashedPassword) throws UnsupportedEncodingException {
+		
+		System.out.println("###authenticate###");
+		System.out.println("Password: " + password);
+		System.out.println("Salt: " + salt);
+		System.out.println("hashedPassword: " + hashedPassword);
+		
 		char[] passChar = password.toCharArray(); //convert password string to char array
-		byte[] saltByte = salt.getBytes("UTF-8");
-		byte[] hashedPassByte = hashedPassword.getBytes("UTF-8");
+		
+		byte[] saltByte = null;
+		try {
+			saltByte = Base64.decodeBase64((salt));
+		} catch (Exception e) {
+			System.out.println("decode(salt)");
+			e.printStackTrace();
+			
+		}
+		
+		byte[] hashedPassByte = null;
+		try {
+			hashedPassByte = Base64.decodeBase64((hashedPassword));
+		} catch (Exception e) {
+			System.out.println("decode(hashedPassword)");
+			e.printStackTrace();
+		}
+		
+		//byte[] saltByte = salt.getBytes("UTF-8");
+		//byte[] hashedPassByte = hashedPassword.getBytes("UTF-8");
 		
 		return isExpectedPassword(passChar, saltByte, hashedPassByte);
 	}
@@ -56,8 +81,15 @@ public class SystemLogin {
 		
 		byte[] hashedPass = hash(pass, salt); //generate the hash using the above salt and pass
 		
-		String stringSalt = new String(salt, "UTF-8"); //convert salt to String
-		String stringPass = new String(hashedPass, "UTF-8"); //convert hashed pass to string
+		String stringSalt = new String(Base64.encodeBase64(salt));
+		String stringPass = new String(Base64.encodeBase64(hashedPass));
+		
+		//String stringSalt = new String(salt, "UTF-8"); //convert salt to String
+		//String stringPass = new String(hashedPass, "UTF-8"); //convert hashed pass to string
+		
+		System.out.println("###getHashedPasswordAndSalt###");
+		System.out.println("stringSalt: " + stringSalt);
+		System.out.println("stringPass: " + stringPass);
 		
 		passAndSalt.add(stringPass); //add pass to array
 		passAndSalt.add(stringSalt); //add salt to array
@@ -89,6 +121,15 @@ public class SystemLogin {
 	//returns true if yes, false if no
 	private static boolean isExpectedPassword(char[] password, byte[] salt, byte[] expectedHash) {
 		byte[] pwdHash = hash(password, salt);
+		System.out.println("###isExpectedPassword###");
+		String pwdHashString = "";
+		try {
+			pwdHashString = new String(pwdHash, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("pwdHash: " + pwdHashString);
 	    Arrays.fill(password, Character.MIN_VALUE);
 	    if (pwdHash.length != expectedHash.length) return false;
 	    for (int i = 0; i < pwdHash.length; i++) {

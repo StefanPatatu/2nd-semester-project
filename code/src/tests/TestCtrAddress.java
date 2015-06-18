@@ -28,8 +28,6 @@ public class TestCtrAddress {
 		@SuppressWarnings("unused")
 		DbConfig dbb = new DbConfig();
 		ctrAddress = new CtrAddress();
-		
-
 	}
 
 	@AfterClass
