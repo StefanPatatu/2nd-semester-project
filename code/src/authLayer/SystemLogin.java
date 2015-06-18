@@ -42,8 +42,8 @@ public class SystemLogin {
 	//returns false otherwise
 	public boolean authenticate(String password, String salt, String hashedPassword) throws UnsupportedEncodingException {
 		char[] passChar = password.toCharArray(); //convert password string to char array
-		byte[] saltByte = salt.getBytes("ISO-8859-1");
-		byte[] hashedPassByte = hashedPassword.getBytes("ISO-8859-1");
+		byte[] saltByte = salt.getBytes("UTF-8");
+		byte[] hashedPassByte = hashedPassword.getBytes("UTF-8");
 		
 		return isExpectedPassword(passChar, saltByte, hashedPassByte);
 	}
@@ -56,8 +56,8 @@ public class SystemLogin {
 		
 		byte[] hashedPass = hash(pass, salt); //generate the hash using the above salt and pass
 		
-		String stringSalt = new String(salt, "ISO-8895-1"); //convert salt to String
-		String stringPass = new String(hashedPass, "ISO-8859-1"); //convert hashed pass to string
+		String stringSalt = new String(salt, "UTF-8"); //convert salt to String
+		String stringPass = new String(hashedPass, "UTF-8"); //convert hashed pass to string
 		
 		passAndSalt.add(stringPass); //add pass to array
 		passAndSalt.add(stringSalt); //add salt to array
