@@ -30,13 +30,19 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
 
+import controlLayer.CtrCustomer;
 import controlLayer.CtrItem;
+import controlLayer.CtrSale;
+import controlLayer.CtrSaleLine;
+import modelLayer.Customer;
 import modelLayer.Item;
+import modelLayer.SaleLine;
 
 import java.awt.Scrollbar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 /**
 @author frunziss
@@ -50,6 +56,16 @@ public class GuiSale extends JDialog {
 	private CtrItem ci = new CtrItem();
 	private static ArrayList<GuiItemWrapperGood<Item>> giw = new ArrayList<>();
 	private List itemList = new List();
+	public ArrayList<SaleLine> saleLines = new ArrayList<>();
+	public Item item;
+	private CtrSale cs = new CtrSale();
+	private JTextField textField_nr;
+	private Customer customer;
+	public TextField quantityField;
+	private double price=0;
+	private JLabel lblPrice;
+	private List saleList_1;
+	private JCheckBox chckbxPaid;
 	
 	
 	
@@ -69,8 +85,24 @@ public class GuiSale extends JDialog {
 	      }
 	      return instance;
 	}
+	public void updatePrice()
+	{ price=price+Integer.parseInt(quantityField.getText())*item.getPrice();
+	  lblPrice.setText(Double.toString(price));	
+	}
 	public GuiSale() {
-		setModal(true);
+		GuiMain.getInstance().list_customers.getSelectedItem();
+		CtrCustomer cc = new CtrCustomer();
+		try {
+			for(Customer curr:cc.getAllCustomers())
+			{
+				if(curr.getName().equals(curr.getName()))
+					customer=curr;
+			}
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		this.setModal(true);
 		setResizable(false);
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -159,7 +191,7 @@ public class GuiSale extends JDialog {
 		
 		
 		
-		TextField quantityField = new TextField();
+		quantityField = new TextField();
 		quantityField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent k) {
@@ -169,12 +201,12 @@ public class GuiSale extends JDialog {
 		        }
 			}
 		});
-		quantityField.setBounds(82, 322, 105, 22);
+		quantityField.setBounds(82, 271, 105, 22);
 		panel.add(quantityField);
 		
 		JLabel lblQuantity = new JLabel("Quantity:");
 		lblQuantity.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblQuantity.setBounds(10, 322, 71, 22);
+		lblQuantity.setBounds(10, 271, 71, 22);
 		panel.add(lblQuantity);
 		
 		JButton btnAdd = new JButton("Add to sale");
@@ -194,33 +226,40 @@ public class GuiSale extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}*/
+				String selectedItem=itemList.getSelectedItem();
+				String quantity = quantityField.getText();
+				String customer = GuiMain.getInstance().list_customers.getSelectedItem();
+				CtrSale cs = new CtrSale();
+				CtrSaleLine csl = new CtrSaleLine();
+				try {
+					for(Item curr:ci.getAllItems())
+					{
+						if(curr.getName().equals(selectedItem))
+						{
+							 item = curr;
+						}
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				csl.createSaleLine(Integer.parseInt(quantity),item.getBarcode());
+				saleLines.add(new SaleLine(Integer.parseInt(quantity), item.getPrice(), item));
+				cs.addSaleLineToSale(Integer.parseInt(quantity), item.getBarcode(), saleLines);
+				saleList_1.add(item.getName()+" "+"Quantity: "+quantity+" "+"Price/Unit: "+item.getPrice());
+				updatePrice();
 				
 				
 			}
 		});
-		btnAdd.setBounds(185, 321, 105, 23);
+		btnAdd.setBounds(185, 270, 105, 23);
 		panel.add(btnAdd);
-		
-		JLabel lblStock = new JLabel("Stock:");
-		lblStock.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblStock.setBounds(10, 266, 71, 22);
-		panel.add(lblStock);
-		
-		JLabel lblPriceunit = new JLabel("Price/Unit:");
-		lblPriceunit.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPriceunit.setBounds(10, 290, 84, 22);
-		panel.add(lblPriceunit);
 		
 		
 		JLabel lblStock_1 = new JLabel(itemList.getSelectedItem());
 		
 		lblStock_1.setBounds(97, 272, 46, 14);
 		panel.add(lblStock_1);
-		
-		
-		JLabel lblPriceunit_1 = new JLabel("Price/Unit");
-		lblPriceunit_1.setBounds(97, 296, 69, 14);
-		panel.add(lblPriceunit_1);
 		
 		
 		
@@ -232,13 +271,13 @@ public class GuiSale extends JDialog {
 		
 		JLabel lblGuiSale = new JLabel("New sale");
 		lblGuiSale.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblGuiSale.setBounds(10, 11, 156, 23);
+		lblGuiSale.setBounds(10, 11, 108, 23);
 		panel_1.add(lblGuiSale);
-		
-		List saleList = new List();
-		saleList.setBackground(Color.LIGHT_GRAY);
-		saleList.setBounds(10, 40, 280, 220);
-		panel_1.add(saleList);
+	//	List saleList = new List();
+		saleList_1 = new List();
+		saleList_1.setBackground(Color.LIGHT_GRAY);
+		saleList_1.setBounds(10, 40, 280, 220);
+		panel_1.add(saleList_1);
 		
 		JButton btnDelete = new JButton("Remove from sale");
 		btnDelete.setBackground(new Color(204, 204, 255));
@@ -250,12 +289,30 @@ public class GuiSale extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}*/
+				
+				
 			}
 		});
 		btnDelete.setBounds(171, 265, 119, 23);
 		panel_1.add(btnDelete);
 		
 		JButton btnFinish = new JButton("Finish");
+		btnFinish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				java.util.Date date= new java.util.Date();
+				Timestamp dateCreated = new Timestamp(date.getTime());
+			//cs.insertSale(textField_nr.getText(), false, null, false, null, false, null, 1, 1, saleLines, -1);
+			try {
+				cs.insertSale(textField_nr.getText(), chckbxPaid.isSelected(), dateCreated, false, dateCreated, false, dateCreated, 1, customer.getId_customer(), saleLines, -1);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			GuiSale.this.dispose();
+			}
+		
+		});
 		btnFinish.setBackground(new Color(204, 204, 255));
 		btnFinish.setBounds(123, 321, 89, 23);
 		panel_1.add(btnFinish);
@@ -278,14 +335,25 @@ public class GuiSale extends JDialog {
 		lblTotalPrice.setBounds(10, 266, 89, 22);
 		panel_1.add(lblTotalPrice);
 		
-		JLabel lblPrice = new JLabel("price");
+		lblPrice = new JLabel("");
 		lblPrice.setBounds(91, 272, 46, 14);
 		panel_1.add(lblPrice);
 		
-		JCheckBox chckbxPaid = new JCheckBox("Paid");
+		
+		chckbxPaid = new JCheckBox("Paid");
 		chckbxPaid.setBackground(Color.GRAY);
 		chckbxPaid.setBounds(226, 295, 64, 23);
 		panel_1.add(chckbxPaid);
+		
+		textField_nr = new JTextField();
+		textField_nr.setBounds(204, 14, 86, 20);
+		panel_1.add(textField_nr);
+		textField_nr.setColumns(10);
+		
+		JLabel lblNr = new JLabel("Nr:");
+		lblNr.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNr.setBounds(160, 11, 34, 23);
+		panel_1.add(lblNr);
 		}
 	}
 

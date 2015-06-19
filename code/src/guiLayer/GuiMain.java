@@ -43,6 +43,7 @@ import java.awt.Color;
 @author frunziss
 */
 public class GuiMain extends JFrame {
+	public CtrCheckConnection ccc = new CtrCheckConnection();
 	private static ArrayList<GuiCustomerWrapper<Customer>> gcw = new ArrayList<>();
 	private static ArrayList<Customer> customers = new ArrayList<>();
 	private static ArrayList<GuiEmployeeWrapper<Employee>> gew = new ArrayList<>();
@@ -63,7 +64,6 @@ public class GuiMain extends JFrame {
 	public List list_customers=new List();
 	public List list_employees=new List();
 	public List list_items=new List();
-	public JLabel lblcheck = new JLabel("check");
 	
 
 	/**
@@ -106,11 +106,22 @@ public class GuiMain extends JFrame {
 			public void run() {
 				try {
 					checkIfRunning();
-					 DbConfig dbb = new DbConfig();
-					GuiMain frame = GuiMain.getInstance();
+					DbConfig dbb = new DbConfig();
+					GuiLogIn gli = new GuiLogIn();
+					gli.setVisible(true);
 					GuiCheckThread cgt=new GuiCheckThread();
 					cgt.start();
-					frame.setVisible(true);
+				/*if(gli.checkEmployee()>0)
+					{
+						GuiMain frame = GuiMain.getInstance();
+						
+						frame.setVisible(true);
+						cgt.start();
+						
+					
+					} 
+				else*/
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -194,12 +205,12 @@ public class GuiMain extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Adrian Frunza\\Desktop\\Entafarma.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("GuiMain");
-		getContentPane().setLayout(null);
 		this.setBounds(5, 7, 650, 400);
+		getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setBounds(10, 11, 606, 344);
+		tabbedPane.setBackground(Color.WHITE);
 		
 		getContentPane().add(tabbedPane);
 		
@@ -226,6 +237,7 @@ public class GuiMain extends JFrame {
 		salePanel.setBackground(Color.GRAY);
 		salePanel.setBounds(20, 116, 147, 239);
 		tabbedPane.addTab("Sale", salePanel);
+		
 		salePanel.setLayout(null);
 		
 		textField_3 = new JTextField();
@@ -373,10 +385,6 @@ public class GuiMain extends JFrame {
 		btnMarkAsSent.setBackground(new Color(204, 204, 255));
 		btnMarkAsSent.setBounds(376, 107, 209, 59);
 		salePanel.add(btnMarkAsSent);
-		
-		
-		lblcheck.setBounds(464, 12, 46, 14);
-		salePanel.add(lblcheck);
 		
 		
 		

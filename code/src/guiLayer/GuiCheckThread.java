@@ -22,15 +22,15 @@ public class GuiCheckThread extends Thread
 			}
 			if(ccc.isValidd())
 		{
-			result="true";
+			result="Connected to database";
 		}
 			else
 			{
-				result="false";
+				result="Not connected to database";
 			}
 		
-		
-			gm.lblcheck.setText(result);
+			gm.setTitle("Main: "+result);
+		//	gm.lblcheck.setText(result);
 			
 			
 		}
