@@ -14,12 +14,7 @@ public class GuiCheckThread extends Thread
 		//int i=1;
 		while(true)
 		{
-			try {
-				GuiCheckThread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			if(ccc.isValidd())
 		{
 			result="Connected to database";

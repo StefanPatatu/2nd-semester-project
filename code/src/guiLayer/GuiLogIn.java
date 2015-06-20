@@ -57,13 +57,13 @@ public class GuiLogIn extends JFrame {
 	{ 
 		username = textField.getText();
 		 password = passwordField.getText();
-		 System.out.println(password);
 		 
-		 System.out.println(ce.authenticateEmployee(username, password));
+		 
+		 
 		 return ce.authenticateEmployee(username, password);
 	}
 	public GuiLogIn() {
-	setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+	setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		
 		setResizable(false);
 		setTitle("Log In");
@@ -116,17 +116,6 @@ public class GuiLogIn extends JFrame {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						GuiLogIn.this.dispose();
-						GuiMain.getInstance().dispose();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
 		}
 	}

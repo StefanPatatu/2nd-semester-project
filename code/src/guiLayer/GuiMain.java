@@ -132,7 +132,7 @@ public class GuiMain extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GuiMain() {
+	private GuiMain() {
 		//-----------------------------------------------------------------------------------------
 		try {
 			customers=cc.getAllCustomers();
@@ -172,7 +172,7 @@ public class GuiMain extends JFrame {
 		
 		
 		for(GuiEmployeeWrapper<Employee>curr:gew)
-		{
+		{if(!curr.getObject().getName().equals("God"))
 			list_employees.add(curr.getObject().getName());
 		}
 		//-----------------------------------------------------------
@@ -894,7 +894,7 @@ public class GuiMain extends JFrame {
 				gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
 			}
 			for(GuiEmployeeWrapper<Employee>curr:gew)
-			{
+			{	if(!curr.toString().equalsIgnoreCase("God"));
 				GuiMain.getInstance().list_employees.add(curr.toString());
 			}
 			}
