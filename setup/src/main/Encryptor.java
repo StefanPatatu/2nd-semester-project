@@ -35,6 +35,10 @@ public class Encryptor {
 		Encrypt();
 	}
 	
+	public String getDBQuery() {
+		return generator.getDBQuery();
+	}
+	
 	private void Encrypt() {
 		setDBDriver(PropertyValueEncryptionUtils.encrypt(generator.getDBDriver(), encryptor));
 		setDBName(PropertyValueEncryptionUtils.encrypt(generator.getDBName(), encryptor));

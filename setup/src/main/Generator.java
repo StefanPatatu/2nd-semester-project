@@ -267,7 +267,10 @@ public class Generator {
 				"	FOREIGN KEY (id_i) REFERENCES " + DBTablePrefix + "Item(id_item) ON DELETE NO ACTION ON UPDATE NO ACTION,\r\n" + 
 				"	FOREIGN KEY (Id_s) REFERENCES " + DBTablePrefix + "Sale(id_sale) ON DELETE NO ACTION ON UPDATE NO ACTION\r\n" + 
 				");\r\n" + 
-				"GO";
+				"GO\r\n" + 
+				"INSERT INTO " + DBTablePrefix + "Address (country, city) VALUES ('Heaven', 'Utopia');\r\n" + 
+				"INSERT INTO " + DBTablePrefix + "Employee (person_id, name, phoneNr, email, pass, salt, rights, e_address, street) VALUES ('000', 'God', '666-666-666', 'burnInHell@god.saint', 't02wHpL/Qn6hdNQLaOupusaQdk5U38aoz4Qqu7Llz1E=', 'CmIK8DKzTfgfy74EucwueA==', '3', '1', 'Hope no. 12');\r\n" + 
+				"";
 		//System.out.println(query);
 		return query;
 	}

@@ -1,8 +1,10 @@
 package main;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
@@ -37,6 +39,15 @@ public class Main {
 			}
 		}
 		
+		PrintWriter out = null;
+		try {
+			out = new PrintWriter("query.sql");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.print(encryptor.getDBQuery());
+		out.close();
 	}
 
 }
