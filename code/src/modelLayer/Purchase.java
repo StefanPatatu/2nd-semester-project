@@ -33,9 +33,6 @@ public class Purchase {
 		this.supplier = supplier;
 	}
 
-	
-	
-	
 	public Timestamp getDateOrdered() {
 		return dateOrdered;
 	}
@@ -49,6 +46,4 @@ public class Purchase {
 		this.dateDelivered = dateDelivered;
 	}
 	
-	
-
 }

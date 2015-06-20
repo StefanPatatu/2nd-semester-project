@@ -157,7 +157,7 @@ public class DbSale implements DbSaleInterface {
 		} catch (SQLException sqle) {
 			throw new SQLException("updateSaleIsPaid.DbSale.dbLayer", sqle);
 		} catch (Exception e) {
-			throw new Exception ("updateSaleIsPaid.DbSale.dbLayer", e);
+			throw new Exception("updateSaleIsPaid.DbSale.dbLayer", e);
 		}
 		return result;	
 	}

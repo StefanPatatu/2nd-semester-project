@@ -19,14 +19,6 @@ import javax.crypto.spec.PBEKeySpec;
  * @version 1.2
  */
 
-/**
- * Note to self:
- * The ISO-8859-1 encoding maps a single, unique character for each byte,
- * so it's safe to use it for the conversion. Note that other encodings,
- * such as UTF-8, are not safe in this sense because there are sequences
- *  of bytes that don't map to valid strings in those encodings.
- */
-
 public class SystemLogin {
 	
 	//variables

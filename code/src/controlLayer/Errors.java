@@ -33,7 +33,6 @@ public enum Errors {
 	INSERT_ITEM(-15, "Insert operation failed. Rolling back."),
 	UPDATE_ITEM(-16, "Update operation failed. Rolling back."),
 	
-	
 	//CtrSaleLine
 	UNABLE_TO_GET_ITEM(-17, "An error occured while trying to get the item object."),
 	UNABLE_TO_GET_ID(-18, "An error occured while trying to get the item id."),
@@ -53,8 +52,6 @@ public enum Errors {
 	UPDATE_ISSENT(-34, "Could not update isSent."),
 	UPDATE_ISPAID(-35, "Could not update isPaid."),
 
-	
-	
 	;
 	
 	private final int code;

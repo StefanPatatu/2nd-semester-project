@@ -107,7 +107,6 @@ public class CtrSaleLine {
 		} else {
 			return null;
 		}
-		
 	}
 
 }
