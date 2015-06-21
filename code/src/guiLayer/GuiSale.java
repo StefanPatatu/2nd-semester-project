@@ -52,7 +52,7 @@ public class GuiSale extends JDialog {
 	private JPanel contentPane;
 	private JTextField searchField;
 	private static GuiSale instance=null;
-	private GuiMain gm = new GuiMain();
+	private GuiMain gm = GuiMain.getInstance();
 	private CtrItem ci = new CtrItem();
 	private static ArrayList<GuiItemWrapperGood<Item>> giw = new ArrayList<>();
 	private List itemList = new List();
@@ -66,9 +66,10 @@ public class GuiSale extends JDialog {
 	private JLabel lblPrice;
 	private List saleList_1;
 	private JCheckBox chckbxPaid;
-	private String quantity = quantityField.getText();
+	
 	private String selectedItem=itemList.getSelectedItem();
 	private String selectedCustomer;
+	private String quantity;
 	
 	
 	
@@ -234,10 +235,14 @@ public class GuiSale extends JDialog {
 				CtrSale cs = new CtrSale();
 				CtrSaleLine csl = new CtrSaleLine();
 				selectedCustomer=GuiMain.getInstance().list_customers.getSelectedItem();
+				selectedItem=itemList.getSelectedItem();
+				
+				 quantity=quantityField.getText();
+				 System.out.println(quantity);
 				try {
 					for(Item curr:ci.getAllItems())
 					{
-						if(curr.getName().equals(selectedCustomer))
+						if(curr.getName().equals(selectedItem))
 						{
 							 item = curr;
 						}

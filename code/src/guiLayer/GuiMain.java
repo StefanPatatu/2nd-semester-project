@@ -485,7 +485,7 @@ public class GuiMain extends JFrame {
 		btnAdd.setBounds(90, 266, 89, 23);
 		itemPanel.add(btnAdd);
 		
-		JButton btnUpdateStock = new JButton("Update stock");
+		JButton btnUpdateStock = new JButton("Add To stock");
 		btnUpdateStock.setBackground(new Color(204, 204, 255));
 		btnUpdateStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
