@@ -19,13 +19,14 @@ public class Encryptor {
 	private StandardPBEStringEncryptor encryptor = null;
 	private final String password = "1B7C4DD1C6IGHIUW955953226444GKS";
 	private final String algorithm = "PBEWithMD5AndDES";
+	private final int iterations = 1000;
 	
 	public Encryptor() {
 		generator = new Generator();
 		
 		SimplePBEConfig config = new SimplePBEConfig(); 
 		config.setAlgorithm(algorithm);
-		config.setKeyObtentionIterations(1000);
+		config.setKeyObtentionIterations(iterations);
 		config.setPassword(password);
 		
 		encryptor = new StandardPBEStringEncryptor();
