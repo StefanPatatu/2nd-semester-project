@@ -190,7 +190,7 @@ public class GuiAddItem extends JDialog {
 				 
 				
 				}
-			GuiAddItem.this.dispose();
+			
 		}});
 		btnAdd.setBounds(86, 163, 89, 23);
 		contentPane.add(btnAdd);

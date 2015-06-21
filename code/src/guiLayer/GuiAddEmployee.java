@@ -200,7 +200,7 @@ public class GuiAddEmployee extends JDialog {
 					}
 					
 				}
-				GuiAddEmployee.this.dispose();
+				
 			}
 		});
 		btnAdd.setBounds(87, 244, 89, 23);

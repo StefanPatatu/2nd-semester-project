@@ -233,6 +233,160 @@ public class GuiMain extends JFrame {
 		supplierPanel.setBounds(20,116,147,239);
 		
 		
+		JPanel salePanel = new JPanel();
+		salePanel.setBackground(Color.GRAY);
+		salePanel.setBounds(20, 116, 147, 239);
+		tabbedPane.addTab("Sale", salePanel);
+		
+		salePanel.setLayout(null);
+		
+		textField_3 = new JTextField();
+		textField_3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					//IMPORTANT 
+				
+		        }
+			}
+		});
+		textField_3.setColumns(10);
+		textField_3.setBounds(10, 12, 266, 20);
+		salePanel.add(textField_3);
+		
+		JButton button_5 = new JButton("Search");
+		button_5.setForeground(new Color(0, 0, 0));
+		button_5.setBackground(new Color(204, 204, 255));
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			/*	if(textField.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the customer in order to be displayed. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				}*/
+			}
+		});
+		button_5.setBounds(280, 11, 90, 23);
+		salePanel.add(button_5);
+		
+		List list_3 = new List();
+		list_3.setForeground(Color.BLACK);
+		list_3.setBackground(Color.LIGHT_GRAY);
+		list_3.setBounds(10, 38, 360, 222);
+		salePanel.add(list_3);
+		
+		JButton button_6 = new JButton("Add");
+		button_6.setEnabled(false);
+		button_6.setBackground(new Color(204, 204, 255));
+		button_6.setForeground(new Color(0, 0, 0));
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GuiSale s = GuiSale.getInstance();
+				s.setVisible(true);
+				
+				
+			}
+		});
+		button_6.setBounds(10, 266, 81, 23);
+		salePanel.add(button_6);
+		
+		JButton button_7 = new JButton("View Information");
+		button_7.setForeground(new Color(0, 0, 0));
+		button_7.setBackground(new Color(204, 204, 255));
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*if(list.getSelectedItems().length==0)
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				} 
+				else
+				{
+				*/
+				
+				GuiViewSale vs = GuiViewSale.getInstance();
+				vs.setVisible(true);
+				
+				//}
+				
+			}
+		});
+		button_7.setBounds(94, 266, 113, 23);
+		salePanel.add(button_7);
+		
+		JButton btnRegisterPaymeny = new JButton("Register payment for invoice");
+		btnRegisterPaymeny.setForeground(new Color(0, 0, 0));
+		btnRegisterPaymeny.setBackground(new Color(204, 204, 255));
+		btnRegisterPaymeny.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			/*	if(list.getSelectedItems().length==0)
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				} 
+				else
+				{
+				
+				}*/
+			}
+		});
+		btnRegisterPaymeny.setBounds(376, 175, 209, 64);
+		salePanel.add(btnRegisterPaymeny);
+		
+		JButton btnMarkAsPacked = new JButton("Mark as packed");
+		btnMarkAsPacked.setForeground(new Color(0, 0, 0));
+		btnMarkAsPacked.setBackground(new Color(204, 204, 255));
+		btnMarkAsPacked.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*if(list.getSelectedItems().length==0)
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				} */
+				int response=JOptionPane.showConfirmDialog(null, "Are you sure you want to mark the selected sale as packed?", "Pack",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+				      System.out.println("No button clicked");
+				    } else if (response == JOptionPane.YES_OPTION) {
+				      JOptionPane.showMessageDialog(null, "The selected item was marked as packed");
+				    } else if (response == JOptionPane.CLOSED_OPTION) {
+				      System.out.println("JOptionPane closed");
+				    }
+				  
+		
+			}
+		});
+		btnMarkAsPacked.setBounds(376, 38, 209, 58);
+		salePanel.add(btnMarkAsPacked);
+		
+		JButton btnMarkAsSent = new JButton("Mark as sent");
+		btnMarkAsSent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*if(list.getSelectedItems().length==0)
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
+					        JOptionPane.ERROR_MESSAGE);
+				
+				} */
+				int response=JOptionPane.showConfirmDialog(null, "Are you sure you want to mark the selected sale as sent?", "sent",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+				      System.out.println("No button clicked");
+				    } else if (response == JOptionPane.YES_OPTION) {
+				      JOptionPane.showMessageDialog(null, "The selected item was marked as packed");
+				    } else if (response == JOptionPane.CLOSED_OPTION) {
+				      System.out.println("JOptionPane closed");
+				    }
+			}});
+		
+		btnMarkAsSent.setForeground(Color.BLACK);
+		btnMarkAsSent.setBackground(new Color(204, 204, 255));
+		btnMarkAsSent.setBounds(376, 107, 209, 59);
+		salePanel.add(btnMarkAsSent);
+		
+		
 		
 		;
 		tabbedPane.addTab("Item", itemPanel);
@@ -493,22 +647,10 @@ public class GuiMain extends JFrame {
 		JButton btnNewButton = new JButton("Create sale ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try
-				{
-				boolean c=list_customers.getSelectedItem().isEmpty();
 				GuiSale gs = new GuiSale();
 				gs.setVisible(true);
-				}
-				catch(Exception e)
-				
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "Select a customer. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);	
-				}
-				
-				
 			}
-			});
+		});
 		btnNewButton.setBounds(90, 289, 416, 29);
 		customerPanel.add(btnNewButton);
 		
@@ -782,18 +924,8 @@ public class GuiMain extends JFrame {
 		JButton button_3 = new JButton("View Information");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try
-				{
-					String c = list_employees.getSelectedItem();
-					GuiViewEmployee ve = new GuiViewEmployee();
-					ve.setVisible(true);
-				}
-				catch(Exception e)
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "Select an employee first. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				}
-				
+				GuiViewEmployee ve = new GuiViewEmployee();
+				ve.setVisible(true);
 			}
 		});
 		button_3.setBackground(new Color(204, 204, 255));
@@ -801,7 +933,6 @@ public class GuiMain extends JFrame {
 		employeePanel.add(button_3);
 		
 		JButton button_4 = new JButton("Modify");
-		button_4.setEnabled(false);
 		
 		button_4.setBackground(new Color(204, 204, 255));
 		button_4.setBounds(350, 266, 156, 23);
@@ -811,160 +942,5 @@ public class GuiMain extends JFrame {
 		lblNotWorkingYet.setBounds(215, 141, 46, 14);
 		employeePanel.add(lblNotWorkingYet);
 		
-		
-		JPanel salePanel = new JPanel();
-		salePanel.setBackground(Color.GRAY);
-		salePanel.setBounds(20, 116, 147, 239);
-		tabbedPane.addTab("Sale", salePanel);
-		tabbedPane.setEnabledAt(5, false);
-		
-		
-		salePanel.setLayout(null);
-		
-		textField_3 = new JTextField();
-		textField_3.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-					//IMPORTANT 
-				
-		        }
-			}
-		});
-		textField_3.setColumns(10);
-		textField_3.setBounds(10, 12, 266, 20);
-		salePanel.add(textField_3);
-		
-		JButton button_5 = new JButton("Search");
-		button_5.setForeground(new Color(0, 0, 0));
-		button_5.setBackground(new Color(204, 204, 255));
-		button_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			/*	if(textField.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "You must input the name of the customer in order to be displayed. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				}*/
-			}
-		});
-		button_5.setBounds(280, 11, 90, 23);
-		salePanel.add(button_5);
-		
-		List list_3 = new List();
-		list_3.setForeground(Color.BLACK);
-		list_3.setBackground(Color.LIGHT_GRAY);
-		list_3.setBounds(10, 38, 360, 222);
-		salePanel.add(list_3);
-		
-		JButton button_6 = new JButton("Add");
-		button_6.setEnabled(false);
-		button_6.setBackground(new Color(204, 204, 255));
-		button_6.setForeground(new Color(0, 0, 0));
-		button_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GuiSale s = GuiSale.getInstance();
-				s.setVisible(true);
-				
-				
-			}
-		});
-		button_6.setBounds(10, 266, 81, 23);
-		salePanel.add(button_6);
-		
-		JButton button_7 = new JButton("View Information");
-		button_7.setForeground(new Color(0, 0, 0));
-		button_7.setBackground(new Color(204, 204, 255));
-		button_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*if(list.getSelectedItems().length==0)
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				} 
-				else
-				{
-				*/
-				
-				GuiViewSale vs = GuiViewSale.getInstance();
-				vs.setVisible(true);
-				
-				//}
-				
-			}
-		});
-		button_7.setBounds(94, 266, 113, 23);
-		salePanel.add(button_7);
-		
-		JButton btnRegisterPaymeny = new JButton("Register payment for invoice");
-		btnRegisterPaymeny.setForeground(new Color(0, 0, 0));
-		btnRegisterPaymeny.setBackground(new Color(204, 204, 255));
-		btnRegisterPaymeny.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			/*	if(list.getSelectedItems().length==0)
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				} 
-				else
-				{
-				
-				}*/
-			}
-		});
-		btnRegisterPaymeny.setBounds(376, 175, 209, 64);
-		salePanel.add(btnRegisterPaymeny);
-		
-		JButton btnMarkAsPacked = new JButton("Mark as packed");
-		btnMarkAsPacked.setForeground(new Color(0, 0, 0));
-		btnMarkAsPacked.setBackground(new Color(204, 204, 255));
-		btnMarkAsPacked.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*if(list.getSelectedItems().length==0)
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				} */
-				int response=JOptionPane.showConfirmDialog(null, "Are you sure you want to mark the selected sale as packed?", "Pack",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (response == JOptionPane.NO_OPTION) {
-				      System.out.println("No button clicked");
-				    } else if (response == JOptionPane.YES_OPTION) {
-				      JOptionPane.showMessageDialog(null, "The selected item was marked as packed");
-				    } else if (response == JOptionPane.CLOSED_OPTION) {
-				      System.out.println("JOptionPane closed");
-				    }
-				  
-		
-			}
-		});
-		btnMarkAsPacked.setBounds(376, 38, 209, 58);
-		salePanel.add(btnMarkAsPacked);
-		
-		JButton btnMarkAsSent = new JButton("Mark as sent");
-		btnMarkAsSent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				/*if(list.getSelectedItems().length==0)
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "No item were selected. ", "Error",
-					        JOptionPane.ERROR_MESSAGE);
-				
-				} */
-				int response=JOptionPane.showConfirmDialog(null, "Are you sure you want to mark the selected sale as sent?", "sent",  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (response == JOptionPane.NO_OPTION) {
-				      System.out.println("No button clicked");
-				    } else if (response == JOptionPane.YES_OPTION) {
-				      JOptionPane.showMessageDialog(null, "The selected item was marked as packed");
-				    } else if (response == JOptionPane.CLOSED_OPTION) {
-				      System.out.println("JOptionPane closed");
-				    }
-			}});
-		
-		btnMarkAsSent.setForeground(Color.BLACK);
-		btnMarkAsSent.setBackground(new Color(204, 204, 255));
-		btnMarkAsSent.setBounds(376, 107, 209, 59);
-		salePanel.add(btnMarkAsSent);
 	}
 }

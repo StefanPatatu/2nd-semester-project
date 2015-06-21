@@ -52,7 +52,7 @@ public class GuiSale extends JDialog {
 	private JPanel contentPane;
 	private JTextField searchField;
 	private static GuiSale instance=null;
-	private GuiMain gm = GuiMain.getInstance();
+	private GuiMain gm = new GuiMain();
 	private CtrItem ci = new CtrItem();
 	private static ArrayList<GuiItemWrapperGood<Item>> giw = new ArrayList<>();
 	private List itemList = new List();
