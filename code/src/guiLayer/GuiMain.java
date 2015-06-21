@@ -752,7 +752,7 @@ public class GuiMain extends JFrame {
 				gew.add(new GuiEmployeeWrapper<Employee>(curr, curr::getName));
 			}
 			for(GuiEmployeeWrapper<Employee>curr:gew)
-			{	if(!curr.toString().equalsIgnoreCase("God"));
+			{	if(!curr.toString().equalsIgnoreCase("God"))
 				GuiMain.getInstance().list_employees.add(curr.toString());
 			}
 			}

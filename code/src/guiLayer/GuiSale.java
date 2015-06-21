@@ -66,6 +66,10 @@ public class GuiSale extends JDialog {
 	private JLabel lblPrice;
 	private List saleList_1;
 	private JCheckBox chckbxPaid;
+	private String quantity = quantityField.getText();
+	private String selectedItem=itemList.getSelectedItem();
+	private String selectedCustomer;
+	
 	
 	
 	
@@ -226,15 +230,14 @@ public class GuiSale extends JDialog {
 					        JOptionPane.ERROR_MESSAGE);
 				
 				}*/
-				String selectedItem=itemList.getSelectedItem();
-				String quantity = quantityField.getText();
-				String customer = GuiMain.getInstance().list_customers.getSelectedItem();
+				
 				CtrSale cs = new CtrSale();
 				CtrSaleLine csl = new CtrSaleLine();
+				selectedCustomer=GuiMain.getInstance().list_customers.getSelectedItem();
 				try {
 					for(Item curr:ci.getAllItems())
 					{
-						if(curr.getName().equals(selectedItem))
+						if(curr.getName().equals(selectedCustomer))
 						{
 							 item = curr;
 						}
@@ -244,8 +247,8 @@ public class GuiSale extends JDialog {
 					e.printStackTrace();
 				}
 				csl.createSaleLine(Integer.parseInt(quantity),item.getBarcode());
-				saleLines.add(new SaleLine(Integer.parseInt(quantity), item.getPrice(), item));
-				cs.addSaleLineToSale(Integer.parseInt(quantity), item.getBarcode(), saleLines);
+				
+				
 				saleList_1.add(item.getName()+" "+"Quantity: "+quantity+" "+"Price/Unit: "+item.getPrice());
 				updatePrice();
 				
@@ -303,8 +306,9 @@ public class GuiSale extends JDialog {
 				Timestamp dateCreated = new Timestamp(date.getTime());
 			//cs.insertSale(textField_nr.getText(), false, null, false, null, false, null, 1, 1, saleLines, -1);
 			try {
+				cs.addSaleLineToSale(Integer.parseInt(quantity), item.getBarcode(), saleLines);
 				cs.insertSale(textField_nr.getText(), chckbxPaid.isSelected(), dateCreated, false, dateCreated, false, dateCreated, 1, customer.getId_customer(), saleLines, -1);
-				
+				saleLines.add(new SaleLine(Integer.parseInt(quantity), item.getPrice(), item));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

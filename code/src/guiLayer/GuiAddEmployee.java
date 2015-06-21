@@ -189,7 +189,7 @@ public class GuiAddEmployee extends JDialog {
 			}
 			
 			for(GuiEmployeeWrapper<Employee>curr:gew)
-			{
+			{if(!curr.getObject().getName().equals("God"))
 				GuiMain.getInstance().list_employees.add(curr.getObject().getName());
 			}
 //					GuiAddCustomer.this.dispose();
