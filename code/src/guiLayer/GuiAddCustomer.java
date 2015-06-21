@@ -220,7 +220,7 @@ public class GuiAddCustomer extends JDialog {
 					}
 							
 				}
-					
+					GuiAddCustomer.this.dispose();
 			}
 		});
 		btnAdd.setBounds(86, 163, 89, 23);
